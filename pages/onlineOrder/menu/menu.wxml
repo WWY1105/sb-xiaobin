@@ -1,0 +1,48 @@
+<!--pages/onlineOrder/menu/menu.wxml-->
+
+<view class="containerBox">
+	<view class="content flexStart">
+		<!-- 左边分类 -->
+		<view class="category">
+			<view class="eachCate active">经典川菜</view>
+			<view class="eachCate">经典川菜</view>
+			<view class="eachCate">经典川菜</view>
+			<view class="eachCate">经典川菜</view>
+			<view class="eachCate">经典川菜</view>
+		</view>
+		<!-- 右边菜品 -->
+		<view class="dishs">
+			<view class="title">经典川菜</view>
+			<view class="eachDish flexStart">
+				<image class="disImg"></image>
+				<view class="textBox flexColumn">
+					<view class="top">
+						<view class="name">歌乐山辣子鸡</view>
+						<view class="desc">歌乐山辣子鸡</view>
+					</view>
+					<view class="bottom flexSpace">
+						<view class="price">
+							<text class="icon">￥</text>
+							<text>100</text>
+						</view>
+            <!-- 选规格 -->
+            <view class="choose">选规格</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 购物车 -->
+		<view class="totalBox flexCenter">
+			<view class="left flexStart">
+				<text class="icon"></text>
+				<view class="price">
+					<text class="logo">￥</text>
+					<text>100</text>
+				</view>
+        <text class="tips">另需包装费¥3</text>
+			</view>
+			<view class="doneBtn" bindtap="toSubmit">选好了</view>
+		</view>
+	</view>
+</view>

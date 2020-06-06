@@ -1,0 +1,48 @@
+<!--pages/myProfit/myProfit.wxml-->
+<view class="myProfit">
+  <!-- 顶部 -->
+  <view class="topBox">
+    <view class="smallTitle">累计收益</view>
+    <view class="bigNum">{{profits.total}}</view>
+    <view>
+      <text class="smallTitle bottomTitle">昨日收益</text>
+      <text class="bottomNum">{{profits.yesterday}}</text>
+    </view>
+  </view>
+
+
+  <!-- 内容 -->
+  <view class="content">
+    <view class="title">收益明细</view>
+    <view class="eachList" bindtap="gotoProfitDetail" data-id="{{item.id}}" wx:for="{{profitList.items}}">
+      <view class="shopName">{{item.name}}</view>
+      <view class="list">
+        <view class="left">
+          <!-- 打赏 --> 
+          <view class="icon icon1" wx:if="{{item.business=='8002'}}"></view>
+           <!-- 充值 -->
+          <view class="icon icon2" wx:if="{{item.business=='8010'}}"></view>
+          <!-- 会员升级 -->
+          <view class="icon icon3" wx:if="{{item.business=='8011'}}" ></view>
+          <!-- 商城返利 -->
+          <view class="icon icon4" wx:if="{{item.business=='8012'}}"></view>
+          <view>
+             <view class="listTitle" wx:if="{{item.business=='8010'}}">充值<text class="tag" wx:if="{{item.state=='1111'}}">已发放</text>
+      <text class="tag tag" wx:else>待发放</text></view>
+             <view class="listTitle" wx:if="{{item.business=='8002'}}">打赏<text class="tag" wx:if="{{item.state=='1111'}}">已发放</text>
+      <text class="tag tag" wx:else>待发放</text></view>
+             <view class="listTitle" wx:if="{{item.business=='8011'}}">会员升级<text class="tag" wx:if="{{item.state=='1111'}}">已发放</text>
+      <text class="tag tag" wx:else>待发放</text></view>
+             <view class="listTitle" wx:if="{{item.business=='8012'}}">商城返利<text class="tag" wx:if="{{item.state=='1111'}}">已发放</text>
+      <text class="tag tag" wx:else>待发放</text></view>
+            <view class="time">{{item.createTime}}</view>
+          </view>
+        </view>
+        <view class="rightBox">
+          <view class="num">+{{item.amount}}</view>
+          <view class="iconfont icon-youbian"> </view>
+        </view>
+      </view>
+    </view>  
+  </view>
+</view>

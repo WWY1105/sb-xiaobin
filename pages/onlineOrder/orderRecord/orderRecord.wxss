@@ -1,0 +1,74 @@
+/* pages/onlineOrder/orderRecord/orderRecord.wxss */
+page{
+  color: #000;
+  background-color: #f7f7f7;
+}
+.tabBox{
+  padding: 30rpx 140rpx;
+  font-size: 36rpx;
+}
+.tabBox .active {
+  color: #228bff;
+}
+.tabBox .active .line{
+  background-color: #228bff;
+  width: 120rpx;
+  height: 4rpx;
+  border-radius: 8rpx;
+   display: inline-block;
+   margin-top: 2rpx;
+}
+/* --- */
+.contentBox {
+  padding: 00rpx 26rpx;
+}
+.contentBox .eachRecord{
+  background-color: #fff;
+  padding: 30rpx 20rpx;
+  border-radius: 10rpx;
+}
+.userInfo{
+  margin-bottom: 40rpx;
+}
+.userInfo .userImg{
+  width: 60rpx;
+  height: 60rpx;
+  background-color: #333;
+  margin-right: 30rpx;
+  border-radius: 50%;
+}
+.userInfo .username{
+  font-size: 36rpx;
+}
+.userInfo .status{
+  font-size: 28rpx;
+}
+.goodsImg {
+}
+.goodsImg .good{
+  margin-right: 20rpx;
+
+}
+.goodsImg .goodImg{
+  width: 128rpx;
+  height: 128rpx;
+  border-radius:4rpx;
+  background-color: #d8d8d8;
+}
+.goodsImg .goodName{
+  font-size: 24rpx;
+  color: #676767;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 128rpx;
+}
+.deleteBox{
+margin-top: 30rpx;
+}
+.deleteBox .deleteBtn{
+font-size: 24rpx;
+padding: 4rpx 34rpx;
+border-radius: 4rpx;
+border: solid 1rpx #c9c9c9;
+}

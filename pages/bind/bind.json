@@ -1,0 +1,10 @@
+{
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 0,
+  "navigationBarTitleText": "绑定微信",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+  
+  }
+}

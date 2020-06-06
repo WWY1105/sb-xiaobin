@@ -1,0 +1,11 @@
+<!--pages/addStore/addStore.wxml-->
+<view>
+   <view class="verticleFlex">
+      <view class="title">请输入门店编号</view>
+      <input type="number" class="shopInput" auto-focus="true" bindinput="shopInput"></input>
+      <view class="redTips" wx:if="{{notFound}}">未查询到门店, 请核对后重新输入</view>
+      <view class="redTips" wx:if="{{storeInfo}}">{{storeInfo.brandName+'('+storeInfo.name+")"}}</view>
+      <view class="submitBtn"  wx:if="{{!storeInfo}}">确定</view>
+       <view class="submitBtn active" bindtap="submitCode" wx:if="{{storeInfo}}">确定</view>
+   </view>
+</view>

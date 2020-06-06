@@ -1,0 +1,52 @@
+<!--pages/onlineOrder/orderRecord/orderRecord.wxml-->
+<view class="tabBox flexSpace">
+	<view class="tabItem active flexCenter flexColumn">
+		<text>外卖订单</text>
+		<text class="line"></text>
+	</view>
+	<view class="tabItem">
+		<text>自提订单</text>
+		<text class="line"></text>
+	</view>
+</view>
+<view class="contentBox">
+	<view class="eachRecord">
+		<view class="userInfo flexSpace flexCenter">
+			<view class="left flexCenter flexStart">
+				<image class="userImg"></image>
+				<text class="username">11</text>
+			</view>
+			<view class="status">iii</view>
+		</view>
+		<!-- 商品 start-->
+		<scroll-view scroll-x>
+			<view class="goodsImg  flexStart">
+				<view class="good flexColumn">
+					<image class="goodImg"></image>
+					<text class="goodName">11</text>
+				</view>
+				<view class="good flexColumn">
+					<image class="goodImg"></image>
+					<text class="goodName">11</text>
+				</view>
+				<view class="good flexColumn">
+					<image class="goodImg"></image>
+					<text class="goodName">11</text>
+				</view>
+				<view class="good flexColumn">
+					<image class="goodImg"></image>
+					<text class="goodName">1177777777777</text>
+				</view>
+				<view class="good flexColumn">
+					<image class="goodImg"></image>
+					<text class="goodName">11</text>
+				</view>
+			</view>
+		</scroll-view>
+		<!-- 商品 end-->
+
+		<view class="deleteBox flexEnd">
+			<view class="deleteBtn">删除订单</view>
+		</view>
+	</view>
+</view>

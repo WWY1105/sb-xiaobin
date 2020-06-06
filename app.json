@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/my/my",
+    "pages/myStore/myStore",
+    "pages/addStore/addStore",
+    "pages/storeDetail/storeDetail",
+    "pages/menberUpgrade/menberUpgrade",
+    "pages/devalopMenber/devalopMenber",
+    "pages/recommendedRecharge/recommendedRecharge",
+    "pages/myProfit/myProfit",
+    "pages/profitDetail/profitDetail",
+    "pages/bind/bind",
+    "pages/onlineOrder/index",
+    "pages/onlineOrder/menu/menu",
+    "pages/onlineOrder/submitOrder/submitOrder",
+    "pages/onlineOrder/orderRecord/orderRecord"
+  ],
+  "subpackages": [
+    {
+      "root": "packageA",
+      "pages": []
+    }
+  ],
+  "preloadRule": {},
+  "window": {
+    "onReachBottomDistance": 50,
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "networkTimeout": {
+    "request": 20000
+  }
+}

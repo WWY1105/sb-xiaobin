@@ -1,0 +1,117 @@
+<!-- pages/menberUpgrade/menberUpgrade.wxml -->
+<view>
+  <!-- 顶部二维码 -->
+  <view class='erCode'>
+    <view class="content">
+      <view class="title">会员升级</view>
+      <image class="codePic" src="{{canvasQrCode}}"></image>
+    </view>
+  </view>
+  <!-- 滑动会员升级 -->
+  <veiw class="swiperContainer">
+    <swiper bindchange="swiperchange" indicator-dots="{{false}}" autoplay="{{false}}" current="{{swipercurrent}}" indicator-active-color="#3477f7" circular="{{false}}">
+      <swiper-item></swiper-item>
+      <swiper-item wx:for="{{upgradeMenberList}}" wx:key="index">
+        <text class="{{swipercurrent==index?'activeText':'default'}}" selectable="false" space="false" decode="false">升级为{{item.name}}</text>
+        <text class="line" wx:if="{{index!=upgradeMenberList.length-1}}"></text>
+      </swiper-item>
+    </swiper>
+  </veiw>
+  <!--重置小圆点的样式 -->
+  <view class="dotscontainer">
+    <view class="dots">
+      <view wx:for="{{upgradeMenberList}}" wx:key="index">
+        <view class="dot{{index == swipercurrent?' active' : ''}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 升级规则 -->
+  <view class='ruleContainer' wx:if="{{upgradeData}}">
+    <view class='content'>
+      <view class='title'>
+        <text class="diamond"></text>
+        <text class="main">升级规则</text>
+        <text class="diamond"></text>
+      </view>
+      <view class='textDetail'>
+        <view class="each" wx:for-item="item" wx:for="{{upgradeData.strategies}}">
+          <!-- <text>从【{{item.fromName}}】</text> -->
+          <text style="display:block" wx:for-item="i" wx:for-items="{{item.strategies}}">{{i.content}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- icon 菜单 -->
+  <view class="iconNavContainer"  wx:if="{{upgradeData}}">
+    <view class='content'>
+      <view class='title'>
+        <text class="titleLine"></text>
+        <text>会员权益</text>
+      </view>
+      <view class='navs'>
+        <view class='eachNav' wx:for="{{upgradeData.birth}}" wx:if="{{upgradeData.birth}}">
+           <image class="icon" src="/img/icons/birth.png"></image>
+          <view class='text'>
+            <view class='bigText'>生日特权</view>
+            <view class='smallText' wx:if="{{item.content}}">{{item.content[0]}}</view>
+          </view>
+        </view>
+          <view class='eachNav' wx:for="{{freeData.shopActivities}}">
+          <view class="icon ping" wx:if="{{item.category=='6013'}}">评</view>
+          <view class="icon ping" wx:elif="{{item.category=='6000'}}">会</view>
+          <image class="icon" wx:else src="/img/icons/{{item.category}}.png"></image>
+          <view class='text'>
+            <view class='bigText'>{{type[item.category]}}</view>
+            <view class='smallText' wx:if="{{item.contents}}">{{item.contents[0]}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 升级赠券 -->
+  <view class="couponNavContainer"  wx:if="{{upgradeData}}">
+    <view class='content'>
+      <view class='title'>
+        <text class="titleLine"></text>
+        <text>升级赠券</text>
+      </view>
+      <view class='qupons'>
+        <view wx:for-items="{{upgradeData.benefits}}" wx:for-item="item">
+          <view class='eachcoupon' wx:for-items="{{item.benefits}}" wx:for-item="i">
+            <view class="circle leftCircle"></view>
+            <view class="circle rightCircle"></view>
+            <view class="top">
+              <view class='leftBox'>
+                <text class='name' wx:if="{{i.name}}">{{i.name}}</text>
+                 <text class='name' wx:if="{{!i.name && i.category =='1014'}}">{{i.amount}}赠送金额</text>
+                <text class='name' wx:if="{{!i.name && i.category =='1015'}}">积分</text>
+                <text class='name' wx:if="{{!i.name && i.category =='1016'}}">{{i.amount}}优惠券</text>
+                <text class='name' wx:if="{{!i.name && i.category =='1017'}}">代用币</text>
+                <text class='tag' wx:if="{{i.todayUsable}}">当场可用</text>
+              </view>
+               <view class="rightBox">
+                <text wx:if="{{i.category =='1015'}}">{{i.amount}}分</text>
+                  <text wx:elif="{{i.category =='1017'}}">{{i.amount}}</text>
+                <text wx:else>1张</text>
+              </view>
+            </view>
+            <view class='bottom'>
+              <view class="useRules">
+                <view class="eachRule">{{i.useStrategy}}</view>
+                <!-- <view class="eachRule">有效期30天</view> -->
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- canvas -->
+  <view style='width:0px;height:0px;overflow:hidden;z-index:-999;left: 10000rpx;position:fixed'>
+    <canvas canvas-id="myCanvas" id="myCanvas" style="width:75px;height:75px;"></canvas>
+  </view>
+</view>

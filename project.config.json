@@ -1,0 +1,192 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": true,
+		"uglifyFileName": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.7.7",
+	"appid": "wx9a565144b6a112d4",
+	"projectname": "sb-xiaozhan",
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 14,
+			"list": [
+				{
+					"id": 0,
+					"name": "模拟更新",
+					"pathName": "pages/home/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "接收者",
+					"pathName": "pages/recipients/index",
+					"query": "latitude=31.2494&location=021&longitude=121.397&shopId=ce535885ea51489c82dd2c40b3047d2e&timestamp=1571884184109&signature=59f0cb3ec042daec7869933b51ccfc1c",
+					"scene": 1008
+				},
+				{
+					"id": 2,
+					"name": "pages/profitDetail/profitDetail",
+					"pathName": "pages/profitDetail/profitDetail",
+					"query": "/rebates/123",
+					"scene": 1007
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/my/my",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "正在发",
+					"pathName": "pages/red_envelopes_ing/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的收益",
+					"pathName": "pages/myIncome/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "收益记录",
+					"pathName": "pages/incomeRecord/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "订单",
+					"pathName": "pages/orderDetail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "获得奖励",
+					"pathName": "pages/getRewards/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "已结束",
+					"pathName": "pages/red_envelopes_ed/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的优惠券",
+					"pathName": "packageA/pages/myBenefit/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "pages/bind/bind",
+					"pathName": "pages/bind/bind",
+					"query": "id=036789961ed74896b0e801878eb33a94",
+					"scene": 1007
+				},
+				{
+					"id": 13,
+					"name": "packageA/pages/obtain/obtain",
+					"pathName": "packageA/pages/obtain/obtain",
+					"query": "id=d98c38f2a45c4980b9371954e7920e78&latitude=31.2494&location=021&longitude=121.397&shopId=ce535885ea51489c82dd2c40b3047d2e&timestamp=1571884184109&signature=59f0cb3ec042daec7869933b51ccfc1c",
+					"scene": null
+				},
+				{
+					"id": 14,
+					"name": "通知",
+					"pathName": "pages/notification/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 14,
+					"name": "tuijiam",
+					"pathName": "pages/recommendedRecharge/recommendedRecharge",
+					"query": "latitude=31.2494&location=021&longitude=121.397&shopId=ce535885ea51489c82dd2c40b3047d2e&timestamp=1571884184109&signature=59f0cb3ec042daec7869933b51ccfc1c",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "在线接单-首页",
+					"pathName": "pages/onlineOrder/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "在线接单-菜单",
+					"pathName": "pages/onlineOrder/menu/menu",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "在线接单-提交订单",
+					"pathName": "pages/onlineOrder/submitOrder/submitOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "在线接单-订单记录",
+					"pathName": "pages/onlineOrder/orderRecord/orderRecord",
+					"scene": null
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,194 @@
+/* pages/myProfit/myProfit.wxss */
+
+.myProfit {
+  color: #a5a5a5;
+  padding: 40rpx 60rpx;
+}
+
+.topBox {
+  width: 100%;
+  border-radius: 20rpx;
+  background-image: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/topBg.png);
+  color: #fff;
+  padding: 20rpx 40rpx;
+  box-sizing: border-box;
+  background-size: 100% 100%;
+}
+
+.topBox .smallTitle {
+  font-size: 28rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #d8deff;
+}
+
+.topBox  .bigNum {
+  font-size: 60rpx;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 84rpx;
+  letter-spacing: normal;
+  color: #fff;
+  margin-bottom: 40rpx;
+}
+
+.topBox   .bottomTitle {
+  margin-right: 20rpx;
+}
+
+.topBox  .bottomNum {
+  font-size: 36rpx;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #fff;
+}
+
+.content {
+  margin-top: 40rpx;
+}
+
+.content .title {
+  font-size: 32rpx;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
+  padding-bottom: 20rpx;
+  border-bottom: solid 1rpx #e9e9e9;
+}
+
+.content .eachList {
+  padding: 29rpx 0;
+}
+
+.content .eachList .shopName {
+  font-size: 24rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #a5a5a5;
+  margin-bottom: 10rpx;
+}
+
+.content .eachList  .list {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1rpx #e9e9e9;
+  padding-bottom: 28rpx;
+}
+
+.content .eachList  .list .left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.content .eachList  .list .icon {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 64rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  background-size: cover;
+
+}
+
+.icon1 {
+  /* 打赏 */
+  background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/profit/profit_icon2.png) 100% 100% no-repeat;
+}
+.icon2 {
+  /* 充值 */
+  background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/profit/profit_icon1.png) 100% 100% no-repeat;
+}
+.icon3 {
+  /* 升级 */
+  background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/profit/profit_icon5.png) 100% 100% no-repeat;
+}
+.icon4 {
+  /*商城返利 */
+  background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/profit/profit_icon6.png) 100% 100% no-repeat;
+}
+.tag {
+  border-radius: 6rpx;
+  border: solid 1px #13c228;
+  font-size: 20rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #13c228;
+  /* width: 60rpx;
+  height: 28rpx; */
+  line-height: 28rpx;
+  margin: 0 auto;
+  padding: 3rpx 10rpx;
+  width: auto;
+    margin-left: 20rpx;
+}
+
+.tag1 {
+  color: #ff2020;
+  border-color: #ff2020;
+}
+
+.content .eachList  .list  .listTitle {
+  font-size: 32rpx;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000;
+  margin-bottom: 4rpx;
+}
+
+.content .eachList  .list .time {
+  font-size: 20rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #a5a5a5;
+  margin-top: 10rpx;
+
+}
+.content .eachList  .rightBox{
+  display: flex;
+  align-items: center;
+}
+.content .eachList  .list .rightBox .num {
+  font-size: 40rpx;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e12020;
+  height: auto;
+
+}
+.icon-youbian{
+font-size: 26rpx;
+color: #c6c6c6;
+margin-left: 20rpx;
+}

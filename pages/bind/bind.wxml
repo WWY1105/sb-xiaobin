@@ -1,0 +1,31 @@
+<!--pages/bind/bind.wxml-->
+<view class="bind">
+  <view class="topBox">
+    <view class="bg"></view>
+    <view class="tips">
+      您正在绑定您的“微信钱包”为奖金到账账户, 您业务中所获得的佣金都将自动到达您的微信零钱, 请留意微信支付通知。
+    </view>
+  </view>
+  <view class="content">
+
+    <view class="title">请确认以下信息</view>
+    <view class="list">
+      <view class="label">门店</view>
+      <view class="text">{{staff.name}}</view>
+    </view>
+    <view class="list">
+      <view class="label">账号</view>
+      <view class="text">{{staff.username}}</view>
+    </view>
+    <view class="list">
+      <view class="label">收益人</view>
+      <view class="text">
+        {{staff.nickname}}
+      </view>
+    </view>
+  </view>
+  <view class="btnBox">
+    <button class="btn" open-type="getUserInfo" bindgetuserinfo="login">立即绑定</button>
+    <view class="skip" bindtap="skip">以后再说</view>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+{
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 10,
+  "navigationBarTitleText": "会员升级",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "auth": "../component/auth"
+  }
+}

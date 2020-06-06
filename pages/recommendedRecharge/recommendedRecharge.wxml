@@ -1,0 +1,99 @@
+<!-- pages/menberUpgrade/menberUpgrade.wxml -->
+<view>
+ 
+  <!-- 顶部二维码 -->
+  <view class='erCode'>
+    <view class="content">
+      <view class="title">快速充值</view>
+       <image class="codePic" src="{{canvasQrCode}}"></image>
+    </view>
+  </view>
+
+  <view class="midTitleContainer">
+    <view class="top">
+      <text class="titleLine leftLine"></text>
+      <text>充值好礼</text>
+      <text class="titleLine rightLine"></text>
+    </view>
+  </view>
+
+  <!-- icon 菜单 -->
+  <!-- <view class="iconNavContainer">
+    <view class='content'>
+      <view class='title'><text>充值500 </text><text class="redText">加赠100</text></view>
+      <view class='navs'>
+        <view class='eachNav' wx:for="{{navList}}">
+          <view class="icon"></view>
+          <view class='text'>
+            <view class='bigText'>{{item.text}}</view>
+            <view class='smallText'>{{item.desc}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+
+
+  <!-- 升级赠券 -->
+  <!-- 升级赠券 -->
+  <view class="couponNavContainer"  wx:if="{{rechargeData}}">
+    <view class='content' wx:for-items="{{rechargeData.activities}}" wx:for-item="item">
+      <view class='title'>
+        <!-- <text class="titleLine"></text> -->
+        <text>充值{{item.amount}}</text>
+      </view>
+      <view class='qupons'>
+        <view >
+          <view class='eachcoupon' wx:for-items="{{item.benefits}}" wx:for-item="i">
+            <view class="circle leftCircle"></view>
+            <view class="circle rightCircle"></view>
+            <view class="top">
+              <view class='leftBox'>
+                <text class='name' wx:if="{{i.name}}">{{i.name}}</text>
+                <text class='name' wx:if="{{!i.name && i.category =='1014'}}">{{i.amount}}赠送金额</text>
+                <text class='name' wx:if="{{!i.name && i.category =='1015'}}">积分</text>
+                <text class='name' wx:if="{{!i.name && i.category =='1016'}}">{{i.amount}}优惠券</text>
+                <text class='name' wx:if="{{!i.name && i.category =='1017'}}">代用币</text>
+                <text class='tag' wx:if="{{i.todayUsable}}">当场可用</text>
+              </view>
+               <view class="rightBox">
+                <text wx:if="{{i.category =='1015'}}">{{i.amount}}分</text>
+                  <text wx:elif="{{i.category =='1017'}}">{{i.amount}}</text>
+                <text wx:else>1张</text>
+              </view>
+            </view>
+            <view class='bottom'>
+              <view class="useRules">
+                <view class="eachRule">{{i.useStrategy}}</view>
+                <!-- <view class="eachRule">有效期30天</view> -->
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+  <!-- 使用规则 -->
+  <view class="midTitleContainer">
+    <view class="top">
+      <text class="titleLine leftLine"></text>
+      <text>使用规则</text>
+      <text class="titleLine rightLine"></text>
+    </view>
+  </view>
+
+  <!--rules  -->
+  <view class="rulesContainer">
+    <view class="rules" wx:for="{{rechargeData.used.limit}}">{{index+1}}.{{item}}</view>
+  </view>
+
+
+
+   <!-- canvas -->
+  <view style='width:0px;height:0px;overflow:hidden;z-index:-999;left: 10000rpx;position:fixed'>
+    <canvas canvas-id="myCanvas" id="myCanvas" style="width:75px;height:75px;"></canvas>
+  </view>
+</view>

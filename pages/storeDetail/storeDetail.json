@@ -1,0 +1,9 @@
+{
+   "enablePullDownRefresh": true,
+   "onReachBottomDistance": 0,
+   "navigationBarBackgroundColor": "#fff",
+   "navigationBarTextStyle": "black",
+   "usingComponents": {
+      "auth": "../component/auth"
+   }
+}

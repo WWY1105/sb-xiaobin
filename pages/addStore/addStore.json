@@ -1,0 +1,10 @@
+{
+   "enablePullDownRefresh": true,
+   "onReachBottomDistance": 0,
+   "navigationBarTitleText": "添加门店",
+   "navigationBarBackgroundColor": "#fff",
+   "navigationBarTextStyle": "black",
+   "usingComponents": {
+      "auth": "../component/auth"
+   }
+}

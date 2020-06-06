@@ -1,0 +1,131 @@
+/* pages/onlineOrder/menu/menu.wxss */
+page,
+.containerBox,
+.content {
+  color: #000;
+  height: 100%;
+}
+
+.category {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.eachCate {
+  padding: 24rpx;
+  font-size: 24rpx;
+}
+
+.eachCate.active {
+  background-color: #fff;
+}
+
+.dishs {
+  background-color: #fff;
+  flex: 1;
+  overflow-y: scroll;
+  height: 100%;
+  padding: 20rpx 24rpx;
+}
+
+.dishs .title {
+  font-size: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.dishs .eachDish .disImg {
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 2rpx;
+  background-color: #d8d8d8;
+  margin-right: 22rpx;
+}
+
+.dishs .eachDish .textBox {
+  flex: 1;
+  justify-content: space-between;
+  height: 168rpx;
+}
+
+.dishs .eachDish .textBox .name {
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.dishs .eachDish .textBox .desc {
+  color: #919191;
+  font-size: 20rpx;
+}
+
+.dishs .eachDish .textBox .price {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #e35f4e;
+}
+.dishs .eachDish .textBox .choose{
+  width: 124rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  background-color: #4f8aff;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 40rpx;
+}
+.dishs .eachDish .textBox .price .icon {
+  font-size: 20rpx;
+}
+
+/* 选好了 */
+.totalBox {
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+}
+
+.totalBox .left {
+  background-color: #000;
+  color: #fff;
+  height: 100%;
+  padding: 22rpx 40rpx;
+  border-radius: 46rpx 0 0 46rpx;
+  padding-right: 156rpx;
+}
+
+.totalBox .doneBtn {
+  border-radius: 0 46rpx 46rpx 0;
+  background-color: #228bff;
+  text-align: center;
+  width: 180rpx;
+  color: #fff;
+  line-height: 94rpx;
+  height: 94rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+}
+
+.totalBox .left .icon {
+  width: 50rpx;
+  height: 50rpx;
+  background-color: #fff;
+  margin-right: 54rpx;
+}
+
+.totalBox .left .price {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.totalBox .left .price .logo {
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.totalBox .left .tips {
+  font-size: 20rpx;
+  font-weight: bold;
+  color: #919191;
+  margin-left: 10rpx;
+}

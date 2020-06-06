@@ -1,0 +1,10 @@
+{
+ "enablePullDownRefresh": true,
+  "onReachBottomDistance": 10,
+  "navigationBarTitleText": "上宾小栈",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "auth": "../component/auth"
+  }
+}

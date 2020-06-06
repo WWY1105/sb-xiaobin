@@ -1,0 +1,130 @@
+/* pages/bind/bind.wxss */
+
+.bind {
+  overflow: hidden;
+  position: relative;
+}
+
+.topBox {
+  height: 149px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topBox .bg {
+  width: 800rpx;
+  height: 394rpx;
+  box-shadow: 0 4rpx 8rpx 0 rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(to top, #4f8aff, #168bff);
+  border-radius: 39%;
+  position: fixed;
+  top: -100rpx;
+  left: -23rpx;
+  color: #fff;
+  text-align: center;
+  z-index: -1;
+}
+
+.tips {
+  text-align: center;
+  width: 550rpx;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  flex-direction: column;
+}
+
+.content  .title {
+  font-size: 28rpx;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
+  margin-bottom: 40rpx;
+}
+
+.content .list {
+  margin-bottom: 40rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 229px;
+}
+
+.content .list  .label {
+  font-size: 28rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #919191;
+  width: 55px;
+  display: inline-block;
+  text-align: left;
+  /* margin-left: -55px; */
+}
+
+.content .list  .text {
+  font-size: 28rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
+  min-width: 140rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.userimg {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20rpx;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 272rpx;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.btn {
+  width: 550rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background-image: linear-gradient(to top, #4f8aff, #168bff);
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+   font-size:39rpx;
+}
+.skip{
+   font-family: PingFangSC;
+  font-size: 24rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #d0d0d0;
+  text-decoration: underline;
+  margin-top: 40rpx;
+
+}

@@ -1,0 +1,34 @@
+<!--pages/profitDetail/profitDetail.wxml-->
+<view class="profitDetail">
+  <view class="topBg">
+    <view class="shopName">{{name}}</view>
+    <view class="brandName">{{brand}}</view>
+    <view class="content">
+   
+      <view class="smallTitle">获得收益</view>
+      <view class="bigNum">{{profitDetail.amount}}</view>
+      <text class="tag" wx:if="{{profitDetail.state=='1111'}}">已发放</text>
+      <text class="tag tag" wx:else>待发放</text>
+      <view class="listBox">
+       <image class="content_bg" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/bottomBg.png"></image>
+       <view class="line"></view>
+        <view class="list">
+          <view class="left">商品</view>
+          <view class="right">{{profitDetail.reason}}</view>
+        </view>
+        <view class="list">
+          <view class="left">时间</view>
+          <view class="right">{{profitDetail.createTime}}</view>
+        </view>
+        <view class="list">
+          <view class="left">顾客</view>
+          <view class="right"></view>
+        </view>
+        <view class="list">
+          <view class="left">金额</view>
+          <view class="right">{{profitDetail.amount}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
