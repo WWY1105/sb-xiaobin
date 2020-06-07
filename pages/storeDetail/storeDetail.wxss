@@ -1,12 +1,38 @@
 /* pages/shopDetail/shopDetail.wxss */
 
+page {
+   color: #000;
+}
+
 .topImg {
    background: red;
    width: 100%;
    height: 420rxp;
 }
 
-.content,.topNav {
+.itemBox {
+   width: 100%;
+}
+
+.titleLine {
+   width: 45rpx;
+   height: 26rpx;
+}
+
+.partTitle {
+   font-size: 32rpx;
+   font-weight: bold;
+   text-align: center;
+   width: 100%;
+   margin-bottom: 30rpx;
+}
+
+.partTitle  text {
+   margin-left: 20rpx;
+   margin-right: 20rpx;
+}
+
+.content, .topNav {
    display: flex;
    justify-content: flex-start;
    flex-wrap: wrap;
@@ -14,17 +40,17 @@
    padding: 30rpx 20rpx;
    background: #fff;
 }
-.topNav{
-  padding-top: 46rpx;
-  padding-bottom: 26rpx;
-  border-bottom: 20rpx solid #f7f7f7;
+
+.topNav, .content {
+   padding-top: 30rpx;
+   padding-bottom: 30rpx;
+   border-bottom: 40rpx solid #f7f7f7;
 }
 
-.content .item,.topNav .item {
-   width: 48%;
-   padding: 30rpx 0;
+.content .item, .topNav .item {
+   width: 50%;
    text-align: center;
-   font-size: 28rpx;
+   font-size: 24rpx;
    font-weight: normal;
    font-stretch: normal;
    font-style: normal;
@@ -34,46 +60,47 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   border-right: 2rpx solid #e9e9e9;
-   border-bottom: 2rpx solid #e9e9e9;
-   
 }
-.topNav .item{
-  padding: 0;
+
+.topNav .item {
+   padding: 0;
 }
-.content  .noRightBorder,.topNav .noRightBorder{
+
+.content  .noRightBorder, .topNav .noRightBorder {
    border-right: none;
 }
 
-.content  .noBottomBorder,.topNav  .noBottomBorder {
+.content  .noBottomBorder, .topNav  .noBottomBorder {
    border-bottom: none;
 }
 
-.content .item .iconfont,.topNav .item .iconfont{
+.content .item .iconfont, .topNav .item .iconfont {
    /* display: inline-block; */
    padding: 0;
    margin: 0;
-   height: 96rpx;
-   line-height: 96rpx;
-   width: 96rpx;
+   height: 72rpx;
+   line-height: 72rpx;
+   width: 72rpx;
    /* border-radius: 50%; *//* background: #84b1e6; */
    color: #fff;
    margin-bottom: 10rpx;
    font-size: 44rpx;
-   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/xiaozhanBg.svg);
+   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/xiaozhanBgNew.svg);
    background-position: 0 0rpx;
    display: inline-block;
    background-repeat: no-repeat;
    background-position-y: -472rpx;
 }
+
 .topNav .item1 .iconfont {
-  background-position-y: -1452rpx;
-}
-.topNav .item2 .iconfont {
-   background-position-y:-1150rpx;
+   background-position-y: -1452rpx;
 }
 
-.content .item2 .iconfont{
+.topNav .item2 .iconfont {
+   background-position-y: -1150rpx;
+}
+
+.content .item2 .iconfont {
    background-position-y: -878rpx;
 }
 
@@ -84,19 +111,23 @@
 .content .item4 .iconfont {
    background-position-y: -743rpx;
 }
+
 .content .item5 .iconfont {
    background-position-y: -1298rpx;
 }
+
 page {
    background-color: #f7f7f7;
 }
-.logout{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 36rpx 0;
-  margin-top: 150rpx;
-  }
+
+.logout {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 36rpx 0;
+   margin-top: 150rpx;
+}
+
 .logout button {
    width: 172rpx;
    height: 48rpx;

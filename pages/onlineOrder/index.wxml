@@ -1,2 +1,24 @@
 <!--pages/onlineOrder/index.wxml-->
-<text>pages/onlineOrder/index.wxml</text>
+<view class="containerBox flexCenter">
+   <view class="main">
+      <view class="topBox flexSpace">
+         <view class="bg">外卖配送</view>
+         <view class="right">到店自取</view>
+      </view>
+      <view class="content">
+         <view class="pickerBox flexStart">
+            <view class="section__title">自提时间</view>
+            <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+               <view class="picker">
+                  <text>{{time}}</text>
+                  <text class="rightIcon" ></text>
+               </view>
+            </picker>
+         </view>
+         <view class="submitBtn" bindtap="toOrder">开始下单</view>
+      </view>
+   </view>
+</view>
+<view class="bottomBtn" bindtap="toOrderRecord">
+   订单记录
+</view>

@@ -1,44 +1,71 @@
 <view>
-  <!-- 顶部图片 -->
-  <!-- <image class="topImg"></image> -->
-  <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" circular="{{true}}" style="height:420rpx;">
-    <swiper-item wx:for="{{storeInfo.picUrls}}" wx:key="{{item}}">
-      <image style="height:422rpx;width:100%;" src="{{item}}" mode="aspectFill"></image>
-    </swiper-item>
-  </swiper>
-  <!-- <view class="topNav">
-    <view class="item item1 noBottomBorder">
-      <view class="iconfont "></view>
-      <text class="text">视频激励</text>
-    </view>
-    <view class="item item2 noBottomBorder noRightBorder">
-      <view class="iconfont"></view>
-      <text class="text">发券引流</text>
-    </view>
-  </view> -->
-  <view class="content">
-    <!-- <view class="item item1">
-      <view class="iconfont "></view>
-      <text class="text">待客预定</text>
-    </view> -->
-    <view class="item item2 " bindtap="goto" data-path="/pages/recommendedRecharge/recommendedRecharge">
-      <view class="iconfont"></view>
-      <text class="text">推荐充值</text>
-    </view>
-    <view class="item item3 noRightBorder" bindtap="todevMenber" bindtap="goto" data-path= "/pages/devalopMenber/devalopMenber">
-      <view class="iconfont"></view>
-      <text class="text">免费发卡</text>
-    </view>
-     <view class="item item5 noBottomBorder" bindtap="todevMenber">
-      <view class="iconfont"></view>
-      <text class="text">会员升级</text>
-    </view>
-    <!-- <view class="item item4  noBottomBorder">
-      <view class="iconfont"></view>
-      <text class="text">自营商城</text>
-    </view> -->
-  </view>
-  <view class="logout">
-    <button bindtap="logout">退出门店</button>
-  </view>
+   <!-- 顶部图片 -->
+   <!-- <image class="topImg"></image> -->
+   <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" circular="{{true}}" style="height:420rpx;">
+      <swiper-item wx:for="{{storeInfo.picUrls}}" wx:key="{{item}}">
+         <image style="height:422rpx;width:100%;" src="{{item}}" mode="aspectFill"></image>
+      </swiper-item>
+   </swiper>
+   <view class="topNav">
+      <view class="partTitle flexCenter">
+         <image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+         <text>在线零售</text>
+         <image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+      </view>
+      <view class="itemBox flexCenter">
+         <view class="item onlineOrder " bindtap="goto" data-path="/pages/onlineOrder/index">
+            <view class="iconfont "></view>
+            <text class="text">自营配送/自提</text>
+         </view>
+         <view class="item item2  ">
+            <view class="iconfont"></view>
+            <text class="text">在线预约</text>
+         </view>
+      </view>
+   </view>
+   <view class="content">
+      <view class="partTitle flexCenter">
+         <image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+         <text>曝光引流</text>
+         <image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+      </view>
+      <view class="itemBox flexCenter">
+         <view class="item item1">
+            <view class="iconfont"></view>
+            <text class="text">短视频推广</text>
+         </view>
+         <view class="item item3 " bindtap="todevMenber" bindtap="goto" data-path="/pages/devalopMenber/devalopMenber">
+            <view class="iconfont"></view>
+            <text class="text">免费发券</text>
+         </view>
+         <view class="item item4 ">
+            <view class="iconfont"></view>
+            <text class="text">在线团购</text>
+         </view>
+      </view>
+   </view>
+   <view class="content">
+      <view class="partTitle flexCenter">
+         <image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+         <text>会员服务</text>
+         <image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+      </view>
+      <view class="itemBox flexCenter">
+         <view class="item item3 " bindtap="todevMenber" bindtap="goto" data-path="/pages/devalopMenber/devalopMenber">
+            <view class="iconfont"></view>
+            <text class="text">免费发卡</text>
+         </view>
+         <view class="item item5" bindtap="todevMenber">
+            <view class="iconfont"></view>
+            <text class="text">高级会员销售</text>
+         </view>
+         <view class="item item4 ">
+            <view class="iconfont"></view>
+            <text class="text">储值推广</text>
+         </view>
+      </view>
+   </view>
+   <view class="logout">
+      <button bindtap="logout">退出门店</button>
+   </view>
 </view>

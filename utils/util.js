@@ -1,26 +1,5 @@
-//   const formatTime = date => {
-//   const year = date.getFullYear()
-//   const month = date.getMonth() + 1
-//   const day = date.getDate()
-//   const hour = date.getHours()
-//   const minute = date.getMinutes()
-//   const second = date.getSeconds()
-
-//   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-// }
-
-// const formatNumber = n => {
-//   n = n.toString()
-//   return n[1] ? n : '0' + n
-// }
-
-// module.exports = {
-//   formatTime: formatTime
-// }
-
 
 const md5 = require('./md5.js');
-
 const formatTime = date => {
    //console.log(date);
    let weekArr = ['日', '一', '二', '三', '四', '五', '六'];
@@ -104,13 +83,12 @@ const ajax = function (json) {
                                  goon = true;
                                  if (data.result.token) {
                                     wx.setStorageSync('token', data.result.token);
-                                    //console.log("setStorageSync")
-                                    //console.log(data.result.token)
                                     app.globalData.token.token = data.result.token;
                                  }
+                                 console.log(getCurrentPages().length)
                                  if (getCurrentPages().length != 0) {
+                                    console.info('刷新当前页面的数据')
                                     //刷新当前页面的数据
-                                    //console.log(1)
                                     getCurrentPages()[getCurrentPages().length - 1].onShow()
                                  }
                               } else {
@@ -146,11 +124,6 @@ function requestP(options = {}) {
       success,
       fail,
    } = options;
-
-   // let header = Object.assign({
-   //   token: wx.getStorageSync('token')
-   // }, options.header);
-
    return new Promise((res, rej) => {
       wx.request(Object.assign(
          {},

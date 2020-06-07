@@ -1,1 +1,83 @@
 /* pages/onlineOrder/index.wxss */
+
+page {
+   background-color: #f7f7f7;
+   color: #333;
+   padding: 0 40rpx;
+   box-sizing: border-box;
+   height: 100%;
+}
+
+.bottomBtn {
+   position: fixed;
+   width: 100%;
+   height: 100rpx;
+   line-height: 100rpx;
+   color: #228bff;
+   font-size: 36rpx;
+   font-weight: bold;
+   border: 2rpx solid #228bff;
+   text-align: center;
+   bottom: 0;
+   box-sizing: border-box;
+   left: 0;
+}
+
+.containerBox {
+   height: 100%;
+}
+
+.main {
+   width: 670rpx;
+   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/indexBgleft.png) center center no-repeat;
+   background-size: 100% 100%;
+   height: 706rpx;
+   margin-top: -92rpx;
+}
+
+.topBox {
+   font-weight: bold;
+   font-size: 32rpx;
+   padding-top: 30rpx;
+}
+
+.topBox .right, .topBox .bg {
+   width: 50%;
+   text-align: center;
+}
+
+.main .content {
+   padding: 20rpx 40rpx;
+   box-sizing: border-box;
+}
+
+.submitBtn {
+   width: 100%;
+   height: 92rpx;
+   border-radius: 10rpx;
+   background-color: #228bff;
+   color: #fff;
+   line-height: 92rpx;
+   text-align: center;
+}
+
+.pickerBox {
+   padding: 30rpx 0;
+   border-top: solid 2rpx #ededed;
+   border-bottom: solid 2rpx #ededed;
+   margin-bottom: 300rpx;
+   margin-top: 45rpx;
+}
+
+.pickerBox .section__title {
+   font-size: 32rpx;
+   font-weight: bold;
+   color: #000;
+}
+
+.pickerBox  picker {
+   flex: 1;
+   text-align: right;
+   color: #228bff;
+   font-size: 32rpx;
+}

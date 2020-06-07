@@ -160,10 +160,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 15,
 					"name": "在线接单-首页",
 					"pathName": "pages/onlineOrder/index",
-					"query": "",
+					"query": "shopId=907d62bc9e2546f7b75c28ec72cc0a88",
 					"scene": null
 				},
 				{
@@ -184,6 +184,14 @@
 					"id": -1,
 					"name": "在线接单-订单记录",
 					"pathName": "pages/onlineOrder/orderRecord/orderRecord",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 19,
+					"name": "店详情",
+					"pathName": "pages/storeDetail/storeDetail",
+					"query": "id=611160de92e8479a93e4b36b25583567",
 					"scene": null
 				}
 			]

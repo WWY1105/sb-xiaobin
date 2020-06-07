@@ -1,6 +1,6 @@
 <view style="padding-bottom:30rpx;">
 <!--  wx:if="{{modalShow}}" -->
-   <view class="modal animateModal" wx:if="{{modalShow}}"  catchtouchmove="preventTouchMove" bindtap="toAddStore">
+   <view class="modal animateModal" wx:if="{{modalShow&&storeList.length<=0}}"  catchtouchmove="preventTouchMove" bindtap="toAddStore">
       <view class="content">
          <view class="top">
          </view>
