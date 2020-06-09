@@ -5,7 +5,6 @@ App({
       var _this = this;
       wx.hideShareMenu();
       this.globalData.scene = options.scene;
-     
    },
   onLaunch: function(options) {
     wx.showLoading({
