@@ -1,6 +1,8 @@
 /* pages/onlineOrder/menu/menu.wxss */
 
-page, .containerBox, .content {
+page,
+.containerBox,
+.content {
    color: #000;
    height: 100%;
 }
@@ -36,20 +38,20 @@ page, .containerBox, .content {
    margin-bottom: 40rpx;
 }
 
-.dishs .eachDish  .numBox .num {
+.dishs .eachDish .numBox .num {
    color: #000;
    font-weight: bold;
    margin-left: 30rpx;
    margin-right: 30rpx;
 }
 
-.dishs .eachDish  .numBox .jia {
+.dishs .eachDish .numBox .jia {
    font-size: 40rpx;
    color: #4f8aff;
    max-height: 40rpx;
 }
 
-.dishs .eachDish  .numBox .jian {
+.dishs .eachDish .numBox .jian {
    color: #979797;
    font-size: 40rpx;
    max-height: 40rpx;
@@ -126,16 +128,33 @@ page, .containerBox, .content {
    text-align: center;
    width: 180rpx;
    color: #fff;
-   line-height: 94rpx;
-   height: 94rpx;
+   line-height: 98rpx;
+   height: 98rpx;
    font-size: 36rpx;
    font-weight: 500;
 }
 
 .totalBox .left .icon {
-   width: 50rpx;
-   height: 50rpx;
-   background-color: #fff;
+   position: relative;
+}
+
+.totalBox .left .icon .tag {
+   position: absolute;
+   width: 36rpx;
+   height: 36rpx;
+   background-color: #ec2121;
+   display: inline-block;
+   text-align: center;
+   line-height: 36rpx;
+   color: #fff;
+   border-radius: 50%;
+   top: -25rpx;
+   right: 15rpx;
+}
+
+.totalBox .left .iconfont {
+   font-size: 50rpx;
+   color: #fff;
    margin-right: 54rpx;
 }
 

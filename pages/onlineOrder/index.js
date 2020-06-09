@@ -7,7 +7,15 @@ Page({
    data: {
       time: '12:01',
       shopId:'',
-      type:1000
+      // 1000 自提，1001：配送
+      type:1001,
+      bgL: 'https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/indexBgleft.png',
+      bgR: 'https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/indexBgRight.png'
+   },
+   // 切换方式
+   changeType(e){
+      let type=e.currentTarget.dataset.type;
+      this.setData({type})
    },
    // 时间
    bindTimeChange(e){
@@ -15,8 +23,10 @@ Page({
       this.setData({time})
    },
    //跳转订单详情
-   toOrderRecord() {
-      let url = "/pages/onlineOrder/orderRecord/orderRecord"
+   toOrderRecord(e) {
+      let type=e.currentTarget.dataset.type;
+      let shopId=this.data.shopId;
+      let url = "/pages/onlineOrder/orderRecord/orderRecord?type="+type+'&shopId='+shopId
       wx.navigateTo({
          url
       })
@@ -50,9 +60,11 @@ Page({
     */
    onShow: function () {
       wx.hideLoading();
+      let hour= new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours()  ;
+      let minu=new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()
       // 获取当前时间
-      let time = new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours()  + ':' + (new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes());
-      this.setData({time})
+      let time =hour+ ':' + minu;
+      this.setData({time});
    },
 
    /**

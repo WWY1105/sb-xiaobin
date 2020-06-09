@@ -16,11 +16,16 @@ page {
    color: #228bff;
    font-size: 36rpx;
    font-weight: bold;
-   border: 2rpx solid #228bff;
+   border-top: 2rpx solid #228bff;
    text-align: center;
    bottom: 0;
    box-sizing: border-box;
    left: 0;
+}
+
+.bottomBtn .btn {
+   text-align: center;
+   width: 50%;
 }
 
 .containerBox {
@@ -29,19 +34,31 @@ page {
 
 .main {
    width: 670rpx;
-   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/indexBgleft.png) center center no-repeat;
+   background-repeat: no-repeat;
+   background-image: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/indexBgleft.png);
    background-size: 100% 100%;
    height: 706rpx;
    margin-top: -92rpx;
 }
 
+.rightIcon {
+   font-size: 20rpx;
+   color: #c9c9c9;
+   margin-left: 14rpx;
+}
+
 .topBox {
-   font-weight: bold;
+   padding-bottom: 30rpx;
    font-size: 32rpx;
    padding-top: 30rpx;
 }
 
-.topBox .right, .topBox .bg {
+.topBox .active {
+   font-weight: bold;
+}
+
+.topBox .right,
+.topBox .bg {
    width: 50%;
    text-align: center;
 }
@@ -49,6 +66,7 @@ page {
 .main .content {
    padding: 20rpx 40rpx;
    box-sizing: border-box;
+   padding-top: 0;
 }
 
 .submitBtn {
@@ -75,7 +93,11 @@ page {
    color: #000;
 }
 
-.pickerBox  picker {
+.picker {
+   justify-content: flex-end;
+}
+
+.pickerBox picker {
    flex: 1;
    text-align: right;
    color: #228bff;

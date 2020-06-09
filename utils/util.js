@@ -240,6 +240,7 @@ function request(that, options = {}, keepLogin = true) {
                            getSessionId()
                               .then((r3) => {
                                  console.log(';hehehe')
+                                 console.lof(r3)
                                  if (r3.code == 403000) {
                                     //调起授权弹窗
                                     var pop;

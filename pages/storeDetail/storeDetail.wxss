@@ -27,12 +27,13 @@ page {
    margin-bottom: 30rpx;
 }
 
-.partTitle  text {
+.partTitle text {
    margin-left: 20rpx;
    margin-right: 20rpx;
 }
 
-.content, .topNav {
+.content,
+.topNav {
    display: flex;
    justify-content: flex-start;
    flex-wrap: wrap;
@@ -41,13 +42,15 @@ page {
    background: #fff;
 }
 
-.topNav, .content {
+.topNav,
+.content {
    padding-top: 30rpx;
    padding-bottom: 30rpx;
    border-bottom: 40rpx solid #f7f7f7;
 }
 
-.content .item, .topNav .item {
+.content .item,
+.topNav .item {
    width: 50%;
    text-align: center;
    font-size: 24rpx;
@@ -66,22 +69,24 @@ page {
    padding: 0;
 }
 
-.content  .noRightBorder, .topNav .noRightBorder {
+.content .noRightBorder,
+.topNav .noRightBorder {
    border-right: none;
 }
 
-.content  .noBottomBorder, .topNav  .noBottomBorder {
+.content .noBottomBorder,
+.topNav .noBottomBorder {
    border-bottom: none;
 }
 
-.content .item .iconfont, .topNav .item .iconfont {
+.content .item .iconfont,
+.topNav .item .iconfont {
    /* display: inline-block; */
    padding: 0;
    margin: 0;
-   height: 72rpx;
-   line-height: 72rpx;
-   width: 72rpx;
-   /* border-radius: 50%; *//* background: #84b1e6; */
+   height: 80rpx;
+   line-height: 76rpx;
+   width: 76rpx;
    color: #fff;
    margin-bottom: 10rpx;
    font-size: 44rpx;
@@ -92,30 +97,32 @@ page {
    background-position-y: -472rpx;
 }
 
-.topNav .item1 .iconfont {
-   background-position-y: -1452rpx;
+/* 各个图标 */
+.topNav .item .iconfont.ziying {
+   background-position-y:-1263rpx;
 }
-
-.topNav .item2 .iconfont {
-   background-position-y: -1150rpx;
+.topNav .item .iconfont.online{
+   background-position-y: -467rpx;
 }
-
-.content .item2 .iconfont {
-   background-position-y: -878rpx;
+.content .item .iconfont.video{
+   background-position-y: -1149rpx;
 }
-
-.content .item3 .iconfont {
-   background-position-y: -608rpx;
+.content .item .iconfont.coupon{
+   background-position-y: -922rpx;
 }
-
-.content .item4 .iconfont {
-   background-position-y: -743rpx;
+.content .item .iconfont.group{
+   background-position-y:-693rpx;
 }
-
-.content .item5 .iconfont {
-   background-position-y: -1298rpx;
+.content .itemBox .iconfont.card{
+   background-position-y: -577rpx;
 }
-
+.content .itemBox .iconfont.sale{
+   background-position-y: -1036rpx;
+}
+.content .itemBox .iconfont.promote{
+   background-position-y:-807rpx;
+}
+/* 各个图标 */
 page {
    background-color: #f7f7f7;
 }
@@ -125,7 +132,7 @@ page {
    align-items: center;
    justify-content: center;
    padding: 36rpx 0;
-   margin-top: 150rpx;
+   margin-top: 70rpx;
 }
 
 .logout button {
@@ -141,8 +148,5 @@ page {
    letter-spacing: normal;
    text-align: center;
    color: #919191;
-   /* position: fixed;
-   left: 0;
-   right: 0;
-   bottom: 3%; */
+
 }

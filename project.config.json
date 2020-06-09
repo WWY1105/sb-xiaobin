@@ -174,9 +174,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "在线接单-提交订单",
-					"pathName": "pages/onlineOrder/submitOrder/submitOrder",
+					"id": 17,
+					"name": "在线接单-提交订单-自提",
+					"pathName": "pages/onlineOrder/submitOrder/submitOrderSelf/submitOrderSelf",
 					"query": "",
 					"scene": null
 				},
@@ -192,6 +192,13 @@
 					"name": "店详情",
 					"pathName": "pages/storeDetail/storeDetail",
 					"query": "id=611160de92e8479a93e4b36b25583567",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "在线订单-提交订单-外卖",
+					"pathName": "pages/onlineOrder/submitOrder/submitOrderTakeout/submitOrderTakeout",
+					"query": "",
 					"scene": null
 				}
 			]

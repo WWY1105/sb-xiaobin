@@ -1,42 +1,39 @@
 // pages/onlineOrder/submitOrder/submitOrder.js
-const app=getApp()
+const app = getApp()
 Page({
 
    /**
     * 页面的初始数据
     */
    data: {
-
+      time: "",
+      type: '',
+      menus: [],
+      total: 0,
+      totalPrice:0
    },
 
    /**
     * 生命周期函数--监听页面加载
     */
    onLoad: function (options) {
-      wx.hideLoading({
-         complete: (res) => { },
-      })
-      console.log(options)
-      if (options.shopId) {
-         this.setData({ shopId: options.shopId }, () => {
-            this.submit()
-         })
-      }
-     
+      wx.hideLoading()
+
+
    },
 
    // 提交订单
    submit() {
-      let that=this;
-      let time =wx.getStorageSync('time')
+      let that = this;
+      let time = wx.getStorageSync('time')
       let type = wx.getStorageSync('type');
       let menus = wx.getStorageSync('menus');
 
       app.util.request(that, {
-         url: app.util.getUrl('/takeouts/shop/' + that.data.shopId ),
+         url: app.util.getUrl('/takeouts/shop/' + that.data.shopId),
          method: 'POST',
          header: app.globalData.token,
-         data:{
+         data: {
             menus,
             time,
             type
@@ -68,6 +65,26 @@ Page({
     * 生命周期函数--监听页面显示
     */
    onShow: function () {
+      if (wx.getStorageSync('type')) {
+         this.setData({
+            type: wx.getStorageSync('type')
+         })
+      }
+      if (wx.getStorageSync('totalPrice')) {
+         this.setData({
+            totalPrice: wx.getStorageSync('totalPrice')
+         })
+      }
+      if (wx.getStorageSync('menus')) {
+         this.setData({
+            menus: wx.getStorageSync('menus')
+         })
+      }
+      if (wx.getStorageSync('time')) {
+         this.setData({
+            time: wx.getStorageSync('time')
+         })
+      }
 
    },
 

@@ -1,24 +1,25 @@
 <!--pages/onlineOrder/index.wxml-->
 <view class="containerBox flexCenter">
-   <view class="main">
-      <view class="topBox flexSpace">
-         <view class="bg">外卖配送</view>
-         <view class="right">到店自取</view>
-      </view>
-      <view class="content">
-         <view class="pickerBox flexStart">
-            <view class="section__title">自提时间</view>
-            <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-               <view class="picker">
-                  <text>{{time}}</text>
-                  <text class="rightIcon" ></text>
-               </view>
-            </picker>
-         </view>
-         <view class="submitBtn" bindtap="toOrder">开始下单</view>
-      </view>
-   </view>
+	<view class="main" style="background-image:url({{type==1001?bgL:bgR}})">
+		<view class="topBox flexSpace">
+			<view class="bg {{type==1001?'active':''}}" bindtap="changeType" data-type='1001'>外卖配送</view>
+			<view class="right  {{type==1000?'active':''}}" bindtap="changeType" data-type='1000'>到店自取</view>
+		</view>
+		<view class="content">
+			<view class="pickerBox flexStart">
+				<view class="section__title">自提时间</view>
+				<picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+					<view class="picker flexCenter">
+						<text>{{time}}</text>
+						<text class="rightIcon iconfont icon-youbian" ></text>
+					</view>
+				</picker>
+			</view>
+			<view class="submitBtn" bindtap="toOrder">开始下单</view>
+		</view>
+	</view>
 </view>
-<view class="bottomBtn" bindtap="toOrderRecord">
-   订单记录
+<view class="bottomBtn flexSpace" >
+	<view class="btn" bindtap="toOrderRecord" data-type="notpay">待付款订单</view>
+	<view class="btn" bindtap="toOrderRecord" data-type="pay">已付款订单</view>
 </view>

@@ -14,11 +14,11 @@
       </view>
       <view class="itemBox flexCenter">
          <view class="item onlineOrder " bindtap="goto" data-path="/pages/onlineOrder/index">
-            <view class="iconfont "></view>
+            <view class="iconfont ziying"></view>
             <text class="text">自营配送/自提</text>
          </view>
          <view class="item item2  ">
-            <view class="iconfont"></view>
+            <view class="iconfont online"></view>
             <text class="text">在线预约</text>
          </view>
       </view>
@@ -31,15 +31,15 @@
       </view>
       <view class="itemBox flexCenter">
          <view class="item item1">
-            <view class="iconfont"></view>
+            <view class="iconfont video"></view>
             <text class="text">短视频推广</text>
          </view>
          <view class="item item3 " bindtap="todevMenber" bindtap="goto" data-path="/pages/devalopMenber/devalopMenber">
-            <view class="iconfont"></view>
+            <view class="iconfont coupon"></view>
             <text class="text">免费发券</text>
          </view>
          <view class="item item4 ">
-            <view class="iconfont"></view>
+            <view class="iconfont group"></view>
             <text class="text">在线团购</text>
          </view>
       </view>
@@ -52,15 +52,15 @@
       </view>
       <view class="itemBox flexCenter">
          <view class="item item3 " bindtap="todevMenber" bindtap="goto" data-path="/pages/devalopMenber/devalopMenber">
-            <view class="iconfont"></view>
+            <view class="iconfont card"></view>
             <text class="text">免费发卡</text>
          </view>
          <view class="item item5" bindtap="todevMenber">
-            <view class="iconfont"></view>
+            <view class="iconfont sale"></view>
             <text class="text">高级会员销售</text>
          </view>
          <view class="item item4 ">
-            <view class="iconfont"></view>
+            <view class="iconfont promote"></view>
             <text class="text">储值推广</text>
          </view>
       </view>

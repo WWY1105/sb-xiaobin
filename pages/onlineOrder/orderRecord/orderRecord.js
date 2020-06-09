@@ -1,11 +1,16 @@
 // pages/onlineOrder/orderRecord/orderRecord.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    type: '',
+    shopId: '',
+    orderList:null,
+    count:5,
+    page:1
   },
 
   /**
@@ -13,6 +18,36 @@ Page({
    */
   onLoad: function (options) {
     wx.hideLoading()
+    if (options.type && options.shopId) {
+      this.setData({
+        type: options.type,
+        shopId: options.shopId
+      }, () => {
+        this.getOrderList()
+      })
+    }
+  },
+  getOrderList() {
+    let url = '';
+    let that = this;
+    if (this.data.type == 'pay') {
+      url = '/takeouts/shop/' + this.data.shopId + '/finish'
+    } else {
+      url = '/takeouts/shop/' + this.data.shopId
+    }
+    app.util.request(that, {
+      url: app.util.getUrl(url, {}),
+      method: 'GET',
+      header: app.globalData.token,
+    }).then((res) => {
+      console.log(res)
+      if (res.code == 200) {
+        wx.hideLoading();
+        that.setData({
+          orderList: res.result
+        })
+      }
+    })
   },
 
   /**
