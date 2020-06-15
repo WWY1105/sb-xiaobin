@@ -27,9 +27,9 @@
 								<!-- <view class="choose">选规格</view> -->
 								<!-- 选数量 -->
 								<view class="numBox flexCenter">
-									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-index="{{i}}"></view>
+									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian"  data-num="{{item.num}}" data-id="{{item.id}}"></view>
 									<view class="num">{{item.num}}</view>
-									<view class="iconfont icon-jia jia" bindtap="jia" data-index="{{i}}"></view>
+									<view class="iconfont icon-jia jia" bindtap="jia"  data-id="{{item.id}}" data-num="{{item.num}}"></view>
 								</view>
 							</view>
 						</view>
@@ -86,9 +86,9 @@
 									<!-- <view class="choose">选规格</view> -->
 									<!-- 选数量 -->
 									<view class="numBox flexCenter">
-										<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-index="{{i}}"></view>
+										<view class="iconfont jian icon-jikediancanicon08" bindtap="jian"  data-num="{{item.num}}" data-id="{{item.id}}"></view>
 										<view class="num">{{item.num}}</view>
-										<view class="iconfont icon-jia jia" bindtap="jia" data-index="{{i}}"></view>
+										<view class="iconfont icon-jia jia" bindtap="jia" data-num="{{item.num}}" data-id="{{item.id}}"></view>
 									</view>
 								</view>
 							</view>

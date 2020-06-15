@@ -1,11 +1,13 @@
 /* pages/onlineOrder/submitOrder/submitOrder.wxss */
 page {
   color: #000;
+  background-image: linear-gradient(to bottom, #228bff, #f7f7f7);
+  background-size:100% 120rpx;
+  background-repeat: no-repeat;
+  padding-bottom: 180rpx;
 }
 
 .topBox {
-  height: 120px;
-  background-image: linear-gradient(to bottom, #228bff, #f7f7f7);
   width: 100%;
   padding: 0 20rpx;
   box-sizing: border-box;
@@ -34,7 +36,7 @@ page {
 .topBox .content .top .address {
   font-size: 24rpx;
   color: #919191;
-  margin-bottom: 20rpx;
+
 }
 
 .topBox .content .pickerBox {
@@ -121,6 +123,7 @@ page {
   font-size: 40rpx;
   font-weight: bolder;
 }
+
 .btnBox {
   width: 100%;
   position: fixed;
@@ -128,9 +131,44 @@ page {
   padding: 0 26rpx;
   left: 0;
   box-sizing: border-box;
+  background-color: transparent;
+}
+
+.btnBox .priceBox {
+  color: #fff;
+  background-color: #000;
+  flex: 1;
+  border-radius: 46px 0 0 46px ;
+  text-align: left;
+  font-size: 28rpx;
+  padding-left: 40rpx;
+}
+.btnBox .priceBox .price{
+  font-size: 36rpx;
+  font-weight: bold;
 }
 
 .sendBtn {
+  text-align: center;
+  color: #fff;
+  height: 92rpx;
+  line-height: 92rpx;
+  box-shadow: 0 10rpx 20rpx 0 rgba(0, 0, 0, 0.2);
+  max-height: 92rpx;
+  background-color: transparent;
+  border-radius:46px ;
+}
+.btnBox .right{
+  font-size: 36rpx;
+  font-weight: bold;
+  background-color: #228bff;
+  padding: 0 6rpx;
+  border-radius:0 46px 46px 0  ;
+  height: 97rpx;
+  line-height: 97rpx;
+  padding: 0 20rpx;
+}
+/* .sendBtn {
   background-color: #228bff;
   text-align: center;
   color: #fff;
@@ -138,4 +176,4 @@ page {
   line-height: 92rpx;
   border-radius: 46px;
   box-shadow: 0 10rpx 20rpx 0 rgba(0, 0, 0, 0.2);
-}
+} */

@@ -52,7 +52,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -167,16 +167,16 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 16,
 					"name": "在线接单-菜单",
 					"pathName": "pages/onlineOrder/menu/menu",
-					"query": "",
+					"query": "time=2020-06-14 14:52:00&orderTime=11:58",
 					"scene": null
 				},
 				{
 					"id": 17,
-					"name": "在线接单-提交订单-自提",
-					"pathName": "pages/onlineOrder/submitOrder/submitOrderSelf/submitOrderSelf",
+					"name": "在线接单-提交订单",
+					"pathName": "pages/onlineOrder/submitOrder/submitOrder",
 					"query": "",
 					"scene": null
 				},
@@ -196,8 +196,15 @@
 				},
 				{
 					"id": -1,
-					"name": "在线订单-提交订单-外卖",
-					"pathName": "pages/onlineOrder/submitOrder/submitOrderTakeout/submitOrderTakeout",
+					"name": "订单详情",
+					"pathName": "pages/onlineOrder/editOrder/editOrder",
+					"query": "time=2020-06-14 14:52:00&orderTime=11:58",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "编辑菜单",
+					"pathName": "pages/onlineOrder/editMenu/editMenu",
 					"query": "",
 					"scene": null
 				}

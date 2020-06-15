@@ -8,20 +8,28 @@ Page({
   data: {
     type: '',
     shopId: '',
-    orderList:null,
-    count:5,
-    page:1
+    orderList: null,
+    count: 5,
+    page: 1
   },
-
+  // 去修改
+  toEdit(e) {
+    wx.setStorageSync('editOrder', e.currentTarget.dataset.item);
+    wx.navigateTo({
+      url: '/pages/onlineOrder/editOrder/editOrder',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     wx.hideLoading()
-    if (options.type && options.shopId) {
+    console.log(options)
+    let shopId=wx.getStorageSync('shopId')
+    if (options.type && shopId) {
       this.setData({
         type: options.type,
-        shopId: options.shopId
+        shopId: shopId
       }, () => {
         this.getOrderList()
       })

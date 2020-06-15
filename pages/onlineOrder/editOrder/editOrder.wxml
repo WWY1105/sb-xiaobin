@@ -1,0 +1,71 @@
+<!--pages/onlineOrder/submitOrder/submitOrder.wxml-->
+<view class="topBox flexCenter">
+	<view class="content">
+		<view class="top flexStart">
+			<view class="section__title">配送方式</view>
+			<picker bindchange="bindPickerChange" value="{{id}}" range="{{wayArr}}" class="wayPicker">
+				<view class="picker">
+					<text>{{way}}</text>
+					<text class="rightIcon iconfont icon-youbian" ></text>
+				</view>
+			</picker>
+		</view>
+		<view class="pickerBox flexStart">
+			<view class="section__title">提货时间</view>
+			<text class="time">大约{{editOrder.deliver.time}}送达</text>
+		</view>
+	</view>
+</view>
+<view class="orderDetail">
+	<view class="content">
+		<view class="partTitle flexSpace">
+			<text>订单详情</text>
+			<text class="editMenus" bindtap="editMenus">修改</text>
+		</view>
+		<view class="dishBox">
+			<view class="eachDish flexSpace" wx:for="{{editOrder.menus}}">
+				<view class="left flexStart">
+					<image class="dishImg" src="{{item.picUrl}}"></image>
+					<view class="textBox flexColumn">
+						<view class="name">{{item.name}}</view>
+						<view class="desc">{{item.descriptor}}</view>
+						<view class="num">x{{item.count}}</view>
+					</view>
+				</view>
+				<view class="right">
+					<view class="price">￥{{item.amount}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="package flexSpace">
+			<text>包装费</text>
+			<text class="price">￥0</text>
+		</view>
+		<view class="total flexEnd">
+			<view class="price flexSpace">
+				<text class="label">待付款</text>
+				<view>
+					<text class="small">小计</text>
+					<text class="num">￥{{editOrder.amount}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="btnBox">
+	<button class="deleteBtn" bindtap="deleteOrder">删除订单</button>
+</view>
+
+
+
+<!-- modal -->
+<view class="modal animateModal" wx:if="{{editFlag}}" catchtouchmove="preventTouchMove">
+	<view class="content">
+		<view class="top">注意</view>
+		<view class="tips">修改订单将重新下单</view>
+		<view class="bottomBox">
+			<button class="toEditbtn" bindtap="toEditDish">继续修改</button>
+			<button class="cancelbtn" bindtap="cancelEdit">取消修改</button>
+		</view>
+	</view>
+</view>

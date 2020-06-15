@@ -7,6 +7,7 @@ Page({
     */
    data: {
       shopId: '',
+      // 1000 自提，1001：配送
       type: '',
       time: '',
       orderTime: '',
@@ -16,31 +17,39 @@ Page({
       totalNum: 0,
       hideModal: true, //模态框的状态  true-隐藏  false-显示
       animationData: {}, //
+      editOrder: null
    },
+
 
    /**
     * 生命周期函数--监听页面加载
     */
    onLoad: function (options) {
       wx.hideLoading()
-      if (options.shopId) {
+      let editOrder = wx.getStorageSync('editOrder');
+      let shopId = wx.getStorageSync('shopId');
+      this.setData({
+         editOrder
+      })
+      if (shopId) {
          this.setData({
-            shopId: options.shopId
+            shopId
          })
       }
-      if (options.type) {
+      if (editOrder.deliver.type) {
          this.setData({
-            type: options.type
+            type: editOrder.deliver.type
          })
       }
-      if (options.orderTime) {
+      if (editOrder.deliver.orderTime) {
          this.setData({
-            orderTime: options.orderTime
+            orderTime: editOrder.deliver.orderTime
          })
       }
-      if (options.time) {
+      if (editOrder.deliver.time) {
+         let time = editOrder.deliver.time.split('/').join('-')
          this.setData({
-            time: options.time
+            time
          }, () => {
             this.getMenu()
          })
@@ -62,7 +71,7 @@ Page({
       let orderTime = encodeURIComponent(this.data.orderTime);
       app.util.request(that, {
          url: app.util.getUrl(url, {
-            // time,orderTime
+
             time: that.data.time,
             orderTime: that.data.orderTime
          }),
@@ -77,13 +86,27 @@ Page({
          if (res.code == 200) {
             wx.hideLoading();
             // 循环菜品,设置默认数量0
+            let editOrder = wx.getStorageSync('editOrder')
+
+            let totalNum = 0
             res.result.map((item) => {
                item.dishes.map((i) => {
                   i.num = 0
+                  editOrder.menus.map((select) => {
+                     if (select.id == i.id) {
+                        i.num = Number(select.count);
+                        totalNum += Number(select.count);
+                        console.log(i.num)
+                     }
+                  })
                })
             })
+            console.log(res.result)
             that.setData({
-               menu: res.result
+               menu: res.result,
+               totalNum
+            },()=>{
+               that.getTotal()
             })
          }
       })
@@ -93,6 +116,7 @@ Page({
       let menu = this.data.menu;
       let totalPrice = 0;
       let totalNum = 0;
+      console.log(menu)
       menu.map((item) => {
          item.dishes.map((i) => {
             if (i.num > 0) {
@@ -109,10 +133,18 @@ Page({
 
    //加数量
    jia(e) {
-      let dishIndex = e.target.dataset.index;
-      let activeKind = this.data.activeKind;
+      let id = e.target.dataset.id;
+      console.log(id)
+      // let activeKind = this.data.activeKind;
       let menu = this.data.menu;
-      menu[activeKind].dishes[dishIndex].num += 1;
+      // menu[activeKind].dishes[dishIndex].num += 1;
+      menu.map((item) => {
+         item.dishes.map((i) => {
+            if (i.id == id) {
+               i.num += 1
+            }
+         })
+      })
       this.setData({
          menu,
       }, () => {
@@ -123,13 +155,27 @@ Page({
       if (this.data.totalNum <= 0) {
          this.hideModal()
       }
-      let dishIndex = e.target.dataset.index;
-      let activeKind = this.data.activeKind;
+      let id = e.target.dataset.id;
+      let num = e.target.dataset.num;
+      console.log(num)
+      // let activeKind = this.data.activeKind;
       let menu = this.data.menu;
-      if (menu[activeKind].dishes[dishIndex].num <= 0) {
-         menu[activeKind].dishes[dishIndex].num = 0;
+      if (num <= 0) {
+         menu.map((item) => {
+            item.dishes.map((i) => {
+               if (i.id == id) {
+                  i.num = 0
+               }
+            })
+         })
       } else {
-         menu[activeKind].dishes[dishIndex].num -= 1;
+         menu.map((item) => {
+            item.dishes.map((i) => {
+               if (i.id == id) {
+                  i.num -= 1
+               }
+            })
+         })
       }
 
       this.setData({
@@ -164,9 +210,9 @@ Page({
       wx.setStorageSync('orderTime', orderTime)
       wx.setStorageSync('menus', menu)
       wx.setStorageSync('type', type)
-      wx.setStorageSync('totalPrice', totalPrice)
-      let url = "/pages/onlineOrder/submitOrder/submitOrder?shopId=" + this.data.shopId
-
+      wx.setStorageSync('totalPrice', totalPrice);
+      
+      let url = "/pages/onlineOrder/submitOrder/submitOrder?shopId=" + this.data.shopId+"&orderId="+this.data.editOrder.id;
       wx.navigateTo({
          url
       })

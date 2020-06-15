@@ -12,8 +12,9 @@
     "pages/bind/bind",
     "pages/onlineOrder/index",
     "pages/onlineOrder/menu/menu",
-    "pages/onlineOrder/submitOrder/submitOrderSelf/submitOrderSelf",
-    "pages/onlineOrder/submitOrder/submitOrderTakeout/submitOrderTakeout",
+    "pages/onlineOrder/editMenu/editMenu",
+    "pages/onlineOrder/submitOrder/submitOrder",
+    "pages/onlineOrder/editOrder/editOrder",
     "pages/onlineOrder/orderRecord/orderRecord"
   ],
   "subpackages": [

@@ -85,6 +85,7 @@ const ajax = function (json) {
                                     wx.setStorageSync('token', data.result.token);
                                     app.globalData.token.token = data.result.token;
                                  }
+                                 console.log('执行到这里')
                                  console.log(getCurrentPages().length)
                                  if (getCurrentPages().length != 0) {
                                     console.info('刷新当前页面的数据')
@@ -239,8 +240,8 @@ function request(that, options = {}, keepLogin = true) {
                            wx.removeStorageSync('token')
                            getSessionId()
                               .then((r3) => {
-                                 console.log(';hehehe')
-                                 console.lof(r3)
+                                 console.log('hehehe')
+                                 console.log(r3)
                                  if (r3.code == 403000) {
                                     //调起授权弹窗
                                     var pop;

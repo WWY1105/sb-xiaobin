@@ -27,6 +27,9 @@ page {
    text-align: center;
    width: 50%;
 }
+.bottomBtn .btn.left{
+   border-right:1rpx solid #228bff;
+}
 
 .containerBox {
    height: 100%;
@@ -81,12 +84,15 @@ page {
 
 .pickerBox {
    padding: 30rpx 0;
-   border-top: solid 2rpx #ededed;
+   /* border-top: solid 2rpx #ededed; */
    border-bottom: solid 2rpx #ededed;
-   margin-bottom: 300rpx;
    margin-top: 45rpx;
 }
-
+.pickerBox2{
+   margin-bottom: 190rpx;
+   margin-top: 0;
+   border-bottom: solid 2rpx #ededed;
+}
 .pickerBox .section__title {
    font-size: 32rpx;
    font-weight: bold;

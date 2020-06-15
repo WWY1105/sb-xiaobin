@@ -18,6 +18,7 @@ Page({
   },
   goto(e) {
     let path = e.currentTarget.dataset.path + "?id=" + this.data.storeId;
+    wx.setStorageSync('shopId', this.data.storeId);
     wx.navigateTo({
       url: path
     })

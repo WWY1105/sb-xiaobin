@@ -1,13 +1,17 @@
 <!--pages/onlineOrder/submitOrder/submitOrder.wxml-->
 <view class="topBox flexCenter">
 	<view class="content">
-		<view class="top">
+		<view class="top" wx:if="{{type==1001||type=='1001'}}">
 			<view class="type">等待顾客填写地址</view>
 			<view class="address">5km内免配送费, 5-10km配送费3元, 10km以上配送费10元</view>
 		</view>
+		<view class="top" wx:if="{{type==1000||type=='1000'}}">
+			<view class="type">自提订单</view>
+			<!-- <view class="address">5km内免配送费, 5-10km配送费3元, 10km以上配送费10元</view> -->
+		</view>
 		<view class="pickerBox flexStart">
 			<view class="section__title">提货时间</view>
-			<text class="time">大约{{time}}送达</text> 
+			<text class="time">大约{{time}}送达</text>
 			<!-- <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
 				<view class="picker">
 					
@@ -47,6 +51,15 @@
 		</view>
 	</view>
 </view>
-<view class="btnBox">
-	<view class="sendBtn">发送给客户确认</view>
+<!-- <view class="btnBox">
+	<button open-type='share' class="sendBtn" bindtap="submit">发送给客户确认</button>
+</view> -->
+<view class="btnBox " bindtap="submit">
+	<view class="sendBtn flexStart">
+		<view class="priceBox">
+			<text>￥</text>
+			<text class="price">{{totalPrice}}</text>
+		</view>
+		<navigator target="miniProgram" open-type="navigate" app-id="wx46f8b078bc4fb106" path="/packageA/pages/onlineOrder/confirmOrder/index" extra-data="{{orderId}}" version="develop" class='right'>提交订单</navigator>
+	</view>
 </view>
