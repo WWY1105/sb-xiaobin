@@ -6,7 +6,7 @@ const days = [];
 const hours = [];
 const minutes = [];
 //获取年
-for (let i = date.getFullYear(); i <= date.getFullYear() + 1; i++) {
+for (let i = date.getFullYear(); i <= date.getFullYear(); i++) {
    years.push("" + i);
 }
 //获取月份
@@ -83,6 +83,13 @@ Page({
       let type = e.currentTarget.dataset.type;
       let shopId = this.data.shopId;
       let url = "/pages/onlineOrder/orderRecord/orderRecord?type=" + type + '&shopId=' + shopId
+      wx.navigateTo({
+         url
+      })
+   },
+   toFinishOrder(){
+      let shopId = this.data.shopId;
+      let url = "/pages/onlineOrder/orderRecord/finishOrder/finishOrder?shopId=" + shopId ;
       wx.navigateTo({
          url
       })

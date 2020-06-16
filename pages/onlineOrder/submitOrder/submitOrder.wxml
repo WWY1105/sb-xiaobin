@@ -54,12 +54,32 @@
 <!-- <view class="btnBox">
 	<button open-type='share' class="sendBtn" bindtap="submit">发送给客户确认</button>
 </view> -->
+
 <view class="btnBox " bindtap="submit">
 	<view class="sendBtn flexStart">
 		<view class="priceBox">
 			<text>￥</text>
 			<text class="price">{{totalPrice}}</text>
 		</view>
-		<navigator target="miniProgram" open-type="navigate" app-id="wx46f8b078bc4fb106" path="/packageA/pages/onlineOrder/confirmOrder/index" extra-data="{{orderId}}" version="develop" class='right'>提交订单</navigator>
+		<view class='right'>提交订单</view>
+	</view>
+</view>
+
+<!-- modal -->
+<view class="modal animateModal" wx:if="{{jumpFlag}}" catchtouchmove="preventTouchMove">
+	<view class="content">
+		<view class="top">提示</view>
+		<view class="tips">立即前往探长探店小程序</view>
+		<view class="bottomBox">
+			<navigator 
+			target="miniProgram" 
+			hover-start-time="5000" 
+			hover-stay-time="5000" 
+			open-type="navigate" 
+			app-id="wx46f8b078bc4fb106" 
+			path="/packageA/pages/onlineOrder/confirmOrder/index?orderId={{orderId}} " 
+			:extra-data="orderId" version="develop" class='toEditbtn'>继续跳转</navigator>
+			<button class="cancelbtn" bindtap="cancelJump">取消跳转</button>
+		</view>
 	</view>
 </view>

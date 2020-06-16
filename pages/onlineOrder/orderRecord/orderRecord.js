@@ -12,6 +12,23 @@ Page({
     count: 5,
     page: 1
   },
+  // 删除订单
+  deleteOrder(e) {
+    
+    let that = this;
+    let url = '/takeouts/order/' + e.currentTarget.dataset.id;
+    app.util.request(that, {
+      url: app.util.getUrl(url, {}),
+      method: 'DELETE',
+      header: app.globalData.token,
+    }).then((res) => {
+      console.log(res)
+      if (res.code == 200) {
+        wx.hideLoading();
+        that.getOrderList()
+      }
+    })
+  },
   // 去修改
   toEdit(e) {
     wx.setStorageSync('editOrder', e.currentTarget.dataset.item);
@@ -25,8 +42,8 @@ Page({
   onLoad: function (options) {
     wx.hideLoading()
     console.log(options)
-    let shopId=wx.getStorageSync('shopId')
-    if (options.type && shopId) {
+    let shopId = wx.getStorageSync('shopId')
+    if (shopId) {
       this.setData({
         type: options.type,
         shopId: shopId

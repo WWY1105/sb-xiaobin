@@ -60,15 +60,20 @@ page {
 
 .userInfo .status {
   font-size: 28rpx;
+  color: #e35f4e;
 }
-
-.goodsImg {
-  position: relative;
+.goodBox{
   overflow-x: scroll;
 
 }
-
-.goodsImg .mask {
+.goodsImg {
+  position: relative;
+  padding-right: 128rpx;
+}
+scroll-view{
+  position: relative;
+}
+ .mask {
   position: absolute;
   width: 160rpx;
   height: 100%;

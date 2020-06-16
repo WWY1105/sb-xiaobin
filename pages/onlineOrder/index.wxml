@@ -28,5 +28,5 @@
 </view>
 <view class="bottomBtn flexSpace">
 	<view class="btn left" bindtap="toOrderRecord" data-type="notpay">待付款订单</view>
-	<view class="btn" bindtap="toOrderRecord" data-type="pay">已付款订单</view>
+	<view class="btn" bindtap="toFinishOrder" data-type="pay">已付款订单</view>
 </view>

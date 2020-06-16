@@ -16,7 +16,7 @@ page {
    color: #228bff;
    font-size: 36rpx;
    font-weight: bold;
-   border-top: 2rpx solid #228bff;
+   border-top: 1rpx solid #228bff;
    text-align: center;
    bottom: 0;
    box-sizing: border-box;

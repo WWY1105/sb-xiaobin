@@ -1,16 +1,18 @@
 <!--pages/onlineOrder/menu/menu.wxml-->
 
 <view class="containerBox">
-	<view class="content flexStart">
+	<view class="content">
 		<!-- 左边分类 -->
 		<view class="category">
 			<view class="eachCate {{index==activeKind?'active':''}}" wx:for="{{menu}}" bindtap="changeKind" data-index="{{index}}">{{item.kindName}}</view>
 		</view>
 		<!-- 右边菜品 -->
+
 		<view class="dishs">
-			<scroll-view scroll-y>
-				<view wx:for="{{menu}}" wx:for-item="m">
-					<view class="title">{{m.kindName}}</view>
+			<scroll-view scroll-y scroll-with-animation="true" scroll-top="{{scrollTop}}" style="height:100vh" id='theId'>
+
+				<view wx:for="{{menu}}" wx:for-item="m" class="menuBox">
+					<view class="title site-about-info">{{m.kindName}}</view>
 					<view class="eachDish flexStart" wx:for="{{m.dishes}}" wx:for-index="i">
 						<image class="disImg" src="{{item.picUrl}}"></image>
 						<view class="textBox flexColumn">
@@ -27,9 +29,9 @@
 								<!-- <view class="choose">选规格</view> -->
 								<!-- 选数量 -->
 								<view class="numBox flexCenter">
-									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-index="{{i}}"></view>
+									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}"></view>
 									<view class="num">{{item.num}}</view>
-									<view class="iconfont icon-jia jia" bindtap="jia" data-index="{{i}}"></view>
+									<view class="iconfont icon-jia jia" bindtap="jia" data-id="{{item.id}}" data-num="{{item.num}}"></view>
 								</view>
 							</view>
 						</view>
@@ -58,38 +60,37 @@
 
 
 
+
 <!-- modal  -->
 <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
 	<view class="modals-cancel" bindtap="hideModal"></view>
 	<view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
 		<view class="titleBox flexSpace">
 			<view class="title">已选商品</view>
-			<text class="title">清空</text>
+			<text class="title" bindtap="clearDish">清空</text>
 		</view>
 		<scroll-view scroll-y>
-			<view class="dishs">
-				<view wx:for="{{menu}}" wx:for-item="k">
-					<view wx:for="{{k.dishes}}" wx:for-index="i" wx:for-item="item">
-						<view wx:if="{{item.num>0}}" class="eachDish flexStart">
-							<image class="disImg" src="{{item.picUrl}}"></image>
-							<view class="textBox flexColumn">
-								<view class="top">
-									<view class="name">{{item.name}}</view>
-									<view class="desc">{{item.descriptor}}</view>
+			<view class="dishs dishsModal" wx:for="{{menu}}" wx:for-item="k">
+				<view wx:for="{{k.dishes}}" wx:for-index="i" wx:for-item="item">
+					<view wx:if="{{item.num>0}}" class="eachDish flexStart">
+						<image class="disImg" src="{{item.picUrl}}"></image>
+						<view class="textBox flexColumn">
+							<view class="top">
+								<view class="name">{{item.name}}</view>
+								<view class="desc">{{item.descriptor}}</view>
+							</view>
+							<view class="bottom flexSpace">
+								<view class="price">
+									<text class="icon">￥</text>
+									<text>{{item.price}}</text>
 								</view>
-								<view class="bottom flexSpace">
-									<view class="price">
-										<text class="icon">￥</text>
-										<text>{{item.price}}</text>
-									</view>
-									<!-- 选规格 -->
-									<!-- <view class="choose">选规格</view> -->
-									<!-- 选数量 -->
-									<view class="numBox flexCenter">
-										<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-index="{{i}}"></view>
-										<view class="num">{{item.num}}</view>
-										<view class="iconfont icon-jia jia" bindtap="jia" data-index="{{i}}"></view>
-									</view>
+								<!-- 选规格 -->
+								<!-- <view class="choose">选规格</view> -->
+								<!-- 选数量 -->
+								<view class="numBox flexCenter">
+									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}"></view>
+									<view class="num">{{item.num}}</view>
+									<view class="iconfont icon-jia jia" bindtap="jia" data-id="{{item.id}}" data-num="{{item.num}}"></view>
 								</view>
 							</view>
 						</view>

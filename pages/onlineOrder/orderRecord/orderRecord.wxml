@@ -1,21 +1,11 @@
 <!--pages/onlineOrder/orderRecord/orderRecord.wxml-->
-<!-- <view class="tabBox flexSpace">
-	<view class="tabItem active flexCenter flexColumn">
-		<text>外卖订单</text>
-		<text class="line"></text>
-	</view>
-	<view class="tabItem">
-		<text>自提订单</text>
-		<text class="line"></text>
-	</view>
-</view> -->
 <view class="contentBox">
-	<view  class="noData" wx:if="{{!orderList}}">暂无数据</view>
-	<view  wx:if="{{orderList&&orderList.items.length>0}}" class="eachRecord" wx:for="{{orderList.items}}" wx:index="index" bindtap="toEdit" data-item="{{item}}" >
+	<view class="noData" wx:if="{{!orderList}}">暂无数据</view>
+	<view wx:if="{{orderList&&orderList.items.length>0}}" class="eachRecord" wx:for="{{orderList.items}}" wx:index="index" bindtap="toEdit" data-item="{{item}}">
 		<view class="userInfo flexSpace flexCenter">
 			<view class="left flexCenter flexStart">
-				<image class="userImg"></image>
-				<text class="username">11</text>
+				<image class="userImg" src="{{item.avatarUrl}}"></image>
+				<text class="username">{{item.nickname}}</text>
 			</view>
 			<view class="status">
 				<text wx:if="type=='notpay'" class="notpay">待付款</text>
@@ -24,21 +14,25 @@
 		</view>
 		<!-- 商品 start-->
 		<scroll-view scroll-x>
-			<view class="goodsImg  flexStart">
-				<!-- 蒙层/总计 -->
-				<view class="mask flexCenter">
-					<view class="totalPrice">￥{{item.amount}}</view>
-					<view class="totalNum">共5件</view>
+			<!-- 蒙层/总计 -->
+			<view class="mask flexCenter">
+				<view class="totalPrice">￥{{item.amount}}</view>
+				<view class="totalNum">共5件</view>
+			</view>
+			<view class="goodBox flexStart">
+				<view class="goodsImg flexStart">
+
+					<view class="good flexColumn" wx:for="{{item.menus}}" wx:for-item="i">
+						<image class="goodImg" src="{{i.picUrl}}"></image>
+						<text class="goodName">{{i.name}}</text>
+					</view>
 				</view>
-				<view class="good flexColumn" wx:for="{{item.menus}}" wx:for-item="i">
-					<image class="goodImg" src="{{i.picUrl}}"></image>
-					<text class="goodName">{{i.name}}</text>
-				</view>
+
 			</view>
 		</scroll-view>
 		<!-- 商品 end-->
 
-		<view class="deleteBox flexEnd" wx:if="type=='notpay'">
+		<view class="deleteBox flexEnd" wx:if="type=='notpay'" catchtap="deleteOrder" data-id="{{item.id}}">
 			<view class="deleteBtn">删除订单</view>
 		</view>
 	</view>

@@ -12,8 +12,8 @@ Page({
       total: 0,
       totalPrice: 0,
 
-
-      orderId:''
+      jumpFlag: false,
+      orderId: ''
    },
 
    /**
@@ -21,8 +21,10 @@ Page({
     */
    onLoad: function (options) {
       wx.hideLoading()
-      if(options.orderId){
-         this.setData({orderId:options.orderId})
+      if (options.orderId) {
+         this.setData({
+            orderId: options.orderId
+         })
       }
       if (options.shopId) {
          this.setData({
@@ -35,7 +37,12 @@ Page({
          })
       }
    },
-
+   // 取消跳转
+   cancelJump() {
+      this.setData({
+         jumpFlag: false
+      })
+   },
    // 提交订单
    submit() {
       let that = this;
@@ -51,9 +58,9 @@ Page({
             obj[i.id] = i.num
          }
       })
-     
-      if(this.data.orderId){
-         let url='/takeouts/shop/'+ that.data.shopId+'/order/'+this.data.orderId;
+
+      if (this.data.orderId) {
+         let url = '/takeouts/shop/' + that.data.shopId + '/order/' + this.data.orderId;
          app.util.request(that, {
             url: app.util.getUrl(url),
             method: 'PUT',
@@ -62,7 +69,7 @@ Page({
                menus: obj,
                type,
                orderTime,
-                time,
+               time,
             }
          }).then((res) => {
             if (res.code == 200) {
@@ -78,7 +85,7 @@ Page({
                });
             }
          })
-      }else{
+      } else {
          app.util.request(that, {
             url: app.util.getUrl('/takeouts/shop/' + that.data.shopId),
             method: 'POST',
@@ -87,11 +94,15 @@ Page({
                menus: obj,
                type,
                orderTime,
-                time,
+               time,
             }
          }).then((res) => {
             if (res.code == 200) {
                wx.hideLoading()
+               that.setData({
+                  orderId: res.result.orderId,
+                  jumpFlag: true
+               })
             } else {
                that.setData({
                   notFound: false
@@ -104,7 +115,7 @@ Page({
             }
          })
       }
-      
+
    },
 
    /**

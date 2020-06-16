@@ -16,8 +16,25 @@ Page({
       totalNum: 0,
       hideModal: true, //模态框的状态  true-隐藏  false-显示
       animationData: {}, //
+      aboutArr: [],
+      top: 0
    },
-
+   // 清空
+   clearDish() {
+      let menu = this.data.menu;
+      menu.map((item) => {
+         item.dishes.map((i) => {
+            i.num = 0
+         })
+      })
+      this.setData({
+         menu,
+         totalNum:0,
+         totalPrice:0
+      }, () => {
+         this.hideModal()
+      })
+   },
    /**
     * 生命周期函数--监听页面加载
     */
@@ -50,11 +67,36 @@ Page({
    // 切换品类
    changeKind(e) {
       let activeKind = e.target.dataset.index;
+      let top = this.data.aboutArr[activeKind];
+      console.log("点击" + top)
+      let query = wx.createSelectorQuery().in(this)
+      query.select('#theId').boundingClientRect((res) => {
+         console.log('res: ', res)
+         this.setData({
+            scrollTop: top - 30
+         })
+         // res.top // 这个组件内 #the-id 节点的上边界坐标
+      }).exec()
       this.setData({
-         activeKind
+         activeKind,
+         top
       })
    },
-   // 
+   queryMultipleNodes: function () {
+      var that = this;
+      var aboutArr = [];
+      wx.createSelectorQuery().selectAll('.site-about-info').boundingClientRect(function (rects) {
+         rects.forEach(function (rect) {
+            console.log(rect.bottom); // 节点的下边界坐标
+            aboutArr.push(rect.bottom);
+         })
+         console.log(aboutArr);
+         that.setData({
+            aboutArr: aboutArr
+         })
+      }).exec();
+   },
+   // 获取菜单
    getMenu() {
       let that = this;
       let url = '/menus/shop/' + this.data.shopId + '/supply';
@@ -84,6 +126,8 @@ Page({
             })
             that.setData({
                menu: res.result
+            }, () => {
+               that.queryMultipleNodes()
             })
          }
       })
@@ -108,11 +152,20 @@ Page({
    },
 
    //加数量
+   //加数量
    jia(e) {
-      let dishIndex = e.target.dataset.index;
-      let activeKind = this.data.activeKind;
+      let id = e.target.dataset.id;
+      console.log(id)
+      // let activeKind = this.data.activeKind;
       let menu = this.data.menu;
-      menu[activeKind].dishes[dishIndex].num += 1;
+      // menu[activeKind].dishes[dishIndex].num += 1;
+      menu.map((item) => {
+         item.dishes.map((i) => {
+            if (i.id == id) {
+               i.num += 1
+            }
+         })
+      })
       this.setData({
          menu,
       }, () => {
@@ -123,13 +176,27 @@ Page({
       if (this.data.totalNum <= 0) {
          this.hideModal()
       }
-      let dishIndex = e.target.dataset.index;
-      let activeKind = this.data.activeKind;
+      let id = e.target.dataset.id;
+      let num = e.target.dataset.num;
+      console.log(num)
+      // let activeKind = this.data.activeKind;
       let menu = this.data.menu;
-      if (menu[activeKind].dishes[dishIndex].num <= 0) {
-         menu[activeKind].dishes[dishIndex].num = 0;
+      if (num <= 0) {
+         menu.map((item) => {
+            item.dishes.map((i) => {
+               if (i.id == id) {
+                  i.num = 0
+               }
+            })
+         })
       } else {
-         menu[activeKind].dishes[dishIndex].num -= 1;
+         menu.map((item) => {
+            item.dishes.map((i) => {
+               if (i.id == id) {
+                  i.num -= 1
+               }
+            })
+         })
       }
 
       this.setData({
@@ -175,7 +242,7 @@ Page({
     * 生命周期函数--监听页面初次渲染完成
     */
    onReady: function () {
-
+      this.queryMultipleNodes()
    },
 
    /**
@@ -222,7 +289,7 @@ Page({
          hideModal: false
       })
       var animation = wx.createAnimation({
-         duration: 600, //动画的持续时间 默认400ms   数值越大，动画越慢   数值越小，动画越快
+         duration: 300, //动画的持续时间 默认400ms   数值越大，动画越慢   数值越小，动画越快
          timingFunction: 'ease', //动画的效果 默认值是linear
       })
       this.animation = animation
@@ -235,7 +302,7 @@ Page({
    hideModal: function () {
       var that = this;
       var animation = wx.createAnimation({
-         duration: 800, //动画的持续时间 默认400ms   数值越大，动画越慢   数值越小，动画越快
+         duration: 300, //动画的持续时间 默认400ms   数值越大，动画越慢   数值越小，动画越快
          timingFunction: 'ease', //动画的效果 默认值是linear
       })
       this.animation = animation
