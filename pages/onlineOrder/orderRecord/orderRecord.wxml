@@ -21,19 +21,17 @@
 			</view>
 			<view class="goodBox flexStart">
 				<view class="goodsImg flexStart">
-
 					<view class="good flexColumn" wx:for="{{item.menus}}" wx:for-item="i">
 						<image class="goodImg" src="{{i.picUrl}}"></image>
 						<text class="goodName">{{i.name}}</text>
 					</view>
 				</view>
-
 			</view>
 		</scroll-view>
 		<!-- 商品 end-->
-
+<!-- 
 		<view class="deleteBox flexEnd" wx:if="type=='notpay'" catchtap="deleteOrder" data-id="{{item.id}}">
 			<view class="deleteBtn">删除订单</view>
-		</view>
+		</view> -->
 	</view>
 </view>

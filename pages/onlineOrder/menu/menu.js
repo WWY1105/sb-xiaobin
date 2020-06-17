@@ -42,7 +42,7 @@ Page({
       wx.hideLoading()
       if (options.shopId) {
          this.setData({
-            shopId: options.shopId
+            shopId: options.shopId||wx.getStorageSync('shopId')
          })
       }
       if (options.type) {
@@ -141,10 +141,11 @@ Page({
          item.dishes.map((i) => {
             if (i.num > 0) {
                totalNum += i.num;
-               totalPrice += i.num * i.price
+               totalPrice += i.num * i.price;
             }
          })
       })
+      totalPrice=totalPrice.toFixed(2);
       this.setData({
          totalPrice,
          totalNum
@@ -155,7 +156,6 @@ Page({
    //加数量
    jia(e) {
       let id = e.target.dataset.id;
-      console.log(id)
       // let activeKind = this.data.activeKind;
       let menu = this.data.menu;
       // menu[activeKind].dishes[dishIndex].num += 1;

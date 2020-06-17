@@ -7,10 +7,8 @@
 			<view class="eachCate {{index==activeKind?'active':''}}" wx:for="{{menu}}" bindtap="changeKind" data-index="{{index}}">{{item.kindName}}</view>
 		</view>
 		<!-- 右边菜品 -->
-
 		<view class="dishs">
 			<scroll-view scroll-y scroll-with-animation="true" scroll-top="{{scrollTop}}" style="height:100vh" id='theId'>
-
 				<view wx:for="{{menu}}" wx:for-item="m" class="menuBox">
 					<view class="title site-about-info">{{m.kindName}}</view>
 					<view class="eachDish flexStart" wx:for="{{m.dishes}}" wx:for-index="i">
@@ -51,7 +49,7 @@
 					<text class="logo">￥</text>
 					<text>{{totalPrice}}</text>
 				</view>
-				<text class="tips">另需包装费¥3</text>
+				<!-- <text class="tips">另需包装费¥3</text> -->
 			</view>
 			<view class="doneBtn" bindtap="toSubmit">选好了</view>
 		</view>
@@ -71,7 +69,7 @@
 		</view>
 		<scroll-view scroll-y>
 			<view class="dishs dishsModal" wx:for="{{menu}}" wx:for-item="k">
-				<view wx:for="{{k.dishes}}" wx:for-index="i" wx:for-item="item">
+				<view wx:for="{{k.dishes}}" wx:for-index="i" wx:for-item="item" wx:if="{{item.num>0}}">
 					<view wx:if="{{item.num>0}}" class="eachDish flexStart">
 						<image class="disImg" src="{{item.picUrl}}"></image>
 						<view class="textBox flexColumn">

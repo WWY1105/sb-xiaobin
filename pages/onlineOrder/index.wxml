@@ -6,20 +6,20 @@
 			<view class="right  {{type==1000?'active':''}}" bindtap="changeType" data-type='1000'>到店自取</view>
 		</view>
 		<view class="content">
-			<view class="pickerBox flexStart">
+			<view class="pickerBox  flexStart">
+				<view class="section__title">{{timeText}}</view>
+				<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+						<text>{{time}}</text>
+						<text class="rightIcon iconfont icon-youbian" ></text>
+				</picker>
+			</view>
+			<view class="pickerBox pickerBox2 flexStart">
 				<view class="section__title">下单时间</view>
 				<picker mode="time" value="{{orderTime}}" start="09:01" end="21:01" bindchange="bindTimeChange">
 					<view class="picker flexCenter">
 						<text>{{orderTime}}</text>
 						<text class="rightIcon iconfont icon-youbian" ></text>
 					</view>
-				</picker>
-			</view>
-			<view class="pickerBox pickerBox2 flexStart">
-				<view class="section__title">{{timeText}}</view>
-				<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-						<text>{{time}}</text>
-						<text class="rightIcon iconfont icon-youbian" ></text>
 				</picker>
 			</view>
 			<view class="submitBtn" bindtap="toOrder">开始下单</view>
