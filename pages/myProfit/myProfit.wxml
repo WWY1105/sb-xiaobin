@@ -14,7 +14,7 @@
   <!-- 内容 -->
   <view class="content">
     <view class="title">收益明细</view>
-    <view class="eachList" bindtap="gotoProfitDetail" data-id="{{item.id}}" wx:for="{{profitList.items}}">
+    <view class="eachList" bindtap="gotoProfitDetail" wx:key="index"  data-id="{{item.id}}" wx:for="{{profitList.items}}">
       <view class="shopName">{{item.name}}</view>
       <view class="list">
         <view class="left">

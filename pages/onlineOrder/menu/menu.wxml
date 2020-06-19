@@ -1,6 +1,12 @@
 <!--pages/onlineOrder/menu/menu.wxml-->
+<auth id="authpop" parentThis="{{popThis}}"></auth>
+<!-- 没有数据 -->
+<view class="noData" wx:if="{{!menu||menu.length<=0}}">
+	<image class="noDataImg" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/noMenu.png"></image>
+</view>
 
-<view class="containerBox">
+
+<view class="containerBox" wx:else>
 	<view class="content">
 		<!-- 左边分类 -->
 		<view class="category">

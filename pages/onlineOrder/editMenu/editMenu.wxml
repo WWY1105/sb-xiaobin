@@ -4,14 +4,14 @@
 	<view class="content flexStart">
 		<!-- 左边分类 -->
 		<view class="category">
-			<view class="eachCate {{index==activeKind?'active':''}}" wx:for="{{menu}}" bindtap="changeKind" data-index="{{index}}">{{item.kindName}}</view>
+			<view class="eachCate {{index==activeKind?'active':''}}" wx:key="index"  wx:for="{{menu}}" bindtap="changeKind" data-index="{{index}}">{{item.kindName}}</view>
 		</view>
 		<!-- 右边菜品 -->
 		<view class="dishs">
 			<scroll-view scroll-y>
-				<view wx:for="{{menu}}" wx:for-item="m">
+				<view wx:for="{{menu}}" wx:for-item="m" wx:key="index" >
 					<view class="title">{{m.kindName}}</view>
-					<view class="eachDish flexStart" wx:for="{{m.dishes}}" wx:for-index="i">
+					<view class="eachDish flexStart" wx:key="index"  wx:for="{{m.dishes}}" wx:for-index="i">
 						<image class="disImg" src="{{item.picUrl}}"></image>
 						<view class="textBox flexColumn">
 							<view class="top">
@@ -68,8 +68,8 @@
 		</view>
 		<scroll-view scroll-y>
 			<view class="dishs">
-				<view wx:for="{{menu}}" wx:for-item="k">
-					<view wx:for="{{k.dishes}}" wx:for-index="i" wx:for-item="item">
+				<view wx:for="{{menu}}" wx:for-item="k" wx:key="index" >
+					<view wx:for="{{k.dishes}}" wx:for-index="i" wx:for-item="item" wx:key="index" >
 						<view wx:if="{{item.num>0}}" class="eachDish flexStart">
 							<image class="disImg" src="{{item.picUrl}}"></image>
 							<view class="textBox flexColumn">

@@ -23,7 +23,7 @@
 			<text class="editMenus" bindtap="editMenus">修改</text>
 		</view>
 		<view class="dishBox">
-			<view class="eachDish flexSpace" wx:for="{{editOrder.menus}}">
+			<view class="eachDish flexSpace" wx:for="{{editOrder.menus}}" wx:key="index" >
 				<view class="left flexStart">
 					<image class="dishImg" src="{{item.picUrl}}"></image>
 					<view class="textBox flexColumn">

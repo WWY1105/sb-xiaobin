@@ -1,11 +1,20 @@
 <!--pages/onlineOrder/orderRecord/orderRecord.wxml-->
-<view class="contentBox">
-	<view class="noData" wx:if="{{!orderList}}">暂无数据</view>
-	<view wx:if="{{orderList&&orderList.items.length>0}}" class="eachRecord" wx:for="{{orderList.items}}" wx:index="index" bindtap="toEdit" data-item="{{item}}">
+<auth id="authpop" parentThis="{{popThis}}"></auth>
+<!-- 没有数据 -->
+<view class="noData" wx:if="{{!orderList||orderList.length<=0}}">
+	<image class="noDataImg" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/noOrder.png"></image>
+</view>
+
+
+
+<view class="contentBox" wx:else>
+	<view wx:if="{{orderList&&orderList.length>0}}" class="eachRecord" wx:for="{{orderList}}" wx:index="index" bindtap="toEdit" data-item="{{item}}">
 		<view class="userInfo flexSpace flexCenter">
 			<view class="left flexCenter flexStart">
-				<image class="userImg" src="{{item.avatarUrl}}"></image>
-				<text class="username">{{item.nickname}}</text>
+				<image class="userImg" src="{{item.avatarUrl}}" wx:if="{{item.avatarUrl}}"></image>
+				<view class="iconfont icon-user userIcon" wx:else></view>
+				<text class="username" wx:if="{{item.nickname}}">{{item.nickname}}</text>
+				<text class="username" wx:if="{{!item.nickname}}">等待顾客确认</text>
 			</view>
 			<view class="status">
 				<text wx:if="type=='notpay'" class="notpay">待付款</text>
@@ -17,7 +26,7 @@
 			<!-- 蒙层/总计 -->
 			<view class="mask flexCenter">
 				<view class="totalPrice">￥{{item.amount}}</view>
-				<view class="totalNum">共5件</view>
+				<view class="totalNum">共{{item.total||0}}件</view>
 			</view>
 			<view class="goodBox flexStart">
 				<view class="goodsImg flexStart">
@@ -29,7 +38,7 @@
 			</view>
 		</scroll-view>
 		<!-- 商品 end-->
-<!-- 
+		<!-- 
 		<view class="deleteBox flexEnd" wx:if="type=='notpay'" catchtap="deleteOrder" data-id="{{item.id}}">
 			<view class="deleteBtn">删除订单</view>
 		</view> -->

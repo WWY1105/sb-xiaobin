@@ -8,13 +8,15 @@ Page({
   data: {
     type: '',
     shopId: '',
-    orderList: null,
+    orderList: [],
+    // 分页
     count: 5,
-    page: 1
+    page: 1,
+    hasDataFlag: false,
   },
   // 删除订单
   deleteOrder(e) {
-    
+
     let that = this;
     let url = '/takeouts/order/' + e.currentTarget.dataset.id;
     app.util.request(that, {
@@ -47,29 +49,39 @@ Page({
       this.setData({
         type: options.type,
         shopId: shopId
-      }, () => {
-        this.getOrderList()
       })
     }
   },
   getOrderList() {
-    let url = '';
     let that = this;
-    if (this.data.type == 'pay') {
-      url = '/takeouts/shop/' + this.data.shopId + '/finish'
-    } else {
-      url = '/takeouts/shop/' + this.data.shopId
-    }
+    let  url = '/takeouts/shop/' + this.data.shopId;
+    
     app.util.request(that, {
-      url: app.util.getUrl(url, {}),
+      url: app.util.getUrl(url, {
+        page:that.data.page,
+        count:that.data.count
+      }),
       method: 'GET',
       header: app.globalData.token,
     }).then((res) => {
       console.log(res)
       if (res.code == 200) {
-        wx.hideLoading();
+        let orderList = that.data.orderList;
+        let hasDataFlag = that.data.hasDataFlag;
+        orderList = orderList.concat(res.result.items);
+        if (res.result.items.length > 0) {
+          hasDataFlag = true;
+        } else {
+          hasDataFlag = false
+        }
         that.setData({
-          orderList: res.result
+          orderList,
+          pageSize: res.result.pageSize,
+          hasDataFlag
+        })
+      } else {
+        that.setData({
+          hasDataFlag: false
         })
       }
     })
@@ -86,7 +98,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      count: 5,
+      page: 1,
+      hasDataFlag: false,
+      popThis: this
+    }, () => {
+      this.getOrderList()
+    })
   },
 
   /**
@@ -114,7 +133,17 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    let that = this;
+    if (that.data.hasDataFlag) {
+      let page = that.data.page;
+      page += 1;
+      that.setData({
+        page
+      },()=>{
+        that.getOrderList()
+      })
+     
+    }
   },
 
   /**

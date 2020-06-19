@@ -5,6 +5,6 @@
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-    "auth": "../component/auth"
+    "auth": "/pages/component/auth"
   }
 }

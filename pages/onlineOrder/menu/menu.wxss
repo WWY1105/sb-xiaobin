@@ -1,28 +1,45 @@
 /* pages/onlineOrder/menu/menu.wxss */
 
-page{
+page {
+
    color: #000;
-    height: 100%;
+   height: 100%;
 }
+
+.noData {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+}
+.noDataImg {
+   width: 327rpx;
+   height: 360rpx;
+   margin-top: -20%;
+}
+
 .containerBox,
 .content {
    height: 100%;
 }
-.containerBox{
+
+.containerBox {
    padding-bottom: 200rpx;
 }
-.menuBox{
+
+.menuBox {
    /* height: 100%; */
 }
+
 .category {
    height: 100%;
    background: #f5f5f5;
    overflow-y: scroll;
    position: fixed;
    width: 144rpx;
-   top:0;
-   left:0
-
+   top: 0;
+   left: 0
 }
 
 .eachCate {
@@ -41,9 +58,11 @@ page{
    padding: 20rpx 24rpx;
    padding-left: 168rpx;
 }
-.dishsModal{
+
+.dishsModal {
    padding-left: 24rpx;
 }
+
 .dishs .title {
    font-size: 24rpx;
    margin-bottom: 24rpx;
@@ -122,7 +141,7 @@ page{
 
 .totalBox {
    position: fixed;
-   padding:0 26rpx;
+   padding: 0 26rpx;
    margin: 0 auto;
    left: 0;
    right: 0;
@@ -153,7 +172,7 @@ page{
    font-size: 36rpx;
    font-weight: 500;
    line-height: 92rpx;
-height: 92rpx;
+   height: 92rpx;
 
 }
 
@@ -210,9 +229,9 @@ height: 92rpx;
    left: 0;
    right: 0;
    bottom: 0;
- }
- 
- .modals-cancel {
+}
+
+.modals-cancel {
    position: absolute;
    z-index: 1000;
    top: 0;
@@ -220,9 +239,9 @@ height: 92rpx;
    right: 0;
    bottom: 0;
    background-color: rgba(0, 0, 0, .5);
- }
- 
- .bottom-dialog-body {
+}
+
+.bottom-dialog-body {
    position: absolute;
    z-index: 10001;
    bottom: 0;
@@ -231,25 +250,26 @@ height: 92rpx;
    padding: 30rpx;
    height: 80vh;
    background-color: #fff;
- }
- 
- /*动画前初始位置*/
- .bottom-pos {
+}
+
+/*动画前初始位置*/
+.bottom-pos {
    -webkit-transform: translateY(100%);
    transform: translateY(100%);
    border-radius: 20rpx 20rpx 0 0;
    padding: 0;
 
- }
- .bottom-pos .titleBox{
+}
+
+.bottom-pos .titleBox {
    background-color: #f0f0f0;
-   padding:20rpx;
-   font-size:28rpx;
+   padding: 20rpx;
+   font-size: 28rpx;
    text-align: center;
    font-weight: bold;
    color: #919191;
- }
- .modals .dishs{
-   max-height: 605rpx;
+}
 
- }
+.modals .dishs {
+   max-height: 605rpx;
+}

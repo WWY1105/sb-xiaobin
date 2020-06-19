@@ -87,15 +87,31 @@ Page({
          url
       })
    },
-   toFinishOrder(){
+   toFinishOrder() {
       let shopId = this.data.shopId;
-      let url = "/pages/onlineOrder/orderRecord/finishOrder/finishOrder?shopId=" + shopId ;
+      let url = "/pages/onlineOrder/orderRecord/finishOrder/finishOrder?shopId=" + shopId;
       wx.navigateTo({
          url
       })
    },
    //跳转开始下单
    toOrder() {
+      if (!this.data.orderTime) {
+         wx.showToast({
+           title: '请选择下单时间',
+           icon:'none',
+           duration:3000
+         })
+         return ;
+      }
+      if (!this.data.time) {
+         wx.showToast({
+           title: this.data.timeText,
+           icon:'none',
+           duration:3000
+         })
+         return ;
+      }
       let url = "/pages/onlineOrder/menu/menu?shopId=" + this.data.shopId + '&orderTime=' + this.data.orderTime + '&time=' + this.data.time + "&type=" + this.data.type
       wx.navigateTo({
          url
@@ -223,20 +239,20 @@ Page({
       multiIndex[1] = month;
       month = month - 0 + 1;
       month = month < 10 ? '0' + month : month;
-      console.log('月'+month)
+      console.log('月' + month)
       let day = new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate();
       // 选择器日
-      multiIndex[2] = new Date().getDate()-1;
+      multiIndex[2] = new Date().getDate() - 1;
       let hour = new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours();
       // 选择器时
       multiIndex[3] = new Date().getHours();
       let minu = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()
       // 选择器分
       multiIndex[4] = new Date().getMinutes();
-     console.log(multiIndex)
+      console.log(multiIndex)
       // 获取当前时间
       let orderTime = hour + ':' + minu;
-      let time = year + '-' + month + '-' + day+ ' ' + hour + ':' + minu + ":00"
+      let time = year + '-' + month + '-' + day + ' ' + hour + ':' + minu + ":00"
       this.setData({
          orderTime,
          // time,

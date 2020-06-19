@@ -3,7 +3,7 @@
 	<view class="content">
 		<view class="top" wx:if="{{type==1001||type=='1001'}}">
 			<view class="type">等待顾客填写地址</view>
-			<view class="address">5km内免配送费, 5-10km配送费3元, 10km以上配送费10元</view>
+			<!-- <view class="address">5km内免配送费, 5-10km配送费3元, 10km以上配送费10元</view> -->
 		</view>
 		<view class="top" wx:if="{{type==1000||type=='1000'}}">
 			<view class="type">自提订单</view>

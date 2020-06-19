@@ -73,7 +73,7 @@ Page({
       query.select('#theId').boundingClientRect((res) => {
          console.log('res: ', res)
          this.setData({
-            scrollTop: top - 30
+            scrollTop: top - 50
          })
          // res.top // 这个组件内 #the-id 节点的上边界坐标
       }).exec()
@@ -128,6 +128,10 @@ Page({
                menu: res.result
             }, () => {
                that.queryMultipleNodes()
+            })
+         }else{
+            that.setData({
+               menu:[]
             })
          }
       })
@@ -207,7 +211,7 @@ Page({
    },
    // 提交订单
    toSubmit() {
-      if (this.data.menu.length <= 0) {
+      if (this.data.totalNum <= 0||this.data.totalPrice <= 0) {
          wx.showModal({
             title: '提示',
             content: '您还未选择菜品'
@@ -249,7 +253,9 @@ Page({
     * 生命周期函数--监听页面显示
     */
    onShow: function () {
-
+this.setData({
+   popThis:this
+})
    },
 
    /**

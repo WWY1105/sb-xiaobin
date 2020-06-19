@@ -29,14 +29,14 @@
         <text>会员权益</text>
       </view>
       <view class='navs'>
-        <view class='eachNav' wx:for="{{freeData.birth}}" wx:if="{{freeData.birth}}">
+        <view class='eachNav' wx:for="{{freeData.birth}}" wx:key="index"  wx:if="{{freeData.birth}}">
           <image class="icon" src="/img/icons/birth.png"></image>
           <view class='text'>
             <view class='bigText'>生日特权</view>
             <view class='smallText' wx:if="{{item.content}}">{{item.content[0]}}</view>
           </view>
         </view>
-        <view class='eachNav' wx:for="{{freeData.shopActivities}}">
+        <view class='eachNav' wx:for="{{freeData.shopActivities}}" wx:key="index" >
           <view class="icon ping" wx:if="{{item.category=='6013'}}">评</view>
           <view class="icon ping" wx:elif="{{item.category=='6000'}}">会</view>
           <image class="icon" wx:else src="/img/icons/{{item.category}}.png"></image>
@@ -58,7 +58,7 @@
         <text>升级赠券</text>
       </view>
       <view class='qupons'>
-        <view wx:for-items="{{freeData.benefits}}" wx:for-item="item">
+        <view wx:for-items="{{freeData.benefits}}" wx:for-item="item" wx:key="index" >
           <view class='eachcoupon' wx:for-items="{{item.benefits}}" wx:for-item="i">
             <view class="circle leftCircle"></view>
             <view class="circle rightCircle"></view>
