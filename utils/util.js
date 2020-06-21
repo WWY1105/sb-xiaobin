@@ -1,4 +1,3 @@
-
 const md5 = require('./md5.js');
 const formatTime = date => {
    //console.log(date);
@@ -22,12 +21,12 @@ const getDistance = distance => {
    }
    return str;
 }
-const getUrl = function (url, para = {}) {
+const getUrl = function(url, para = {}) {
    const app = getApp();
    //origin
    url += "?";
    const password = "037925fa578c4ed98885d7b28ade5462";
-   let j = JSON.parse(JSON.stringify(para));//param's json
+   let j = JSON.parse(JSON.stringify(para)); //param's json
    j.timestamp = (new Date).getTime();
    let key_json = Object.keys(j);
    key_json.sort();
@@ -37,14 +36,15 @@ const getUrl = function (url, para = {}) {
       url += key_json[h] + "=" + j[key_json[h]] + "&";
    }
 
-   let i = md5.hexMD5(encode_str + password), m = "";
+   let i = md5.hexMD5(encode_str + password),
+      m = "";
    for (let o = 0; o < i.length; o += 2) m += i.charAt(o);
    for (let s = 1; s < i.length; s += 2) m += i.charAt(s);
    return app.globalData.ajaxOrigin + url + "signature=" + m;
 };
 //json={url，method,success}
 let goon = true;
-const ajax = function (json) {
+const ajax = function(json) {
    if (!goon) return;
    if (json.method == 'POST') {
       json.url = getUrl(json.url)
@@ -58,7 +58,7 @@ const ajax = function (json) {
       header: app.globalData.token,
       method: json.method || 'GET',
       data: json.data,
-      success: function (res) {
+      success: function(res) {
          let data = res.data;
          if (data.code == 403000) {
             goon = false;
@@ -77,7 +77,7 @@ const ajax = function (json) {
                            data: {
                               code: res.code
                            },
-                           success: function (res) {
+                           success: function(res) {
                               let data = res.data;
                               if (data.code == 200) {
                                  goon = true;
@@ -107,7 +107,7 @@ const ajax = function (json) {
                   }
                })
             }
-          
+
          } else {
             json.success(res);
          }
@@ -126,14 +126,12 @@ function requestP(options = {}) {
       fail,
    } = options;
    return new Promise((res, rej) => {
-      wx.request(Object.assign(
-         {},
-         options,
-         {
+      wx.request(Object.assign({},
+         options, {
             success(r) {
                //console.log(r)
                const isSuccess = isHttpSuccess(r.statusCode);
-               if (isSuccess) {  // 成功的请求状态
+               if (isSuccess) { // 成功的请求状态
                   res(r.data);
                } else {
                   rej({
@@ -164,7 +162,8 @@ function getSessionId() {
       }
    });
 }
-function authSuccess(fn){
+
+function authSuccess(fn) {
    fn()
 }
 
@@ -178,13 +177,13 @@ function login() {
                //console.log('调auth')
                // 获取sessionId
                requestP({
-                  url: getUrl('/auth'),
-                  header: app.globalData.token,
-                  data: {
-                     code: r1.code,
-                  },
-                  method: 'POST'
-               })
+                     url: getUrl('/auth'),
+                     header: app.globalData.token,
+                     data: {
+                        code: r1.code,
+                     },
+                     method: 'POST'
+                  })
                   .then((r2) => {
                      if (r2.code == 200) {
                         if (r2.result.token) {
@@ -256,12 +255,12 @@ function request(that, options = {}, keepLogin = true) {
                                     if (that.selectComponent("#authpop")) {
                                        pop = that.selectComponent("#authpop");
                                        pop.hiddenpop();
-                                       
+
                                        requestP(options)
                                           .then(res)
                                           .catch(rej);
                                     }
-                                 } 
+                                 }
 
                               });
                         } else if (r2.code == 200) {
@@ -292,8 +291,8 @@ function throttle(fn, gapTime) {
       gapTime = 2000
    }
    let _lastTime = null
-   return function () {
-      let _nowTime = + new Date()
+   return function() {
+      let _nowTime = +new Date()
       if (_nowTime - _lastTime > gapTime || !_lastTime) {
          // 将this和参数传给原函数
          fn.apply(this, arguments)
@@ -313,7 +312,7 @@ function getLocation(that) {
    console.log(curl)
    wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: function (res) {
+      success: function(res) {
          wx.hideLoading()
          if (res.errMsg == "getLocation:ok") {
             console.log(res)
@@ -329,7 +328,7 @@ function getLocation(that) {
             // 授权地理位置
             ajax({
                url: '/dict/city',
-               success: function (cityres) {
+               success: function(cityres) {
                   let citydata = cityres.data;
                   if (citydata.code == 200) {
                      var city = {};
@@ -342,7 +341,7 @@ function getLocation(that) {
                      })
                      wx.setStorageSync('citys', city)
                      console.log(curl)
-                     if (curl == 'pages/home/home' || curl == 'pages/city/city' || curl == 'pages/recipients/index'){
+                     if (curl == 'pages/home/home' || curl == 'pages/city/city' || curl == 'pages/recipients/index') {
                         // 切换当前位置
                         that.loadCity(res.latitude, res.longitude);
                      }
@@ -373,16 +372,51 @@ function getLocation(that) {
          // that.setData({
          //    has_no_auth_address: true
          // })
-        
+
       }
    })
 
 }
 
-
+// ===================
+//获取当前时间
+function getCurrentMonthFirst() {
+   var date = new Date();
+   var todate = date.getFullYear() + "-" + ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "-" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
+   return todate;
+}
+//获取d当前时间多少天后的日期和对应星期
+function getDates(days, todate = getCurrentMonthFirst()) { //todate默认参数是当前日期，可以传入对应时间
+   var dateArry = [];
+   for (var i = 0; i < days; i++) {
+      var dateObj = dateLater(todate, i);
+      dateArry.push(dateObj)
+   }
+   return dateArry;
+}
+/**
+ * 传入时间后几天
+ * param：传入时间：dates:"2018-04-02",later:往后多少天
+ */
+function dateLater(dates, later) {
+   let dateObj = {};
+   let show_day = new Array('周日', '周一', '周二', '周三', '周四', '周五', '周六');
+   let date = new Date(dates);
+   date.setDate(date.getDate() + later);
+   let day = date.getDay();
+   dateObj.year = date.getFullYear();
+   dateObj.month = date.getMonth() + 1
+   // dateObj.month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1);
+   dateObj.day = date.getDate()
+   // dateObj.day = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
+   dateObj.week = show_day[day];
+   return dateObj;
+}
 module.exports = {
    // formatTime: formatTime,
    getUrl: getUrl,
+   dateLater,
+   getDates,
    // getDistance: getDistance,
    ajax: ajax,
    request: request,

@@ -27,8 +27,9 @@ page {
    text-align: center;
    width: 50%;
 }
-.bottomBtn .btn.left{
-   border-right:1rpx solid #228bff;
+
+.bottomBtn .btn.left {
+   border-right: 1rpx solid #228bff;
 }
 
 .containerBox {
@@ -60,8 +61,7 @@ page {
    font-weight: bold;
 }
 
-.topBox .right,
-.topBox .bg {
+.topBox .right, .topBox .bg {
    width: 50%;
    text-align: center;
 }
@@ -88,11 +88,18 @@ page {
    border-bottom: solid 2rpx #ededed;
    margin-top: 45rpx;
 }
-.pickerBox2{
+
+.pickerBox .time {
+   flex: 1;
+   text-align: right;
+}
+
+.pickerBox2 {
    margin-bottom: 190rpx;
    margin-top: 0;
    border-bottom: solid 2rpx #ededed;
 }
+
 .pickerBox .section__title {
    font-size: 32rpx;
    font-weight: bold;
@@ -109,3 +116,114 @@ page {
    color: #228bff;
    font-size: 32rpx;
 }
+
+/* ---------------------------- */
+
+/*模态框*/
+
+/*模态框*/
+
+.modals {
+   position: fixed;
+   z-index: 999;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+}
+
+.modals-cancel {
+   position: absolute;
+   z-index: 1000;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bottom-dialog-body {
+   position: absolute;
+   z-index: 10001;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   padding: 30rpx;
+   height: 676rpx;
+   background-color: #fff;
+}
+
+/*动画前初始位置*/
+
+.bottom-pos {
+   -webkit-transform: translateY(100%);
+   transform: translateY(100%);
+   border-radius: 20rpx 20rpx 0 0;
+   padding: 0;
+}
+
+/* modals---end */
+
+/* 时间选择 */
+
+.time-title {
+   font-family: PingFangSC;
+   font-weight: 600;
+   color: rgba(50, 50, 50, 1);
+   font-size: 32rpx;
+   margin: 40rpx 20rpx 20rpx 20rpx;
+}
+
+.select-date {
+   height: 672rpx;
+   overflow: hidden;
+}
+
+.select-day {
+   float: left;
+   width: 300rpx;
+   height: 556rpx;
+}
+
+.day {
+   font-size: 30rpx;
+   height: 100rpx;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: rgba(239, 239, 239, 1);
+}
+
+.day.active {
+   background-color: #fff;
+}
+
+.select-time {
+   height: 100%;
+   margin-left: 330rpx;
+   background-color: #fff;
+   overflow-y: auto;
+}
+
+.select-time-item {
+   padding: 30rpx 36rpx;
+   width: 314rpx;
+   height: 42rpx;
+   border-radius: 18rpx;
+   border: 2px solid rgba(151, 151, 151, 1);
+   font-size: 30rpx;
+   margin-bottom: 30rpx;
+}
+
+.select-time-item.select {
+   color: #ff4a00;
+}
+
+i {
+   float: right;
+   font-size: 30rpx;
+   color: #ff4a00;
+   margin-top: 26rpx;
+}
+
+/* 时间选择--end */

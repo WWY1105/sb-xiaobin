@@ -40,7 +40,7 @@ Page({
     */
    onLoad: function (options) {
       wx.hideLoading()
-      if (options.shopId) {
+      if (options.shopId || wx.getStorageSync('shopId')) {
          this.setData({
             shopId: options.shopId||wx.getStorageSync('shopId')
          })
@@ -319,6 +319,9 @@ this.setData({
          })
       }, 720) //先执行下滑动画，再隐藏模块
 
+   },
+   bindfail(){
+      console.log('quxiao')
    },
 
    //动画集

@@ -1,32 +1,72 @@
 <!--pages/onlineOrder/index.wxml-->
 <view class="containerBox flexCenter">
-	<view class="main" style="background-image:url({{type==1001?bgL:bgR}})">
-		<view class="topBox flexSpace">
-			<view class="bg {{type==1001?'active':''}}" bindtap="changeType" data-type='1001'>外卖配送</view>
-			<view class="right  {{type==1000?'active':''}}" bindtap="changeType" data-type='1000'>到店自取</view>
-		</view>
-		<view class="content">
-			<view class="pickerBox  flexStart">
-				<view class="section__title">{{timeText}}</view>
-				<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-						<text>{{time}}</text>
-						<text class="rightIcon iconfont icon-youbian" ></text>
-				</picker>
-			</view>
-			<view class="pickerBox pickerBox2 flexStart">
-				<view class="section__title">下单时间</view>
-				<picker mode="time" value="{{orderTime}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-					<view class="picker flexCenter">
-						<text>{{orderTime}}</text>
-						<text class="rightIcon iconfont icon-youbian" ></text>
-					</view>
-				</picker>
-			</view>
-			<view class="submitBtn" bindtap="toOrder">开始下单</view>
-		</view>
-	</view>
+   <view class="main" style="background-image:url({{type==1001?bgL:bgR}})">
+      <view class="topBox flexSpace">
+         <view class="bg {{type==1001?'active':''}}" bindtap="changeType" data-type='1001'>外卖配送</view>
+         <view class="right  {{type==1000?'active':''}}" bindtap="changeType" data-type='1000'>到店自取</view>
+      </view>
+      <view class="content">
+         <view class="pickerBox  flexStart" bindtap='showModal'>
+            <view class="section__title">{{timeText}}</view>
+            <view class="time">
+               <!-- <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"> -->
+               <text>{{time}}</text>
+               <text class="rightIcon iconfont icon-youbian"></text>
+               <!-- </picker> -->
+            </view>
+         </view>
+         <view class="pickerBox pickerBox2 flexStart">
+            <view class="section__title">下单时间</view>
+            <picker mode="time" value="{{orderTime}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+               <view class="picker flexCenter">
+                  <text>{{orderTime}}</text>
+                  <text class="rightIcon iconfont icon-youbian"></text>
+               </view>
+            </picker>
+         </view>
+         <view class="submitBtn" bindtap="toOrder">开始下单</view>
+      </view>
+   </view>
 </view>
 <view class="bottomBtn flexSpace">
-	<view class="btn left" bindtap="toOrderRecord" data-type="notpay">待付款订单</view>
-	<view class="btn" bindtap="toFinishOrder" data-type="pay">已付款订单</view>
+   <view class="btn left" bindtap="toOrderRecord" data-type="notpay">待付款订单</view>
+   <view class="btn" bindtap="toFinishOrder" data-type="pay">已付款订单</view>
+</view>
+
+
+
+<!-- modal  -->
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+   <view class="modals-cancel" bindtap="hideModal"></view>
+   <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+      <view class="select-date">
+         <!-- <view class="time-title">自提时间</view> -->
+         <view class="select-day">
+            <view class="day" wx:for="{{selfData}}" wx:key="index" class='{{nowDay===index?"day active":"day"}}' bindtap="getnowDay" data-index='{{index}}'>{{item.month}}月{{item.day}}号【{{item.week}}】</view>
+         </view>
+         <view class="select-time">
+            <!-- <view v-for="(item,index) in deliveryTimeList" :key="index"> -->
+            <view wx:if="{{nowDay===0}}">
+               <view wx:if='{{deliveryTimeList[nowDay].timeList.length>0}}'>
+                  <view class='{{index===selectTimeIndex&&nowDay===selectDay?"select-time-item select":"select-time-item"}}' wx:for="{{deliveryTimeList[nowDay].timeList}}" bindtap="clickTime" wx:key="index" data-index='{{index}}'>
+                     {{item}}
+                  </view>
+               </view>
+               <view wx:else class="time-title">
+                  <!-- 日期是今天,开始时间应该从当前小时开始 -->
+                  
+               </view>
+
+            </view>
+            <view wx:if="{{nowDay!==0}}">
+               <view class='{{index===selectTimeIndex&&nowDay===selectDay?"select-time-item select":"select-time-item"}}' wx:for="{{deliveryTimeList[nowDay].timeList}}" bindtap="clickTime" wx:key="index" data-index='{{index}}'>
+                  {{item}}
+               </view>
+            </view>
+         </view>
+      </view>
+
+
+
+   </view>
 </view>

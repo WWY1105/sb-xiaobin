@@ -88,9 +88,6 @@
 									<text class="icon">￥</text>
 									<text>{{item.price}}</text>
 								</view>
-								<!-- 选规格 -->
-								<!-- <view class="choose">选规格</view> -->
-								<!-- 选数量 -->
 								<view class="numBox flexCenter">
 									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}"></view>
 									<view class="num">{{item.num}}</view>

@@ -11,6 +11,7 @@ App({
       title: '加载中',
       mask: true
     })
+    
  
     
     var that = this
