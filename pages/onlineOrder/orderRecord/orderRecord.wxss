@@ -11,6 +11,7 @@ page {
   text-align: center;
   margin-top: 50%;
 }
+
 .noDataImg {
   width: 273rpx;
   height: 265rpx;
@@ -47,8 +48,26 @@ page {
   margin-bottom: 40rpx;
 }
 
+.contentBox .eachRecord .orderInfo {
+  border-bottom: 2rpx solid #f7f7f7;
+  padding: 20rpx 0;
+  padding-top: 0;
+}
+
+.contentBox .eachRecord .orderInfo .time {
+  color: #333;
+  font-size: 24rpx;
+  margin-bottom: 4rpx;
+}
+
+.contentBox .eachRecord .orderInfo .orderNo {
+  color: #333;
+  font-size: 20rpx;
+}
+
 .userInfo {
-  margin-bottom: 40rpx;
+  margin-bottom: 30rpx;
+  padding-top: 30rpx;
 }
 
 .userInfo .userImg {
@@ -58,7 +77,8 @@ page {
   margin-right: 30rpx;
   border-radius: 50%;
 }
-.userInfo .userIcon{
+
+.userInfo .userIcon {
   font-size: 55rpx;
   color: #999;
   margin-right: 30rpx;
@@ -72,18 +92,22 @@ page {
   font-size: 28rpx;
   color: #e35f4e;
 }
-.goodBox{
+
+.goodBox {
   overflow-x: scroll;
 
 }
+
 .goodsImg {
   position: relative;
   padding-right: 128rpx;
 }
-scroll-view{
+
+scroll-view {
   position: relative;
 }
- .mask {
+
+.mask {
   position: absolute;
   width: 160rpx;
   height: 128rpx;
@@ -98,10 +122,10 @@ scroll-view{
   align-items: center;
   display: flex;
   justify-content: center;
-  
+
 }
 
- .mask .totalPrice {
+.mask .totalPrice {
   font-size: 32rpx;
   font-weight: bold;
   color: #333;

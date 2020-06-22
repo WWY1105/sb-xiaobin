@@ -29,11 +29,11 @@
 					<view class="textBox flexColumn">
 						<view class="name">{{item.name}}</view>
 						<view class="desc">{{item.descriptor}}</view>
-						<view class="num">x{{item.count}}</view>
+						<view class="num">x{{item.count?item.count:item.num}}</view>
 					</view>
 				</view>
 				<view class="right">
-					<view class="price">￥{{item.amount}}</view>
+					<view class="price">￥{{item.amount?item.amount:item.price}}</view>
 				</view>
 			</view>
 		</view>
@@ -53,7 +53,18 @@
 	</view>
 </view>
 <view class="btnBox">
-	<button class="deleteBtn" bindtap="deleteOrder">删除订单</button>
+   <navigator 
+         bindcomplete="bindcomplete"
+         version="trial" 
+         target="miniProgram" 
+         hover-start-time="5000" 
+         hover-stay-time="5000" 
+         open-type="navigate" 
+         app-id="wx46f8b078bc4fb106" 
+         path="/packageA/pages/onlineOrder/confirmOrder/index?orderId={{orderId}} " 
+         :extra-data="orderId" 
+         class='sendBtn'>发送顾客确认付款</navigator>
+	<!-- <button class="deleteBtn" bindtap="deleteOrder">删除订单</button> -->
 </view>
 
 

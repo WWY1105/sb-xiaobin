@@ -50,8 +50,27 @@ page {
   margin-bottom: 40rpx;
 }
 
+
+.contentBox .eachRecord .orderInfo {
+  border-bottom: 2rpx solid #f7f7f7;
+  padding: 20rpx 0;
+  padding-top: 0;
+}
+
+.contentBox .eachRecord .orderInfo .time {
+  color: #333;
+  font-size: 24rpx;
+  margin-bottom: 4rpx;
+}
+
+.contentBox .eachRecord .orderInfo .orderNo {
+  color: #333;
+  font-size: 20rpx;
+}
+
 .userInfo {
-  margin-bottom: 40rpx;
+  margin-bottom: 30rpx;
+  padding-top: 30rpx;
 }
 
 .userInfo .userImg {

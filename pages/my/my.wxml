@@ -1,3 +1,4 @@
+<auth id="authpop" parentThis="{{popThis}}"></auth>
 <view style="padding-bottom:30rpx;">
 <!--  wx:if="{{modalShow}}" -->
    <view class="modal animateModal" wx:if="{{modalShow&&storeList.length<=0}}"  catchtouchmove="preventTouchMove" bindtap="toAddStore">

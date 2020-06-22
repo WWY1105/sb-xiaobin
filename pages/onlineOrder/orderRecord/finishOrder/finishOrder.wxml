@@ -1,25 +1,36 @@
 <!--pages/onlineOrder/orderRecord/finishOrder/finishOrder.wxml-->
-<view class="noData" wx:if="{{!orderList||orderList.length<=0}}">
-	<image class="noDataImg" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/noOrder.png"></image>
-</view>
 
 
-<view class="contentBox" wx:else>
-<view class="tabBox flexSpace">
-	<view class="tabItem {{type=='1001'?'active':''}} flexCenter flexColumn" data-type="1001" bindtap="changeType">
-		<text>外卖订单</text>
-		<text class="line"></text>
+
+<view class="contentBox">
+	<view class="tabBox flexSpace">
+		<view class="tabItem {{type=='1001'?'active':''}} flexCenter flexColumn" data-type="1001" bindtap="changeType">
+			<text>外卖订单</text>
+			<text class="line"></text>
+		</view>
+		<view class="tabItem {{type=='1000'?'active':''}} flexCenter flexColumn" data-type="1000" bindtap="changeType">
+			<text>自提订单</text>
+			<text class="line"></text>
+		</view>
 	</view>
-	<view class="tabItem {{type=='1000'?'active':''}} flexCenter flexColumn" data-type="1000" bindtap="changeType">
-		<text>自提订单</text>
-		<text class="line"></text>
+	<view class="noData" wx:if="{{!orderList||orderList.length<=0}}">
+		<image class="noDataImg" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/noOrder.png"></image>
 	</view>
-</view>
 	<!-- <view  class="noData" wx:if="{{!orderList}}">暂无数据</view> -->
-	<view  wx:if="{{orderList&&orderList.length>0}}" wx:key="index"  class="eachRecord" wx:for="{{orderList}}" wx:index="index" bindtap="toEdit" data-item="{{item}}" >
+	<view wx:if="{{orderList&&orderList.length>0}}" wx:key="index" class="eachRecord" wx:for="{{orderList}}" wx:index="index" bindtap="toEdit" data-item="{{item}}">
+		<view class="orderInfo">
+			<view class="time">
+				<text>下单时间：</text>
+				<text>{{item.createTime}}</text>
+			</view>
+			<view class="orderNo">
+				<text>订单编号：</text>
+				<text>{{item.no}}</text>
+			</view>
+		</view>
 		<view class="userInfo flexSpace flexCenter">
 			<view class="left flexCenter flexStart">
-			<image class="userImg" src="{{item.avatarUrl}}" wx:if="{{item.avatarUrl}}"></image>
+				<image class="userImg" src="{{item.avatarUrl}}" wx:if="{{item.avatarUrl}}"></image>
 				<view class="iconfont icon-user userIcon" wx:else></view>
 				<text class="username" wx:if="{{item.nickname}}">{{item.nickname}}</text>
 				<text class="username" wx:if="{{!item.nickname}}">等待顾客确认</text>
@@ -28,7 +39,7 @@
 				<text class="notpay">已付款</text>
 			</view>
 		</view>
-	<!-- 商品 start-->
+		<!-- 商品 start-->
 		<scroll-view scroll-x>
 			<!-- 蒙层/总计 -->
 			<view class="mask flexCenter">
@@ -45,9 +56,6 @@
 			</view>
 		</scroll-view>
 		<!-- 商品 end-->
-<!-- 
-		<view class="deleteBox flexEnd" wx:if="type=='notpay'" catchtap="deleteOrder" data-id="{{item.id}}">
-			<view class="deleteBtn">删除订单</view>
-		</view> -->
+	
 	</view>
 </view>

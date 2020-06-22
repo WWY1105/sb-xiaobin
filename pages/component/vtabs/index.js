@@ -103,10 +103,10 @@ Component({
         vtabs: { type: Array, value: [] },
         tabBarClass: { type: String, value: '' },
         activeClass: { type: String, value: '' },
-        tabBarLineColor: { type: String, value: '#ff0000' },
+        tabBarLineColor: { type: String, value: '#000' },
         tabBarInactiveTextColor: { type: String, value: '#000000' },
-        tabBarActiveTextColor: { type: String, value: '#ff0000' },
-        tabBarInactiveBgColor: { type: String, value: '#eeeeee' },
+        tabBarActiveTextColor: { type: String, value: '#000' },
+        tabBarInactiveBgColor: { type: String, value: '#f8f8f8' },
         tabBarActiveBgColor: { type: String, value: '#ffffff' },
         activeTab: { type: Number, value: 0 },
         animation: { type: Boolean, value: true }

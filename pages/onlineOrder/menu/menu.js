@@ -9,7 +9,7 @@ Page({
       shopId: '',
       type: '',
       time: '',
-      orderTime: '',
+      // orderTime: '',
       menu: {},
       activeKind: 0,
       totalPrice: 0,
@@ -17,7 +17,11 @@ Page({
       hideModal: true, //模态框的状态  true-隐藏  false-显示
       animationData: {}, //
       aboutArr: [],
-      top: 0
+      top: 0,
+
+      vtabs: [],
+      activeTab: 0,
+      orderId: ''
    },
    // 清空
    clearDish() {
@@ -45,16 +49,21 @@ Page({
             shopId: options.shopId||wx.getStorageSync('shopId')
          })
       }
+      if (options.orderId) {
+         this.setData({
+            orderId: options.orderId
+         })
+      }
       if (options.type) {
          this.setData({
             type: options.type
          })
       }
-      if (options.orderTime) {
-         this.setData({
-            orderTime: options.orderTime
-         })
-      }
+      // if (options.orderTime) {
+      //    this.setData({
+      //       orderTime: options.orderTime
+      //    })
+      // }
       if (options.time) {
          this.setData({
             time: options.time
@@ -73,7 +82,7 @@ Page({
       query.select('#theId').boundingClientRect((res) => {
          console.log('res: ', res)
          this.setData({
-            scrollTop: top - 50
+            scrollTop: top
          })
          // res.top // 这个组件内 #the-id 节点的上边界坐标
       }).exec()
@@ -87,8 +96,8 @@ Page({
       var aboutArr = [];
       wx.createSelectorQuery().selectAll('.site-about-info').boundingClientRect(function (rects) {
          rects.forEach(function (rect) {
-            console.log(rect.bottom); // 节点的下边界坐标
-            aboutArr.push(rect.bottom);
+            console.log(rect); // 节点的下边界坐标
+            aboutArr.push(rect.top);
          })
          console.log(aboutArr);
          that.setData({
@@ -101,18 +110,18 @@ Page({
       let that = this;
       let url = '/menus/shop/' + this.data.shopId + '/supply';
       let time = encodeURIComponent(this.data.time);
-      let orderTime = encodeURIComponent(this.data.orderTime);
+      // let orderTime = encodeURIComponent(this.data.orderTime);
       app.util.request(that, {
          url: app.util.getUrl(url, {
             // time,orderTime
             time: that.data.time,
-            orderTime: that.data.orderTime
+            // orderTime: that.data.orderTime
          }),
          method: 'GET',
          header: app.globalData.token,
          data: {
             time: that.data.time,
-            orderTime: that.data.orderTime
+            // orderTime: that.data.orderTime
          }
       }).then((res) => {
          console.log(res)
@@ -120,6 +129,7 @@ Page({
             wx.hideLoading();
             // 循环菜品,设置默认数量0
             res.result.map((item) => {
+               item.title=item.kindName;
                item.dishes.map((i) => {
                   i.num = 0
                })
@@ -145,7 +155,12 @@ Page({
          item.dishes.map((i) => {
             if (i.num > 0) {
                totalNum += i.num;
-               totalPrice += i.num * i.price;
+               if(i.specPrice){
+                  totalPrice += i.num * i.specPrice;
+               }else{
+                  totalPrice += i.num * i.price;
+               }
+           
             }
          })
       })
@@ -211,6 +226,7 @@ Page({
    },
    // 提交订单
    toSubmit() {
+      let that=this;
       if (this.data.totalNum <= 0||this.data.totalPrice <= 0) {
          wx.showModal({
             title: '提示',
@@ -219,34 +235,95 @@ Page({
          return;
       }
       let time = this.data.time;
-      let orderTime = this.data.orderTime;
+      // let orderTime = this.data.orderTime;
       let type = this.data.type;
       let totalPrice = this.data.totalPrice;
-      let menu = [];
+      let menus = [];
       // 循环菜品,获取id和数量
       this.data.menu.map((item) => {
          item.dishes.map((i) => {
             if (i.num > 0) {
-               menu.push(i)
+               menus.push(i)
             }
          })
       })
       wx.setStorageSync('time', time);
-      wx.setStorageSync('orderTime', orderTime)
-      wx.setStorageSync('menus', menu)
+      // wx.setStorageSync('orderTime', orderTime)
+      wx.setStorageSync('menus', menus)
       wx.setStorageSync('type', type)
       wx.setStorageSync('totalPrice', totalPrice)
-      let url = "/pages/onlineOrder/submitOrder/submitOrder?shopId=" + this.data.shopId
 
-      wx.navigateTo({
-         url
+
+    
+      let obj = {};
+      let editMenus=[]
+      // 循环菜品,获取id和数量
+      menus.map((i) => {
+         if (i.num > 0) {
+            obj[i.id] = i.num;
+            i.count=i.num;
+            editMenus.push(i)
+         }
       })
+
+
+         app.util.request(that, {
+            url: app.util.getUrl('/takeouts/shop/' + that.data.shopId),
+            method: 'POST',
+            header: app.globalData.token,
+            data: {
+               menus:obj,
+               type,
+               // orderTime,
+               time,
+            }
+         }).then((res) => {
+            if (res.code == 200) {
+               wx.hideLoading();
+               that.setData({
+                  orderId: res.result.orderId
+               },()=>{
+                  let editOrder = {
+                     deliver:{
+                        type,
+                        time
+                     },
+                     menus:editMenus,
+                     orderId: res.result.orderId,
+                     amount:this.data.totalPrice
+                  };
+                  wx.setStorageSync('editOrder',editOrder)
+                  let url = "/pages/onlineOrder/submitOrder/submitOrder?shopId=" + this.data.shopId+"&orderId="+res.result.orderId
+                  wx.redirectTo({
+                     url
+                  })
+               })
+            } else {
+               that.setData({
+                  notFound: false
+               })
+               wx.showToast({
+                  title: res.message,
+                  icon: 'none',
+                  duration: 2000
+               });
+            }
+         })
+      
+
+
+  
+
+
+
+     
    },
    /**
     * 生命周期函数--监听页面初次渲染完成
     */
    onReady: function () {
       this.queryMultipleNodes()
+    
    },
 
    /**
@@ -317,7 +394,7 @@ this.setData({
          that.setData({
             hideModal: true
          })
-      }, 720) //先执行下滑动画，再隐藏模块
+      }, 320) //先执行下滑动画，再隐藏模块
 
    },
    bindfail(){

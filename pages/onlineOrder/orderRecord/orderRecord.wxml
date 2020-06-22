@@ -9,6 +9,16 @@
 
 <view class="contentBox" wx:else>
 	<view wx:if="{{orderList&&orderList.length>0}}" class="eachRecord" wx:for="{{orderList}}" wx:index="index" bindtap="toEdit" data-item="{{item}}">
+		<view class="orderInfo">
+			<view class="time">
+				<text>下单时间：</text>
+				<text>{{item.createTime}}</text>
+			</view>
+			<view class="orderNo">
+				<text>订单编号：</text>
+				<text>{{item.no}}</text>
+			</view>
+		</view>
 		<view class="userInfo flexSpace flexCenter">
 			<view class="left flexCenter flexStart">
 				<image class="userImg" src="{{item.avatarUrl}}" wx:if="{{item.avatarUrl}}"></image>
@@ -38,9 +48,8 @@
 			</view>
 		</scroll-view>
 		<!-- 商品 end-->
-		<!-- 
-		<view class="deleteBox flexEnd" wx:if="type=='notpay'" catchtap="deleteOrder" data-id="{{item.id}}">
-			<view class="deleteBtn">删除订单</view>
-		</view> -->
+		<view class="deleteBox flexEnd" >
+			<view class="deleteBtn"  catchtap="deleteOrder" data-id="{{item.id}}">删除订单</view>
+		</view> 
 	</view>
 </view>

@@ -5,6 +5,8 @@
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-    "auth": "../component/auth"
+    "auth": "../../../component/auth",
+    "mp-vtabs": "../../../component/vtabs/index",
+    "mp-vtabs-content": "../../../component/vtabs-content/index"
   }
 }

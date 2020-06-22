@@ -99,29 +99,37 @@ page {
 
 /* 各个图标 */
 .topNav .item .iconfont.ziying {
-   background-position-y:-1263rpx;
+   background-position-y: 89.3%;
 }
-.topNav .item .iconfont.online{
-   background-position-y: -467rpx;
+
+.topNav .item .iconfont.online {
+   background-position-y: 33%;
 }
-.content .item .iconfont.video{
-   background-position-y: -1149rpx;
+
+.content .item .iconfont.video {
+   background-position-y: 81.5%;
 }
-.content .item .iconfont.coupon{
-   background-position-y: -922rpx;
+
+.content .item .iconfont.coupon {
+   background-position-y: 65%;
 }
-.content .item .iconfont.group{
-   background-position-y:-693rpx;
+
+.content .item .iconfont.group {
+   background-position-y: 49%;
 }
-.content .itemBox .iconfont.card{
-   background-position-y: -577rpx;
+
+.content .itemBox .iconfont.card {
+   background-position-y: 41%;
 }
-.content .itemBox .iconfont.sale{
-   background-position-y: -1036rpx;
+
+.content .itemBox .iconfont.sale {
+   background-position-y: 73.4%;
 }
-.content .itemBox .iconfont.promote{
-   background-position-y:-807rpx;
+
+.content .itemBox .iconfont.promote {
+   background-position-y: 57.2%;
 }
+
 /* 各个图标 */
 page {
    background-color: #f7f7f7;
@@ -148,5 +156,4 @@ page {
    letter-spacing: normal;
    text-align: center;
    color: #919191;
-
 }

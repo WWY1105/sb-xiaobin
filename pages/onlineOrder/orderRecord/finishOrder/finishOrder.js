@@ -68,7 +68,7 @@ Page({
     getOrderList() {
         let url = '/takeouts/shop/' + this.data.shopId + '/finish';
         let that = this;
-      
+        that.setData({orderList:[]})
         app.util.request(that, {
             url: app.util.getUrl(url, {
                 count: that.data.count,
@@ -116,7 +116,8 @@ Page({
         this.setData({
             count: 5,
             page: 1,
-            hasDataFlag: false
+            hasDataFlag: false,
+            
         }, () => {
             that.getOrderList()
         })

@@ -9,14 +9,48 @@ Page({
       wayArr: ['外卖配送', '到店自取'],
       editOrder: null,
       way: '',
-      editFlag: false
+      editFlag: false,
+      orderId:''
    },
+   // 删除订单
+   deleteOrder(e) {
+      let that = this;
+      let editOrder = wx.getStorageSync('editOrder');
+      wx.showModal({
+         title: '提示',
+         content: '是否删除此订单',
+         success(res) {
+            if (res.confirm) {
+               let shopId = wx.getStorageSync('shopId');
+               let url = '/takeouts/shop/' + shopId + '/order/' + editOrder.id;
+               app.util.request(that, {
+                  url: app.util.getUrl(url, {}),
+                  method: 'DELETE',
+                  header: app.globalData.token,
+               }).then((res) => {
+                  console.log(res)
+                  if (res.code == 200) {
+                     wx.hideLoading();
+                     wx.navigateBack({
+                        delta: 2
+                     })
+                  }
+               })
+            } else if (res.cancel) {
+            }
+         }
 
+      })
+     
+   },
    /**
     * 生命周期函数--监听页面加载
     */
    onLoad: function (options) {
       wx.hideLoading()
+      let editOrder = wx.getStorageSync('editOrder');
+      console.log('orderId===='+editOrder.id)
+      this.setData({orderId:editOrder.id})
    },
 
 
@@ -41,9 +75,10 @@ Page({
       }
    },
    // 去修改
-   toEditDish(){
+   toEditDish() {
+      let editOrder = wx.getStorageSync('editOrder');
       wx.navigateTo({
-        url: '/pages/onlineOrder/editMenu/editMenu',
+         url: '/pages/onlineOrder/editMenu/editMenu?id=' + editOrder.id,
       })
    },
    // 修改配送方式
@@ -56,18 +91,18 @@ Page({
          editFlag: true
       })
    },
-   cancelEdit(){
+   cancelEdit() {
       this.setData({
          editFlag: false
       })
    },
    // 确定修改
-   toEditDis(){},
+   toEditDis() {},
    /**
     * 生命周期函数--监听页面隐藏
     */
    onHide: function () {
-
+this.setData({editFlag: false})
    },
 
    /**

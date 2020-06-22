@@ -13,9 +13,30 @@ Page({
       totalPrice: 0,
 
       jumpFlag: false,
-      orderId: ''
+      orderId: '',
+      editFlag: false
    },
-
+   // 修改菜单
+   editMenus() {
+      this.setData({
+         editFlag: true
+      })
+   },
+   // 去修改
+   toEditDish() {
+      this.setData({
+         editFlag: false
+      },()=>{
+         wx.redirectTo({
+            url: '/pages/onlineOrder/editMenu/editMenu?id='+this.data.orderId
+         })
+      })
+   },
+   cancelEdit() {
+      this.setData({
+         editFlag: false
+      })
+   },
    /**
     * 生命周期函数--监听页面加载
     */
@@ -46,75 +67,6 @@ Page({
    // 提交订单
    submit() {
       let that = this;
-      let time = wx.getStorageSync('time');
-      let orderTime = wx.getStorageSync('orderTime');
-      //  orderTime = encodeURIComponent(orderTime);
-      let type = wx.getStorageSync('type');
-      let menus = wx.getStorageSync('menus');
-      let obj = {};
-      // 循环菜品,获取id和数量
-      menus.map((i) => {
-         if (i.num > 0) {
-            obj[i.id] = i.num
-         }
-      })
-
-      if (this.data.orderId) {
-         let url = '/takeouts/shop/' + that.data.shopId + '/order/' + this.data.orderId;
-         app.util.request(that, {
-            url: app.util.getUrl(url),
-            method: 'PUT',
-            header: app.globalData.token,
-            data: {
-               menus: obj,
-               type,
-               orderTime,
-               time,
-            }
-         }).then((res) => {
-            if (res.code == 200) {
-               wx.hideLoading()
-            } else {
-               that.setData({
-                  notFound: false
-               })
-               wx.showToast({
-                  title: res.message,
-                  icon: 'none',
-                  duration: 2000
-               });
-            }
-         })
-      } else {
-         app.util.request(that, {
-            url: app.util.getUrl('/takeouts/shop/' + that.data.shopId),
-            method: 'POST',
-            header: app.globalData.token,
-            data: {
-               menus: obj,
-               type,
-               orderTime,
-               time,
-            }
-         }).then((res) => {
-            if (res.code == 200) {
-               wx.hideLoading()
-               that.setData({
-                  orderId: res.result.orderId,
-                  jumpFlag: true
-               })
-            } else {
-               that.setData({
-                  notFound: false
-               })
-               wx.showToast({
-                  title: res.message,
-                  icon: 'none',
-                  duration: 2000
-               });
-            }
-         })
-      }
 
    },
 
@@ -156,7 +108,7 @@ Page({
     * 生命周期函数--监听页面隐藏
     */
    onHide: function () {
-
+this.setData({editFlag:false})
    },
 
    /**
@@ -180,7 +132,21 @@ Page({
 
    },
 
-
+   bindcomplete(){
+      let editOrder = {
+         deliver:{
+            type:this.data.type,
+            time:this.data.time,
+         },
+         menus:this.data.menus,
+         orderId: this.data.orderId,
+         amount:this.data.totalPrice
+      };
+      wx.setStorageSync('editOrder',editOrder)
+      wx.navigateTo({
+        url: '/pages/onlineOrder/editOrder/editOrder',
+      })
+   },
    /**
     * 用户点击右上角分享
     */

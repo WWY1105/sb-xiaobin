@@ -9,14 +9,14 @@
 <view class="containerBox" wx:else>
 	<view class="content">
 		<!-- 左边分类 -->
-		<view class="category">
+		<!-- <view class="category">
 			<view class="eachCate {{index==activeKind?'active':''}}" wx:for="{{menu}}" bindtap="changeKind" data-index="{{index}}">{{item.kindName}}</view>
-		</view>
+		</view> -->
 		<!-- 右边菜品 -->
-		<view class="dishs">
+		<!-- <view class="dishs">
 			<scroll-view scroll-y scroll-with-animation="true" scroll-top="{{scrollTop}}" style="height:100vh" id='theId'>
-				<view wx:for="{{menu}}" wx:for-item="m" class="menuBox">
-					<view class="title site-about-info">{{m.kindName}}</view>
+				<view wx:for="{{menu}}" wx:for-item="m" class="site-about-info menuBox">
+					<view class="title ">{{m.kindName}}</view>
 					<view class="eachDish flexStart" wx:for="{{m.dishes}}" wx:for-index="i">
 						<image class="disImg" src="{{item.picUrl}}"></image>
 						<view class="textBox flexColumn">
@@ -29,9 +29,6 @@
 									<text class="icon">￥</text>
 									<text>{{item.price}}</text>
 								</view>
-								<!-- 选规格 -->
-								<!-- <view class="choose">选规格</view> -->
-								<!-- 选数量 -->
 								<view class="numBox flexCenter">
 									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}"></view>
 									<view class="num">{{item.num}}</view>
@@ -42,8 +39,51 @@
 					</view>
 				</view>
 			</scroll-view>
-		</view>
+		</view> -->
+		<mp-vtabs vtabs="{{menu}}" activeTab="{{activeTab}}" bindtabclick="onTabCLick" bindchange="onChange" class="test">
+			<block wx:for="{{menu}}" wx:key="title" wx:for-item="m" class="menuss">
+				<mp-vtabs-content tabIndex="{{index}}">
+					<view class="vtabs-content-item">
+						<view class="site-about-info menuBox">
+							<view class="title ">{{m.kindName}}</view>
+							<view class="eachDish flexStart" wx:for="{{m.dishes}}" wx:for-index="i">
+								<image class="disImg" src="{{item.picUrl}}"></image>
+								<view class="textBox flexColumn">
+									<view class="top">
+										<view class="name">{{item.name}}</view>
+										<view class="desc">{{item.descriptor}}</view>
+									</view>
+									<view class="bottom flexSpace">
+										<!-- 有特价 -->
+										<view class="price" wx:if="{{item.specPrice&&item.specPrice>0}}">
+											<view class="specPrice">
+												<text class="icon">￥</text>
+												<text>{{item.specPrice}}</text>
+											</view>
+											<view class="origin">
+												<text class="icon">￥</text>
+												<text>{{item.price}}</text>
+											</view>
+										</view>
+										<!-- 没有特价 -->
+										<view class="price" wx:else>
+											<text class="icon">￥</text>
+											<text>{{item.price}}</text>
+										</view>
+										<view class="numBox flexCenter">
+											<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}"></view>
+											<view class="num">{{item.num}}</view>
+											<view class="iconfont icon-jia jia" bindtap="jia" data-id="{{item.id}}" data-num="{{item.num}}"></view>
+										</view>
+									</view>
+								</view>
+							</view>
 
+						</view>
+					</view>
+				</mp-vtabs-content>
+			</block>
+		</mp-vtabs>
 		<!-- 购物车 -->
 		<view class="totalBox flexCenter">
 			<view class="left flexStart" bindtap="showModal">
@@ -66,15 +106,15 @@
 
 
 <!-- modal  -->
-<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}" catchtouchmove="true">
 	<view class="modals-cancel" bindtap="hideModal"></view>
 	<view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
 		<view class="titleBox flexSpace">
 			<view class="title">已选商品</view>
 			<text class="title" bindtap="clearDish">清空</text>
 		</view>
-		<scroll-view scroll-y>
-			<view class="dishs dishsModal" wx:for="{{menu}}" wx:for-item="k">
+		<scroll-view scroll-y class="scrollBox">
+			<view class="dishs dishsModal menuBox" wx:for="{{menu}}" wx:for-item="k">
 				<view wx:for="{{k.dishes}}" wx:for-index="i" wx:for-item="item" wx:if="{{item.num>0}}">
 					<view wx:if="{{item.num>0}}" class="eachDish flexStart">
 						<image class="disImg" src="{{item.picUrl}}"></image>
@@ -84,7 +124,19 @@
 								<view class="desc">{{item.descriptor}}</view>
 							</view>
 							<view class="bottom flexSpace">
-								<view class="price">
+								<!-- 有特价 -->
+								<view class="price" wx:if="{{item.specPrice&&item.specPrice>0}}">
+									<view class="specPrice">
+										<text class="icon">￥</text>
+										<text>{{item.specPrice}}</text>
+									</view>
+									<view class="origin">
+										<text class="icon">￥</text>
+										<text>{{item.price}}</text>
+									</view>
+								</view>
+								<!-- 没有特价 -->
+								<view class="price" wx:else>
 									<text class="icon">￥</text>
 									<text>{{item.price}}</text>
 								</view>

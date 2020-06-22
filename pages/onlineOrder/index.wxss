@@ -92,10 +92,11 @@ page {
 .pickerBox .time {
    flex: 1;
    text-align: right;
+   color:  #228bff;
 }
 
 .pickerBox2 {
-   margin-bottom: 190rpx;
+   margin-bottom: 320rpx;
    margin-top: 0;
    border-bottom: solid 2rpx #ededed;
 }
@@ -206,13 +207,16 @@ page {
 }
 
 .select-time-item {
-   padding: 30rpx 36rpx;
-   width: 314rpx;
-   height: 42rpx;
+   padding: 0rpx 36rpx;
+   /* width: 314rpx; */
+   height: 100rpx;
    border-radius: 18rpx;
-   border: 2px solid rgba(151, 151, 151, 1);
+   /* border: 2px solid rgba(151, 151, 151, 1); */
    font-size: 30rpx;
-   margin-bottom: 30rpx;
+   /* margin-bottom: 30rpx; */
+   font-weight: bold;
+   line-height: 100rpx;
+
 }
 
 .select-time-item.select {

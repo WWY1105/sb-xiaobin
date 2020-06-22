@@ -14,23 +14,41 @@ Page({
     page: 1,
     hasDataFlag: false,
   },
+
   // 删除订单
   deleteOrder(e) {
-
     let that = this;
-    let url = '/takeouts/order/' + e.currentTarget.dataset.id;
-    app.util.request(that, {
-      url: app.util.getUrl(url, {}),
-      method: 'DELETE',
-      header: app.globalData.token,
-    }).then((res) => {
-      console.log(res)
-      if (res.code == 200) {
-        wx.hideLoading();
-        that.getOrderList()
+    let editOrder = wx.getStorageSync('editOrder');
+    wx.showModal({
+      title: '提示',
+      content: '是否删除此订单',
+      success(res) {
+        if (res.confirm) {
+          let shopId = wx.getStorageSync('shopId');
+          let url = '/takeouts/shop/' + shopId + '/order/' + e.currentTarget.dataset.id;
+          app.util.request(that, {
+            url: app.util.getUrl(url, {}),
+            method: 'DELETE',
+            header: app.globalData.token,
+          }).then((res) => {
+            console.log(res)
+            if (res.code == 200) {
+              wx.hideLoading();
+              that.setData({
+                orderList: []
+              }, () => {
+                that.getOrderList()
+              })
+
+            }
+          })
+        } else if (res.cancel) {}
       }
+
     })
+
   },
+
   // 去修改
   toEdit(e) {
     wx.setStorageSync('editOrder', e.currentTarget.dataset.item);
@@ -54,12 +72,11 @@ Page({
   },
   getOrderList() {
     let that = this;
-    let  url = '/takeouts/shop/' + this.data.shopId;
-    
+    let url = '/takeouts/shop/' + this.data.shopId;
     app.util.request(that, {
       url: app.util.getUrl(url, {
-        page:that.data.page,
-        count:that.data.count
+        page: that.data.page,
+        count: that.data.count
       }),
       method: 'GET',
       header: app.globalData.token,
@@ -102,7 +119,8 @@ Page({
       count: 5,
       page: 1,
       hasDataFlag: false,
-      popThis: this
+      popThis: this,
+      orderList: []
     }, () => {
       this.getOrderList()
     })
@@ -139,10 +157,10 @@ Page({
       page += 1;
       that.setData({
         page
-      },()=>{
+      }, () => {
         that.getOrderList()
       })
-     
+
     }
   },
 

@@ -10,7 +10,7 @@ Page({
       // 1000 自提，1001：配送
       type: '',
       time: '',
-      orderTime: '',
+      // orderTime: '',
       menu: {},
       activeKind: 0,
       totalPrice: 0,
@@ -31,6 +31,13 @@ Page({
       this.setData({
          editOrder
       })
+      console.log('====options====')
+      console.log(options)
+      if (options.id) {
+         this.setData({
+            orderId:options.id
+         })
+      }
       if (shopId) {
          this.setData({
             shopId
@@ -41,11 +48,11 @@ Page({
             type: editOrder.deliver.type
          })
       }
-      if (editOrder.deliver.orderTime) {
-         this.setData({
-            orderTime: editOrder.deliver.orderTime
-         })
-      }
+      // if (editOrder.deliver.orderTime) {
+      //    this.setData({
+      //       orderTime: editOrder.deliver.orderTime
+      //    })
+      // }
       if (editOrder.deliver.time) {
          let time = editOrder.deliver.time.split('/').join('-')
          this.setData({
@@ -68,18 +75,15 @@ Page({
       let that = this;
       let url = '/menus/shop/' + this.data.shopId + '/supply';
       let time = encodeURIComponent(this.data.time);
-      let orderTime = encodeURIComponent(this.data.orderTime);
+      // let orderTime = encodeURIComponent(this.data.orderTime);
       app.util.request(that, {
          url: app.util.getUrl(url, {
-
             time: that.data.time,
-            orderTime: that.data.orderTime
          }),
          method: 'GET',
          header: app.globalData.token,
          data: {
-            time: that.data.time,
-            orderTime: that.data.orderTime
+            time: that.data.time
          }
       }).then((res) => {
          console.log(res)
@@ -87,15 +91,15 @@ Page({
             wx.hideLoading();
             // 循环菜品,设置默认数量0
             let editOrder = wx.getStorageSync('editOrder')
-
             let totalNum = 0
             res.result.map((item) => {
+               item.title=item.kindName;
                item.dishes.map((i) => {
                   i.num = 0
                   editOrder.menus.map((select) => {
                      if (select.id == i.id) {
-                        i.num = Number(select.count);
-                        totalNum += Number(select.count);
+                        i.num = Number(select.count)||Number(select.num);
+                        totalNum += Number(select.count)||Number(select.num);
                         console.log(i.num)
                      }
                   })
@@ -112,24 +116,30 @@ Page({
       })
    },
    // 计算总数量和总价
-   getTotal() {
-      let menu = this.data.menu;
-      let totalPrice = 0;
-      let totalNum = 0;
-      console.log(menu)
-      menu.map((item) => {
-         item.dishes.map((i) => {
-            if (i.num > 0) {
-               totalNum += i.num;
-               totalPrice += i.num * i.price
+ // 计算总数量和总价
+ getTotal() {
+   let menu = this.data.menu;
+   let totalPrice = 0;
+   let totalNum = 0;
+   menu.map((item) => {
+      item.dishes.map((i) => {
+         if (i.num > 0) {
+            totalNum += i.num;
+            if(i.specPrice){
+               totalPrice += i.num * i.specPrice;
+            }else{
+               totalPrice += i.num * i.price;
             }
-         })
+        
+         }
       })
-      this.setData({
-         totalPrice,
-         totalNum
-      })
-   },
+   })
+   totalPrice=totalPrice.toFixed(2);
+   this.setData({
+      totalPrice,
+      totalNum
+   })
+},
 
    //加数量
    jia(e) {
@@ -185,8 +195,10 @@ Page({
       })
    },
    // 提交订单
+   // 提交订单
    toSubmit() {
-      if (this.data.menu.length <= 0) {
+      let that=this;
+      if (this.data.totalNum <= 0||this.data.totalPrice <= 0) {
          wx.showModal({
             title: '提示',
             content: '您还未选择菜品'
@@ -194,28 +206,76 @@ Page({
          return;
       }
       let time = this.data.time;
-      let orderTime = this.data.orderTime;
+      // let orderTime = this.data.orderTime;
       let type = this.data.type;
       let totalPrice = this.data.totalPrice;
-      let menu = [];
+      let menus = [];
       // 循环菜品,获取id和数量
       this.data.menu.map((item) => {
          item.dishes.map((i) => {
             if (i.num > 0) {
-               menu.push(i)
+               menus.push(i)
             }
          })
       })
       wx.setStorageSync('time', time);
-      wx.setStorageSync('orderTime', orderTime)
-      wx.setStorageSync('menus', menu)
+      // wx.setStorageSync('orderTime', orderTime)
+      wx.setStorageSync('menus', menus)
       wx.setStorageSync('type', type)
-      wx.setStorageSync('totalPrice', totalPrice);
-      
-      let url = "/pages/onlineOrder/submitOrder/submitOrder?shopId=" + this.data.shopId+"&orderId="+this.data.editOrder.id;
-      wx.navigateTo({
-         url
+      wx.setStorageSync('totalPrice', totalPrice)
+
+
+    
+      let obj = {};
+      let editMenus=[]
+      // 循环菜品,获取id和数量
+      menus.map((i) => {
+         if (i.num > 0) {
+            obj[i.id] = i.num;
+            i.count=i.num;
+            editMenus.push(i)
+         }
       })
+
+      // if (this.data.orderId) {
+         let url = '/takeouts/shop/' + that.data.shopId + '/order/' + this.data.orderId;
+         app.util.request(that, {
+            url: app.util.getUrl(url),
+            method: 'PUT',
+            header: app.globalData.token,
+            data: {
+               menus: obj,
+               type,
+               // orderTime,
+               time,
+            }
+         }).then((res) => {
+            if (res.code == 200) {
+                  let editOrder = {
+                     deliver:{
+                        type,
+                        time
+                     },
+                     menus:editMenus,
+                     orderId: that.data.orderId,
+                     amount:this.data.totalPrice
+                  };
+                  wx.setStorageSync('editOrder',editOrder)
+                  let url = "/pages/onlineOrder/submitOrder/submitOrder?shopId=" + this.data.shopId+"&orderId="+that.data.orderId
+                  wx.redirectTo({
+                     url
+                  })
+            } else {
+               that.setData({
+                  notFound: false
+               })
+               wx.showToast({
+                  title: res.message,
+                  icon: 'none',
+                  duration: 2000
+               });
+            }
+         })
    },
    /**
     * 生命周期函数--监听页面初次渲染完成
@@ -290,7 +350,7 @@ Page({
          that.setData({
             hideModal: true
          })
-      }, 720) //先执行下滑动画，再隐藏模块
+      }, 320) //先执行下滑动画，再隐藏模块
 
    },
 

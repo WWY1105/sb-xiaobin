@@ -2,28 +2,23 @@
 <view class="topBox flexCenter">
    <view class="content">
       <view class="top" wx:if="{{type==1001||type=='1001'}}">
-         <view class="type">等待顾客填写地址</view>
-         <!-- <view class="address">5km内免配送费, 5-10km配送费3元, 10km以上配送费10元</view> -->
-      </view>
+         <view class="type">地址在发送给顾客后，由顾客填写</view>
+     </view>
       <view class="top" wx:if="{{type==1000||type=='1000'}}">
          <view class="type">自提订单</view>
-         <!-- <view class="address">5km内免配送费, 5-10km配送费3元, 10km以上配送费10元</view> -->
       </view>
       <view class="pickerBox flexStart">
          <view class="section__title">提货时间</view>
          <text class="time">大约{{time}}送达</text>
-         <!-- <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-				<view class="picker">
-					
-					<text class="rightIcon" ></text>
-				</view>
-			</picker> -->
       </view>
    </view>
 </view>
 <view class="orderDetail">
    <view class="content">
-      <view class="partTitle">订单详情</view>
+      <view class="partTitle flexSpace">
+			<text>订单详情</text>
+			<text class="editMenus" bindtap="editMenus">修改</text>
+		</view>
       <view class="dishBox">
          <view class="eachDish flexSpace" wx:for="{{menus}}">
             <view class="left flexStart">
@@ -35,7 +30,7 @@
                </view>
             </view>
             <view class="right">
-               <view class="price">￥{{item.price}}</view>
+               <view class="price">￥{{item.specPrice?item.specPrice:item.price}}</view>
             </view>
          </view>
       </view>
@@ -61,18 +56,7 @@
          <text>￥</text>
          <text class="price">{{totalPrice}}</text>
       </view>
-      <view class='right'>提交订单</view>
-   </view>
-</view>
-
-<!-- modal -->
-<view class="modal animateModal" wx:if="{{jumpFlag}}" catchtouchmove="preventTouchMove">
-   <view class="content">
-      <view class="top">提示</view>
-      <view class="tips">立即前往探长探店小程序</view>
-      <view class="bottomBox">
-
-
+      
 <!-- develop	开发版	
 trial	体验版	
 release	正式版，仅在当前小程序为开发版或体验版时此参数有效；如果当前小程序是正式版，则打开的小程序必定是正式版。	
@@ -80,7 +64,7 @@ release	正式版，仅在当前小程序为开发版或体验版时此参数有
 
 
          <navigator 
-         bindfail="bindfail"
+         bindcomplete="bindcomplete"
          version="trial" 
          target="miniProgram" 
          hover-start-time="5000" 
@@ -89,8 +73,19 @@ release	正式版，仅在当前小程序为开发版或体验版时此参数有
          app-id="wx46f8b078bc4fb106" 
          path="/packageA/pages/onlineOrder/confirmOrder/index?orderId={{orderId}} " 
          :extra-data="orderId" 
-         class='toEditbtn'>继续跳转</navigator>
-         <button class="cancelbtn" bindtap="cancelJump">取消跳转</button>
-      </view>
+         class='right'>发送顾客确认付款</navigator>
+      <!-- <view class='right'></view> -->
    </view>
+</view>
+
+<!-- modal -->
+<view class="modal animateModal" wx:if="{{editFlag}}" catchtouchmove="preventTouchMove">
+	<view class="content">
+		<view class="top">注意</view>
+		<view class="tips">修改订单将重新下单</view>
+		<view class="bottomBox">
+			<button class="toEditbtn" bindtap="toEditDish">继续修改</button>
+			<button class="cancelbtn" bindtap="cancelEdit">取消修改</button>
+		</view>
+	</view>
 </view>

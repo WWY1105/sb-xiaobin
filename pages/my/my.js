@@ -299,8 +299,7 @@ Page({
             that.setData({
               user: res.result
             })
-            that.getMyStore()
-            that.getProfits()
+          
             wx.setStorageSync('userInfo', res.result);
             resolve(wx.getStorageSync('userInfo'))
             if (res.result.phone) {
@@ -316,6 +315,8 @@ Page({
               })
             }
           }
+          that.getMyStore()
+          that.getProfits()
         })
       }
     })
@@ -324,6 +325,7 @@ Page({
 
   // 去我的门店
   toStoreDetail: function(e) {
+    wx.setStorageSync('shopId', e.currentTarget.dataset.id)
     if (e.currentTarget.dataset.id) {
       wx.navigateTo({
         url: '/pages/storeDetail/storeDetail?id=' + e.currentTarget.dataset.id + "&storeName=" + e.currentTarget.dataset.storeName
@@ -364,6 +366,7 @@ Page({
   onShow: function() {
     var that = this;
     wx.hideLoading()
+    this.setData({parentThis:this})
     if (!wx.getStorageSync('token')) {
       app.util.login().then(() => {
         if (!wx.getStorageSync('userInfo')) {
