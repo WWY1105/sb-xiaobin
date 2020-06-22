@@ -5,7 +5,6 @@ Page({
     * 页面的初始数据
     */
    data: {
-
       wayArr: ['外卖配送', '到店自取'],
       editOrder: null,
       way: '',
@@ -48,9 +47,11 @@ Page({
     */
    onLoad: function (options) {
       wx.hideLoading()
+      
+      let shopId = wx.getStorageSync('shopId');
       let editOrder = wx.getStorageSync('editOrder');
       console.log('orderId===='+editOrder.id)
-      this.setData({orderId:editOrder.id})
+      this.setData({orderId:editOrder.id,shopId})
    },
 
 
@@ -83,7 +84,57 @@ Page({
    },
    // 修改配送方式
    bindPickerChange(e) {
-      console.log(e.detail.value)
+      let index=e.detail.value;
+      let that = this;
+      let type;
+      if(index==0){
+         type=1001
+      }else{
+         type=1000
+      }
+      if(type==this.data.editOrder.deliver.type){
+         return;
+      }
+      let obj = {};
+      let menus=this.data.editOrder.menus;
+      let time=this.data.editOrder.deliver.time
+      // 循环菜品,获取id和数量
+      menus.map((i) => {
+         if (i.count > 0) {
+            obj[i.id] = i.count;
+         }
+      })
+         let url = '/takeouts/shop/' + that.data.shopId + '/order/' + this.data.orderId;
+         app.util.request(that, {
+            url: app.util.getUrl(url),
+            method: 'PUT',
+            header: app.globalData.token,
+            data: {
+               menus: obj,
+               type,
+               time,
+            }
+         }).then((res) => {
+            if (res.code == 200) {
+               let way = type == '1001'||type == 1001 ? '外卖配送' : "到店自取";
+               that.setData({way});
+               wx.showToast({
+                  title: '配送方式修改成功',
+                  icon: 'none',
+                  duration: 2000
+               });
+               // wx.showModal({
+               //   title:'提示',
+               //   content:'配送方式修改成功，需要重新发送给顾客确认'
+               // })
+            } else {
+               wx.showToast({
+                  title: res.message,
+                  icon: 'none',
+                  duration: 2000
+               });
+            }
+         })
    },
    // 修改菜单
    editMenus() {

@@ -222,7 +222,6 @@ Page({
          })
       })
       wx.setStorageSync('time', time);
-      // wx.setStorageSync('orderTime', orderTime)
       wx.setStorageSync('menus', menus)
       wx.setStorageSync('type', type)
       wx.setStorageSync('totalPrice', totalPrice)
@@ -239,8 +238,6 @@ Page({
             editMenus.push(i)
          }
       })
-
-      // if (this.data.orderId) {
          let url = '/takeouts/shop/' + that.data.shopId + '/order/' + this.data.orderId;
          app.util.request(that, {
             url: app.util.getUrl(url),
@@ -249,7 +246,6 @@ Page({
             data: {
                menus: obj,
                type,
-               // orderTime,
                time,
             }
          }).then((res) => {
