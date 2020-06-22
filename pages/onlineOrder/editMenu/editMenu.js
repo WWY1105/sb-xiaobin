@@ -135,6 +135,9 @@ Page({
       })
    })
    totalPrice=totalPrice.toFixed(2);
+   if (totalPrice <= 0) {
+      this.hideModal()
+   }
    this.setData({
       totalPrice,
       totalNum

@@ -165,6 +165,9 @@ Page({
          })
       })
       totalPrice=totalPrice.toFixed(2);
+      if (totalPrice <= 0) {
+         this.hideModal()
+      }
       this.setData({
          totalPrice,
          totalNum
@@ -192,9 +195,7 @@ Page({
       })
    },
    jian(e) {
-      if (this.data.totalNum <= 0) {
-         this.hideModal()
-      }
+     
       let id = e.target.dataset.id;
       let num = e.target.dataset.num;
       console.log(num)
