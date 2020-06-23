@@ -1,15 +1,15 @@
 <!--pages/onlineOrder/submitOrder/submitOrder.wxml-->
 <view class="topBox flexCenter">
    <view class="content">
-      <view class="top" wx:if="{{type==1001||type=='1001'}}">
+      <view class="top" wx:if="{{order.deliver.type==1001||order.deliver.type=='1001'}}">
          <view class="type">地址在发送给顾客后，由顾客填写</view>
      </view>
-      <view class="top" wx:if="{{type==1000||type=='1000'}}">
+      <view class="top" wx:if="{{order.deliver.type==1000||order.deliver.type=='1000'}}">
          <view class="type">自提订单</view>
       </view>
       <view class="pickerBox flexStart">
          <view class="section__title">提货时间</view>
-         <text class="time">大约{{time}}送达</text>
+         <text class="time">大约{{order.deliver.time}}送达</text>
       </view>
    </view>
 </view>
@@ -20,28 +20,28 @@
 			<text class="editMenus" bindtap="editMenus">修改</text>
 		</view>
       <view class="dishBox">
-         <view class="eachDish flexSpace" wx:for="{{menus}}">
+         <view class="eachDish flexSpace" wx:for="{{order.menus}}">
             <view class="left flexStart">
                <image class="dishImg" src="{{item.picUrl}}"></image>
                <view class="textBox flexColumn">
                   <view class="name">{{item.name}}</view>
                   <view class="desc">{{item.descriptor}}</view>
-                  <view class="num">x{{item.num}}</view>
+                  <view class="num">x{{item.count}}</view>
                </view>
             </view>
             <view class="right">
-               <view class="price">￥{{item.specPrice?item.specPrice:item.price}}</view>
+               <view class="price">￥{{item.specPrice?item.specPrice:item.amount}}</view>
             </view>
          </view>
       </view>
       <view class="package flexSpace">
          <text>包装费</text>
-         <text class="price">￥0</text>
+         <text class="price">￥{{order.packingAmount||0}}</text>
       </view>
       <view class="total flexEnd">
          <view class="price">
             <text class="small">小计</text>
-            <text class="num">￥{{totalPrice}}</text>
+            <text class="num">￥{{order.amount}}</text>
          </view>
       </view>
    </view>
@@ -54,7 +54,7 @@
    <view class="sendBtn flexStart">
       <view class="priceBox">
          <text>￥</text>
-         <text class="price">{{totalPrice}}</text>
+         <text class="price">{{order.amount}}</text>
       </view>
       
 <!-- develop	开发版	

@@ -5,16 +5,13 @@ Page({
     * 页面的初始数据
     */
    data: {
-      time: "",
-      type: '',
       shopId: '',
       menus: [],
       total: 0,
       totalPrice: 0,
-
-      jumpFlag: false,
+      order:null,
       orderId: '',
-      editFlag: false
+      editFlag:false
    },
    // 修改菜单
    editMenus() {
@@ -69,7 +66,25 @@ Page({
       let that = this;
 
    },
-
+   getOrderDetail() {
+      let that = this;
+      let url = '/takeouts/order/' + this.data.orderId;
+      app.util.request(that, {
+        url: app.util.getUrl(url, {
+        }),
+        method: 'GET',
+        header: app.globalData.token,
+      }).then((res) => {
+        console.log(res)
+        if (res.code == 200) {
+          that.setData({
+            order: res.result
+          })
+        } else {
+         
+        }
+      })
+    },
    /**
     * 生命周期函数--监听页面初次渲染完成
     */
@@ -81,26 +96,8 @@ Page({
     * 生命周期函数--监听页面显示
     */
    onShow: function () {
-      if (wx.getStorageSync('type')) {
-         this.setData({
-            type: wx.getStorageSync('type')
-         })
-      }
-      if (wx.getStorageSync('totalPrice')) {
-         this.setData({
-            totalPrice: wx.getStorageSync('totalPrice')
-         })
-      }
-      if (wx.getStorageSync('menus')) {
-         this.setData({
-            menus: wx.getStorageSync('menus')
-         })
-      }
-      if (wx.getStorageSync('time')) {
-         this.setData({
-            time: wx.getStorageSync('time')
-         })
-      }
+      this.getOrderDetail();
+     
 
    },
 
@@ -133,16 +130,16 @@ this.setData({editFlag:false})
    },
 
    bindcomplete(){
-      let editOrder = {
-         deliver:{
-            type:this.data.type,
-            time:this.data.time,
-         },
-         menus:this.data.menus,
-         orderId: this.data.orderId,
-         amount:this.data.totalPrice
-      };
-      wx.setStorageSync('editOrder',editOrder)
+      // let editOrder = {
+      //    deliver:{
+      //       type:this.data.type,
+      //       time:this.data.time,
+      //    },
+      //    menus:this.data.menus,
+      //    orderId: this.data.orderId,
+      //    amount:this.data.totalPrice
+      // };
+      wx.setStorageSync('editOrder',this.data.order)
       wx.navigateTo({
         url: '/pages/onlineOrder/editOrder/editOrder',
       })

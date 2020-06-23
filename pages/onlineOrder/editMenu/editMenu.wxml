@@ -116,7 +116,7 @@
 		<scroll-view scroll-y>
 			<view class="dishs dishsModal" wx:for="{{menu}}" wx:for-item="k">
 				<view wx:for="{{k.dishes}}" wx:for-index="i" wx:for-item="item" wx:if="{{item.num>0}}">
-					<view wx:if="{{item.num>0}}" class="eachDish flexStart">
+					<view wx:if="{{item.num>0}}" class="eachDish flexStart  {{index==k.dishes.lengtn-1?'last':''}}">
 						<image class="disImg" src="{{item.picUrl}}"></image>
 						<view class="textBox flexColumn">
 							<view class="top">

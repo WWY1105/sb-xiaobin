@@ -6,7 +6,24 @@ page {
   /* padding-top: 20rpx; */
 }
 
+.topBox .content .top .type {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
 
+}
+
+.topBox .content .top .address {
+  font-size: 24rpx;
+  color: #919191;
+  margin-bottom: 20rpx;
+}
+.topBox .content .top .address2{
+  color: #000;
+}
+.topBox .content .top .address2 .nickname{
+  margin-right: 20rpx;
+}
 .noData {
   font-size: 24rpx;
   color: #999;

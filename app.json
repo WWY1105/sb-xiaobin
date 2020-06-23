@@ -18,12 +18,7 @@
         "pages/onlineOrder/orderRecord/orderRecord",
         "pages/onlineOrder/orderRecord/finishOrder/finishOrder"
     ],
-    "subpackages": [
-        {
-            "root": "packageA",
-            "pages": []
-        }
-    ],
+  
     "preloadRule": {},
     "window": {
         "onReachBottomDistance": 50,

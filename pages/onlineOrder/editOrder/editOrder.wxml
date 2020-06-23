@@ -1,7 +1,8 @@
 <!--pages/onlineOrder/submitOrder/submitOrder.wxml-->
 <view class="topBox flexCenter">
 	<view class="content">
-		<view class="top flexStart">
+		<!-- 待付款订单 -->
+		<view class="top flexStart" wx:if="{{order.state==904}}">
 			<view class="section__title">配送方式</view>
 			<picker bindchange="bindPickerChange" value="{{id}}" range="{{wayArr}}" class="wayPicker">
 				<view class="picker">
@@ -10,9 +11,23 @@
 				</view>
 			</picker>
 		</view>
+		<!-- 已完成/已退款订单 -->
+		<view class="top flexStart flexColumn" wx:if="{{order.state==909||order.state==1000}}">
+			<view wx:if="{{order.deliver.type==1001}}" style="width:100%">
+				<view class="type">{{order.deliver.address}}{{order.deliver.addressDetail}}</view>
+				<view class="address address2">
+					<text class="nickname">{{order.deliver.nickname}}</text>
+					<text>{{order.deliver.phone}}</text>
+				</view>
+			</view>
+			<view wx:if="{{order.deliver.type==1000}}" style="width:100%">
+				<view class="type">自提订单</view>
+			</view>
+
+		</view>
 		<view class="pickerBox flexStart">
 			<view class="section__title">提货时间</view>
-			<text class="time">大约{{editOrder.deliver.time}}送达</text>
+			<text class="time">大约{{order.deliver.time}}送达</text>
 		</view>
 	</view>
 </view>
@@ -20,10 +35,10 @@
 	<view class="content">
 		<view class="partTitle flexSpace">
 			<text>订单详情</text>
-			<text class="editMenus" bindtap="editMenus">修改</text>
+			<text class="editMenus" bindtap="editMenus" wx:if="{{order.state=='904'}}">修改</text>
 		</view>
 		<view class="dishBox">
-			<view class="eachDish flexSpace" wx:for="{{editOrder.menus}}" wx:key="index" >
+			<view class="eachDish flexSpace" wx:for="{{order.menus}}" wx:key="index">
 				<view class="left flexStart">
 					<image class="dishImg" src="{{item.picUrl}}"></image>
 					<view class="textBox flexColumn">
@@ -39,31 +54,23 @@
 		</view>
 		<view class="package flexSpace">
 			<text>包装费</text>
-			<text class="price">￥0</text>
+			<text class="price">￥{{order.packingAmount||0}}</text>
 		</view>
 		<view class="total flexEnd">
 			<view class="price flexSpace">
-				<text class="label">待付款</text>
+				<text class="label" wx:if="{{order.state=='904'}}">待付款</text>
+				<text class="label finish" wx:if="{{order.state=='909'}}">已付款</text>
+				<text class="label back" wx:if="{{order.state=='1000'}}">已退款</text>
 				<view>
 					<text class="small">小计</text>
-					<text class="num">￥{{editOrder.amount}}</text>
+					<text class="num">￥{{order.amount}}</text>
 				</view>
 			</view>
 		</view>
 	</view>
 </view>
-<view class="btnBox">
-   <navigator 
-         bindcomplete="bindcomplete"
-         version="trial" 
-         target="miniProgram" 
-         hover-start-time="5000" 
-         hover-stay-time="5000" 
-         open-type="navigate" 
-         app-id="wx46f8b078bc4fb106" 
-         path="/packageA/pages/onlineOrder/confirmOrder/index?orderId={{orderId}} " 
-         :extra-data="orderId" 
-         class='sendBtn'>发送顾客确认付款</navigator>
+<view class="btnBox" wx:if="{{order.state=='904'}}">
+	<navigator bindcomplete="bindcomplete" version="trial" target="miniProgram" hover-start-time="5000" hover-stay-time="5000" open-type="navigate" app-id="wx46f8b078bc4fb106" path="/packageA/pages/onlineOrder/confirmOrder/index?orderId={{orderId}} " :extra-data="orderId" class='sendBtn'>发送顾客确认付款</navigator>
 	<!-- <button class="deleteBtn" bindtap="deleteOrder">删除订单</button> -->
 </view>
 

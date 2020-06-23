@@ -32,10 +32,10 @@ Page({
     },
     // 去修改
     toEdit(e) {
-        wx.setStorageSync('editOrder', e.currentTarget.dataset.item);
-        wx.navigateTo({
-            url: '/pages/onlineOrder/editOrder/editOrder',
-        })
+    let orderId=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/onlineOrder/editOrder/editOrder?orderId='+orderId,
+    })
     },
     /**
      * 生命周期函数--监听页面加载
@@ -58,7 +58,8 @@ Page({
             count: 5,
             page: 1,
             hasDataFlag: false,
-            type
+            type,
+            orderList:[]
         }, () => {
             that.getOrderList()
         })
@@ -68,7 +69,6 @@ Page({
     getOrderList() {
         let url = '/takeouts/shop/' + this.data.shopId + '/finish';
         let that = this;
-        that.setData({orderList:[]})
         app.util.request(that, {
             url: app.util.getUrl(url, {
                 count: that.data.count,
@@ -80,6 +80,8 @@ Page({
         }).then((res) => {
             console.log(res)
             if (res.code == 200) {
+                let page=that.data.page;
+                page+=1;
                 let orderList = that.data.orderList;
                 let hasDataFlag = that.data.hasDataFlag;
                 orderList = orderList.concat(res.result.items);
@@ -91,7 +93,8 @@ Page({
                 that.setData({
                   orderList,
                   pageSize: res.result.pageSize,
-                  hasDataFlag
+                  hasDataFlag,
+                  page
                 })
               } else {
                 that.setData({
@@ -117,7 +120,7 @@ Page({
             count: 5,
             page: 1,
             hasDataFlag: false,
-            
+            orderList:[]
         }, () => {
             that.getOrderList()
         })
@@ -149,15 +152,20 @@ Page({
      */
     onReachBottom: function () {
         let that = this;
-        if (that.data.hasDataFlag) {
-          let page = that.data.page;
-          page += 1;
-          that.setData({
-            page
-          },()=>{
+        if(!this.data.hasDataFlag){
+            return;
+        }else{
             that.getOrderList()
-          })
         }
+        // if (that.data.hasDataFlag) {
+        //   let page = that.data.page;
+        //   page += 1;
+        //   that.setData({
+        //     page
+        //   },()=>{
+           
+        //   })
+        // }
       },
 
     /**

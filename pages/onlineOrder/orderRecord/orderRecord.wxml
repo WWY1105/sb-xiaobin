@@ -8,7 +8,9 @@
 
 
 <view class="contentBox" wx:else>
-	<view wx:if="{{orderList&&orderList.length>0}}" class="eachRecord" wx:for="{{orderList}}" wx:index="index" bindtap="toEdit" data-item="{{item}}">
+	<view wx:if="{{orderList&&orderList.length>0}}" 
+	class="eachRecord" wx:for="{{orderList}}" wx:index="index" bindtap="toEdit" 
+	data-item="{{item}}" data-id="{{item.id}}">
 		<view class="orderInfo">
 			<view class="time">
 				<text>下单时间：</text>

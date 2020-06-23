@@ -17,7 +17,7 @@ Page({
       totalNum: 0,
       hideModal: true, //模态框的状态  true-隐藏  false-显示
       animationData: {}, //
-      editOrder: null
+      order:{}
    },
 
 
@@ -26,13 +26,9 @@ Page({
     */
    onLoad: function (options) {
       wx.hideLoading()
-      let editOrder = wx.getStorageSync('editOrder');
+      // let this.data.order = wx.getStorageSync('this.data.order');
       let shopId = wx.getStorageSync('shopId');
-      this.setData({
-         editOrder
-      })
-      console.log('====options====')
-      console.log(options)
+    
       if (options.id) {
          this.setData({
             orderId:options.id
@@ -43,24 +39,7 @@ Page({
             shopId
          })
       }
-      if (editOrder.deliver.type) {
-         this.setData({
-            type: editOrder.deliver.type
-         })
-      }
-      // if (editOrder.deliver.orderTime) {
-      //    this.setData({
-      //       orderTime: editOrder.deliver.orderTime
-      //    })
-      // }
-      if (editOrder.deliver.time) {
-         let time = editOrder.deliver.time.split('/').join('-')
-         this.setData({
-            time
-         }, () => {
-            this.getMenu()
-         })
-      }
+   
 
    },
    // 切换品类
@@ -75,7 +54,6 @@ Page({
       let that = this;
       let url = '/menus/shop/' + this.data.shopId + '/supply';
       let time = encodeURIComponent(this.data.time);
-      // let orderTime = encodeURIComponent(this.data.orderTime);
       app.util.request(that, {
          url: app.util.getUrl(url, {
             time: that.data.time,
@@ -90,13 +68,13 @@ Page({
          if (res.code == 200) {
             wx.hideLoading();
             // 循环菜品,设置默认数量0
-            let editOrder = wx.getStorageSync('editOrder')
+            
             let totalNum = 0
             res.result.map((item) => {
                item.title=item.kindName;
                item.dishes.map((i) => {
                   i.num = 0
-                  editOrder.menus.map((select) => {
+                  that.data.order.menus.map((select) => {
                      if (select.id == i.id) {
                         i.num = Number(select.count)||Number(select.num);
                         totalNum += Number(select.count)||Number(select.num);
@@ -238,7 +216,7 @@ Page({
             editMenus.push(i)
          }
       })
-         let url = '/takeouts/shop/' + that.data.shopId + '/order/' + this.data.orderId;
+         let url = '/takeouts/order/' + this.data.orderId;
          app.util.request(that, {
             url: app.util.getUrl(url),
             method: 'PUT',
@@ -250,16 +228,7 @@ Page({
             }
          }).then((res) => {
             if (res.code == 200) {
-                  let editOrder = {
-                     deliver:{
-                        type,
-                        time
-                     },
-                     menus:editMenus,
-                     orderId: that.data.orderId,
-                     amount:this.data.totalPrice
-                  };
-                  wx.setStorageSync('editOrder',editOrder)
+                  wx.setStorageSync('editOrder',this.data.order)
                   let url = "/pages/onlineOrder/submitOrder/submitOrder?shopId=" + this.data.shopId+"&orderId="+that.data.orderId
                   wx.redirectTo({
                      url
@@ -287,9 +256,48 @@ Page({
     * 生命周期函数--监听页面显示
     */
    onShow: function () {
-
+      let that=this;
+      this.getOrderDetail(()=>{
+         if (that.data.order.deliver.type) {
+            that.setData({
+               type: that.data.order.deliver.type
+            })
+         }
+        
+         if (that.data.order.deliver.time) {
+            let time = that.data.order.deliver.time.split('/').join('-')
+            that.setData({
+               time
+            }, () => {
+               that.getMenu()
+            })
+         }
+      })
    },
-
+// 获取订单详情
+getOrderDetail(fn) {
+   let that = this;
+   let url = '/takeouts/order/' + this.data.orderId;
+   app.util.request(that, {
+     url: app.util.getUrl(url, {
+     }),
+     method: 'GET',
+     header: app.globalData.token,
+   }).then((res) => {
+     console.log(res)
+     if (res.code == 200) {
+       that.setData({
+         order: res.result
+       },()=>{
+          if(fn){
+             fn()
+          }
+       })
+     } else {
+      
+     }
+   })
+ },
    /**
     * 生命周期函数--监听页面隐藏
     */

@@ -24,8 +24,7 @@ Page({
       content: '是否删除此订单',
       success(res) {
         if (res.confirm) {
-          let shopId = wx.getStorageSync('shopId');
-          let url = '/takeouts/shop/' + shopId + '/order/' + e.currentTarget.dataset.id;
+          let url = '/takeouts/order/' + e.currentTarget.dataset.id;
           app.util.request(that, {
             url: app.util.getUrl(url, {}),
             method: 'DELETE',
@@ -51,9 +50,9 @@ Page({
 
   // 去修改
   toEdit(e) {
-    wx.setStorageSync('editOrder', e.currentTarget.dataset.item);
+    let orderId=e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/onlineOrder/editOrder/editOrder',
+      url: '/pages/onlineOrder/editOrder/editOrder?orderId='+orderId,
     })
   },
   /**

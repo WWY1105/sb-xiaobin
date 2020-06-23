@@ -236,7 +236,6 @@ Page({
          return;
       }
       let time = this.data.time;
-      // let orderTime = this.data.orderTime;
       let type = this.data.type;
       let totalPrice = this.data.totalPrice;
       let menus = [];
@@ -248,14 +247,10 @@ Page({
             }
          })
       })
-      wx.setStorageSync('time', time);
-      // wx.setStorageSync('orderTime', orderTime)
-      wx.setStorageSync('menus', menus)
-      wx.setStorageSync('type', type)
-      wx.setStorageSync('totalPrice', totalPrice)
-
-
-    
+      // wx.setStorageSync('time', time);
+      // wx.setStorageSync('menus', menus)
+      // wx.setStorageSync('type', type)
+      // wx.setStorageSync('totalPrice', totalPrice)
       let obj = {};
       let editMenus=[]
       // 循环菜品,获取id和数量

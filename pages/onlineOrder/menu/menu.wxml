@@ -41,12 +41,12 @@
 			</scroll-view>
 		</view> -->
 		<mp-vtabs vtabs="{{menu}}" activeTab="{{activeTab}}" bindtabclick="onTabCLick" bindchange="onChange" class="test">
-			<block wx:for="{{menu}}" wx:key="title" wx:for-item="m" class="menuss">
+			<block wx:for="{{menu}}" wx:key="title" wx:for-item="m" class="menuss" wx:for-index="s">
 				<mp-vtabs-content tabIndex="{{index}}">
 					<view class="vtabs-content-item">
 						<view class="site-about-info menuBox">
 							<view class="title ">{{m.kindName}}</view>
-							<view class="eachDish flexStart" wx:for="{{m.dishes}}" wx:for-index="i">
+							<view class="eachDish flexStart {{index==k.dishes.lengtn-1?'last':''}}" wx:for="{{m.dishes}}" wx:for-index="i">
 								<image class="disImg" src="{{item.picUrl}}"></image>
 								<view class="textBox flexColumn">
 									<view class="top">

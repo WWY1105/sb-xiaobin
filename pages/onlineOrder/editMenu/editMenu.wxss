@@ -70,7 +70,9 @@ page {
    color: #4f8aff;
    max-height: 40rpx;
 }
-
+.eachDish.last{
+   padding-bottom: 200rpx;
+}
 .menuBox .eachDish .numBox .jian {
    color: #979797;
    font-size: 50rpx;

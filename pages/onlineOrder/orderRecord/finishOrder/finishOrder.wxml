@@ -17,7 +17,7 @@
 		<image class="noDataImg" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/noOrder.png"></image>
 	</view>
 	<!-- <view  class="noData" wx:if="{{!orderList}}">暂无数据</view> -->
-	<view wx:if="{{orderList&&orderList.length>0}}" wx:key="index" class="eachRecord" wx:for="{{orderList}}" wx:index="index" bindtap="toEdit" data-item="{{item}}">
+	<view wx:if="{{orderList&&orderList.length>0}}" wx:key="index" class="eachRecord" wx:for="{{orderList}}" wx:index="index" bindtap="toEdit" data-item="{{item}}" data-id="{{item.id}}">
 		<view class="orderInfo">
 			<view class="time">
 				<text>下单时间：</text>
