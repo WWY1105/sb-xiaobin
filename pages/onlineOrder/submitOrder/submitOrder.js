@@ -130,18 +130,8 @@ this.setData({editFlag:false})
    },
 
    bindcomplete(){
-      // let editOrder = {
-      //    deliver:{
-      //       type:this.data.type,
-      //       time:this.data.time,
-      //    },
-      //    menus:this.data.menus,
-      //    orderId: this.data.orderId,
-      //    amount:this.data.totalPrice
-      // };
-      wx.setStorageSync('editOrder',this.data.order)
-      wx.navigateTo({
-        url: '/pages/onlineOrder/editOrder/editOrder',
+      wx.redirectTo({
+        url: '/pages/onlineOrder/editOrder/editOrder?orderId='+this.data.order.id,
       })
    },
    /**
