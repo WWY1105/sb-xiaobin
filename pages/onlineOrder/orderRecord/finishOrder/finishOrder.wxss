@@ -18,6 +18,9 @@ page {
   color: #919191;
   margin-bottom: 20rpx;
 }
+.back{
+  color: #919191;
+}
 .topBox .content .top .address2{
   color: #000;
 }

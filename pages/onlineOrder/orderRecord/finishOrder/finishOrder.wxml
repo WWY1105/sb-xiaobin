@@ -36,7 +36,10 @@
 				<text class="username" wx:if="{{!item.nickname}}">等待顾客确认</text>
 			</view>
 			<view class="status">
-				<text class="notpay">已付款</text>
+				<text class="notpay" wx:if="{{item.state=='904'}}">待付款</text>
+				<text class="notpay finish" wx:if="{{item.state=='909'}}">已付款</text>
+				<text class="notpay back" wx:if="{{item.state=='1000'}}">已退款</text>
+				<!-- <text class="notpay">已付款</text> -->
 			</view>
 		</view>
 		<!-- 商品 start-->

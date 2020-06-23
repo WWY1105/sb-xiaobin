@@ -8,45 +8,14 @@
 
 <view class="containerBox" wx:else>
 	<view class="content">
-		<!-- 左边分类 -->
-		<!-- <view class="category">
-			<view class="eachCate {{index==activeKind?'active':''}}" wx:for="{{menu}}" bindtap="changeKind" data-index="{{index}}">{{item.kindName}}</view>
-		</view> -->
-		<!-- 右边菜品 -->
-		<!-- <view class="dishs">
-			<scroll-view scroll-y scroll-with-animation="true" scroll-top="{{scrollTop}}" style="height:100vh" id='theId'>
-				<view wx:for="{{menu}}" wx:for-item="m" class="site-about-info menuBox">
-					<view class="title ">{{m.kindName}}</view>
-					<view class="eachDish flexStart" wx:for="{{m.dishes}}" wx:for-index="i">
-						<image class="disImg" src="{{item.picUrl}}"></image>
-						<view class="textBox flexColumn">
-							<view class="top">
-								<view class="name">{{item.name}}</view>
-								<view class="desc">{{item.descriptor}}</view>
-							</view>
-							<view class="bottom flexSpace">
-								<view class="price">
-									<text class="icon">￥</text>
-									<text>{{item.price}}</text>
-								</view>
-								<view class="numBox flexCenter">
-									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}"></view>
-									<view class="num">{{item.num}}</view>
-									<view class="iconfont icon-jia jia" bindtap="jia" data-id="{{item.id}}" data-num="{{item.num}}"></view>
-								</view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</scroll-view>
-		</view> -->
+	
 		<mp-vtabs vtabs="{{menu}}" activeTab="{{activeTab}}" bindtabclick="onTabCLick" bindchange="onChange" class="test">
-			<block wx:for="{{menu}}" wx:key="title" wx:for-item="m" class="menuss">
+			<block wx:for="{{menu}}" wx:key="title" wx:for-item="m" class="menuss" wx:for-index="s">
 				<mp-vtabs-content tabIndex="{{index}}">
 					<view class="vtabs-content-item">
-						<view class="site-about-info menuBox">
+						<view class="site-about-info menuBox {{s==menu.length-1?'last':''}}">
 							<view class="title ">{{m.kindName}}</view>
-							<view class="eachDish flexStart" wx:for="{{m.dishes}}" wx:for-index="i">
+							<view class="eachDish flexStart " wx:for="{{m.dishes}}" wx:for-index="i">
 								<image class="disImg" src="{{item.picUrl}}"></image>
 								<view class="textBox flexColumn">
 									<view class="top">
