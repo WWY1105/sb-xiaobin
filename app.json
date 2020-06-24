@@ -16,9 +16,9 @@
         "pages/onlineOrder/submitOrder/submitOrder",
         "pages/onlineOrder/editOrder/editOrder",
         "pages/onlineOrder/orderRecord/orderRecord",
-        "pages/onlineOrder/orderRecord/finishOrder/finishOrder"
+        "pages/onlineOrder/orderRecord/finishOrder/finishOrder",
+        "pages/onlineOrder/ranking/ranking"
     ],
-  
     "preloadRule": {},
     "window": {
         "onReachBottomDistance": 50,
