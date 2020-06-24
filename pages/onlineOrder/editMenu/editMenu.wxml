@@ -10,10 +10,10 @@
 	<view class="content">
 	
 		<mp-vtabs vtabs="{{menu}}" activeTab="{{activeTab}}" bindtabclick="onTabCLick" bindchange="onChange" class="test">
-			<block wx:for="{{menu}}" wx:key="title" wx:for-item="m" class="menuss" wx:for-index="s">
+			<block wx:for="{{menu}}" wx:key="title" wx:for-item="m" class="menuss">
 				<mp-vtabs-content tabIndex="{{index}}">
 					<view class="vtabs-content-item">
-						<view class="site-about-info menuBox {{s==menu.length-1?'last':''}}">
+						<view class="site-about-info menuBox">
 							<view class="title ">{{m.kindName}}</view>
 							<view class="eachDish flexStart " wx:for="{{m.dishes}}" wx:for-index="i">
 								<image class="disImg" src="{{item.picUrl}}"></image>
