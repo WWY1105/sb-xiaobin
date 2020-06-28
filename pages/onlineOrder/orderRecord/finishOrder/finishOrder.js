@@ -157,15 +157,6 @@ Page({
         }else{
             that.getOrderList()
         }
-        // if (that.data.hasDataFlag) {
-        //   let page = that.data.page;
-        //   page += 1;
-        //   that.setData({
-        //     page
-        //   },()=>{
-           
-        //   })
-        // }
       },
 
     /**

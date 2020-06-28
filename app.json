@@ -17,7 +17,8 @@
         "pages/onlineOrder/editOrder/editOrder",
         "pages/onlineOrder/orderRecord/orderRecord",
         "pages/onlineOrder/orderRecord/finishOrder/finishOrder",
-        "pages/onlineOrder/ranking/ranking"
+        "pages/onlineOrder/ranking/ranking",
+        "pages/myStores/myStores"
     ],
     "preloadRule": {},
     "window": {

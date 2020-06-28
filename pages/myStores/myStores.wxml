@@ -1,0 +1,43 @@
+<!--pages/myStores/myStores.wxml-->
+     <!-- 门店管理 -->
+      <view class="shopManage">
+         <view class="title">
+            <view class="left">
+               <text class="iconfont icontuxing1x"></text>
+               <text> 我的门店</text>
+            </view>
+           
+            <view class="addBtn" bindtap="toAddStore" wx:if="{{storeList.length>0}}">
+               <text class="addicon">+</text>
+               <text>加入门店</text>
+            </view>
+            
+         </view>
+         <view class="content">
+            <!-- 还没登录 -->
+            <view wx:if="{{!hasDataFlag&&!user}}" class="addstoreBox addstoreBox1" bindtap="toAddStore">
+               <view class="tips" wx:if="{{!user}}">登录后查看我的门店</view>
+
+            </view>
+            <!-- 还没有门店 -->
+            <view wx:if="{{!hasDataFlag&&user}}" class="addstoreBox" bindtap="toAddStore">
+               <view class="tips" wx:if="{{user}}">您还没有加入任何门店</view>
+               <view class="tips" wx:if="{{!user}}">登录后查看我的门店</view>
+               <view class="addBtn" wx:if="{{user}}">
+                  <text class="addicon">+</text>
+                  <text>加入门店</text>
+               </view>
+            </view>
+            <!-- 有门店了 -->
+            <view class="storeBox" wx:if="{{storeList}}">
+               <!-- 每一个店铺 -->
+               <view class="eachStore" bindtap="toStoreDetail" data-id="{{item.id}}" data-storeName="{{item.name}}" wx:key="{{item.id}}" wx:for="{{storeList}}">
+                  <image wx:if="{{item.originalUrl}}" src="{{item.originalUrl}}" class="bgimg" lazy-load mode="scaleToFill"></image>
+                  <image wx:if="{{!item.originalUrl}}" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/storeBefaultBg.png" class="bgimg" lazy-load mode="scaleToFill"></image>
+                  <!-- <text class="storeStatus"><text class="circle"></text> 审核中</text>state -->
+                  <view class="storeName">{{item.brandName}}({{item.name}})</view>
+                  <view class="storeAddress">{{item.address}}</view>
+               </view>
+            </view>
+         </view>
+      </view>

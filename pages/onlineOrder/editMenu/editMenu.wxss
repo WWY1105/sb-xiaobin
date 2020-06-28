@@ -1,7 +1,6 @@
 /* pages/onlineOrder/menu/menu.wxss */
 
 page {
-
    color: #000;
    height: 100%;
 }

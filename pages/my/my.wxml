@@ -68,7 +68,7 @@
          <view class="title">
             <view class="left">
                <text class="iconfont icontuxing1x"></text>
-               <text> 我的门店</text>
+               <text>正在工作的门店</text>
             </view>
            
             <view class="addBtn" bindtap="toAddStore" wx:if="{{storeList.length>0}}">
