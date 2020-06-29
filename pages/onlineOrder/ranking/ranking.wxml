@@ -1,2 +1,21 @@
 <!--pages/onlineOrder/ranking/ranking.wxml-->
-<text>pages/onlineOrder/ranking/ranking.wxml</text>
+<view class="shopInfo flexStart">
+	<image class="shopImg"></image>
+	<text class="shopName">fdsfsadfasd</text>
+</view>
+<!-- 切换 -->
+<view class="tabContainer">
+	<view class="tab flexCenter">
+		<view class="eachTab active">昨日榜</view>
+		<view class="eachTab">周榜</view>
+	</view>
+</view>
+<!-- 前三名 -->
+<view class="topThree">
+	<view class="each" wx:for="{{rankList}}">
+		<image class="topImg" src="{{item.avatarUrl}}"></image>
+		<view class="name">{{item.nickname}}</view>
+		<view class="time">{{item.times}}</view>
+		<view class="num">{{item.profits}}元</view>
+	</view>
+</view>

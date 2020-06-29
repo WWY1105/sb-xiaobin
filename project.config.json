@@ -213,6 +213,13 @@
 					"pathName": "pages/onlineOrder/editMenu/editMenu",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 22,
+					"name": "排行",
+					"pathName": "pages/onlineOrder/ranking/ranking",
+					"query": "shopId=ab970045467646118b92ee0694c0188c",
+					"scene": null
 				}
 			]
 		}

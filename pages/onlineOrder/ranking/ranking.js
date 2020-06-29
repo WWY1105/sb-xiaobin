@@ -1,10 +1,17 @@
 // pages/onlineOrder/ranking/ranking.js
+const app = getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        page: 1,
+        count: 10,
+        pageSize: 1,
+        shopId: '',
+        hasDataFlag:false,
+        rankList: []
 
     },
 
@@ -12,7 +19,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        if (options.shopId) {
+            this.setData({
+                shopId: options.shopId
+            })
+        }
     },
 
     /**
@@ -26,7 +37,47 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        wx.hideLoading();
+        this.getRank()
+    },
+    getRank() {
+        let that = this;
+        let url = '/profits/shop/' + this.data.shopId + '/rank';
+        return new Promise((resolve, reject) => {
+            app.util.request(that, {
+                url: app.util.getUrl(url, {
+                    type: 2,
+                    date:'2020-06-06',
+                    count: that.data.count,
+                    page: that.data.page
+                }),
+                method: 'GET',
+                header: app.globalData.token,
+            }).then((res) => {
+                resolve();
+                if (res.code == 200) {
+                    wx.hideLoading()
+                    let rankList = that.data.rankList;
+                    let hasDataFlag = that.data.hasDataFlag;
+                    rankList = rankList.concat(res.result.items);
+                    if (rankList.length > 0) {
+                        hasDataFlag = true;
+                    } else {
+                        hasDataFlag = false
+                    }
+                    that.setData({
+                        rankList,
+                        pageSize: res.result.pageSize,
+                        hasDataFlag
+                    })
+                } else {
+                    that.setData({
+                        storeList: [],
+                        hasDataFlag: false
+                    })
+                }
+            })
+        })
     },
 
     /**

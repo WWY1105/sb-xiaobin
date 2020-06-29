@@ -99,7 +99,7 @@ image.userimg {
    font-size: 20rpx;
 }
 
-.toMyStoreIncome text.iconfont.iconqianbi {
+.toMyStoreIncome text.iconfont.iconqianbi ,.toMyStoreIncome text.iconfont.rank {
    color: #ffaa2f;
    margin-right: 16rpx;
    font-size: 30rpx;
@@ -109,7 +109,11 @@ image.userimg {
    width: 33rpx;
    display: inline-block;
 }
-
+.toMyStoreIncome text.iconfont.rank {
+   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/rank.png);
+   background-position: 0 0;
+   background-size: cover;
+}
 .toMyStoreIncome  .right {
    color: #c6c6c6;
    font-size: 28rpx;
@@ -118,8 +122,8 @@ image.userimg {
 .incomeNum {
    margin-top: 40rpx;
    padding-left: 60rpx;
-   padding-right: 60rpx;
-   min-height: 156rpx;
+  padding-right: 60rpx;
+    /* min-height: 40rpx; */
 }
 
 .incomeNum text {
@@ -130,6 +134,7 @@ image.userimg {
 .incomeNum text.num {
    color: #000;
    font-size: 40rpx;
+   margin-left: 10rpx;
 }
 
 .icontuxing1x {
@@ -218,12 +223,10 @@ image.userimg {
 
 .incomeNum .left, .incomeNum .right {
    display: flex;
-   flex-direction: column;
-   justify-content: center;
+   justify-content: flex-start;
    width: 50%;
    align-items: center;
-   border-bottom: solid 0.5px #e9e9e9;
-   padding-bottom: 20rpx;
+   padding-bottom: 66rpx;
 }
 
 .shopManage {
@@ -241,6 +244,9 @@ image.userimg {
    margin-bottom: 26rpx;
    display: flex;
    justify-content: space-between;
+   width: 100%;
+   margin-top: 10rpx;
+
 }
 
 .shopManage .title .left, .toMyStoreIncome .left {

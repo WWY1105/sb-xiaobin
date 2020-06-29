@@ -338,6 +338,12 @@ Page({
       url: '/pages/myProfit/myProfit?total=' + this.data.profits.total + '&yesterday=' + this.data.profits.yesterday,
     })
   },
+  // 查看榜单
+  toRank: function() {
+    wx.navigateTo({
+      url: '/pages/onlineOrder/ranking/ranking?shopId=' + this.data.shopId 
+    })
+  },
   // 去添加门店
   toAddStore: app.util.throttle(function(e) {
     if (!wx.getStorageSync('userInfo')) {
