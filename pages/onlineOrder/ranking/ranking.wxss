@@ -1,35 +1,67 @@
 /* pages/onlineOrder/ranking/ranking.wxss */
-page{
-    background-size:100%  1204rpx;
+page {
+    background-size: 100% 1204rpx;
     background-image: linear-gradient(to bottom, #228bff, #f7f7f7);
     padding: 20rpx 40rpx;
     box-sizing: border-box;
 }
-.shopInfo .shopImg{
+
+.shopInfo .shopImg {
     width: 64rpx;
     height: 64rpx;
     border-radius: 10rpx;
     background-color: #d8d8d8;
     margin-right: 20rpx;
 }
-.shopName{
+
+.shopName {
     font-size: 32rpx;
     font-weight: 500;
     color: #ffffff;
 }
-.tabContainer .tab{
-    width: 222rpx;
+
+.tabContainer {
+    margin-top: 50rpx;
+    margin-bottom: 40rpx;
+}
+
+.tabContainer .tab {
+    line-height: 60rpx;
     height: 60rpx;
     opacity: 0.4;
     border-radius: 31rpx;
-   
     border: solid 2rpx #ffffff;
 }
-.tabContainer .tab .active{
+
+.tabContainer .tab .active {
     background-color: #ffffff;
-    color: #333;
+    color: #000;
+    border-radius: 31rpx 0 0 31rpx;
 }
-.eachTab{
-    width: 50%;
+
+.eachTab {
     height: 100%;
+    padding: 0 70rpx;
+    text-align: center;
+    border-radius: 0 31rpx 31rpx 0;
+}
+
+.topThree {
+    flex-direction: column;
+    text-align: center;
+    font-size: 32rpx;
+}
+
+.topThree .topImg {
+    width: 114rpx;
+    height: 114rpx;
+    border-radius: 50%;
+}
+
+.topThree .name {
+    font-weight: bold;
+}
+
+.topThree .time {
+    font-weight: 400;
 }
