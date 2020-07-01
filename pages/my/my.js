@@ -19,8 +19,8 @@ Page({
     count: 10,
     pageSize: 1,
     modalShow: false,
-    hasDataFlag: false
-
+    hasDataFlag: false,
+    workingShop: null
   },
   againRequest() {
     this.onShow();
@@ -43,7 +43,7 @@ Page({
             "iv": e.detail.iv,
             "encryptedData": e.detail.encryptedData,
           },
-          success: function(res) {
+          success: function (res) {
             wx.hideLoading();
             let data = res.data;
             if (data.code == 200) {
@@ -83,7 +83,7 @@ Page({
 
             }
           },
-          fail: function(res) {
+          fail: function (res) {
             wx.hideLoading();
 
             let data = res.data;
@@ -111,7 +111,7 @@ Page({
         title: '提示',
         showCancel: false,
         content: '未授权',
-        success: function(res) {
+        success: function (res) {
 
         }
       })
@@ -126,7 +126,7 @@ Page({
           "encryptedData": e.detail.encryptedData,
         },
         header: app.globalData.token,
-        success: function(res) {
+        success: function (res) {
           wx.hideLoading();
           let data = res.data;
           if (data.code == 200) {
@@ -192,7 +192,7 @@ Page({
     })
   },
 
-  reflesh: function() {
+  reflesh: function () {
     let that = this;
     that.setData({
       storeList: []
@@ -202,7 +202,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let that = this;
     this.setData({
       parentThis: this
@@ -234,6 +234,12 @@ Page({
       }
     })
   },
+  // 切换店铺
+  changeShop() {
+    wx.navigateTo({
+      url: '/pages/myStores/myStores',
+    })
+  },
 
   // 查询我的门店
   getMyStore() {
@@ -254,15 +260,21 @@ Page({
           let storeList = that.data.storeList;
           let hasDataFlag = that.data.hasDataFlag;
           storeList = storeList.concat(res.result.items);
+          // 如果没有设置过工作中的店铺
           if (storeList.length > 0) {
+            if (!wx.getStorageSync('workingShop')) {
+              wx.setStorageSync('workingShop', storeList[0]);
+            }
             hasDataFlag = true;
           } else {
-            hasDataFlag = false
+            hasDataFlag = false;
+            wx.setStorageSync('workingShop', null)
           }
           that.setData({
             storeList,
             pageSize: res.result.pageSize,
-            hasDataFlag
+            hasDataFlag,
+            workingShop: wx.getStorageSync('workingShop')
           })
         } else {
           that.setData({
@@ -299,7 +311,7 @@ Page({
             that.setData({
               user: res.result
             })
-          
+
             wx.setStorageSync('userInfo', res.result);
             resolve(wx.getStorageSync('userInfo'))
             if (res.result.phone) {
@@ -324,7 +336,7 @@ Page({
   },
 
   // 去我的门店
-  toStoreDetail: function(e) {
+  toStoreDetail: function (e) {
     wx.setStorageSync('shopId', e.currentTarget.dataset.id)
     if (e.currentTarget.dataset.id) {
       wx.navigateTo({
@@ -332,20 +344,33 @@ Page({
       })
     }
   },
+  goto(e) {
+    let path = e.currentTarget.dataset.path + "?id=" + this.data.workingShop.id;
+    wx.setStorageSync('shopId', this.data.workingShop.id);
+    wx.navigateTo({
+      url: path
+    })
+    // console.log(e.currentTarget.dataset)
+  },
+  todevMenber(e) {
+    wx.navigateTo({
+      url: '/pages/menberUpgrade/menberUpgrade?id=' + this.data.workingShop.id
+    })
+  },
   // 去我的收益
-  toMyProfit: function() {
+  toMyProfit: function () {
     wx.navigateTo({
       url: '/pages/myProfit/myProfit?total=' + this.data.profits.total + '&yesterday=' + this.data.profits.yesterday,
     })
   },
   // 查看榜单
-  toRank: function() {
+  toRank: function () {
     wx.navigateTo({
-      url: '/pages/onlineOrder/ranking/ranking?shopId=' + this.data.shopId 
+      url: '/pages/onlineOrder/ranking/ranking?shopId=' + this.data.shopId
     })
   },
   // 去添加门店
-  toAddStore: app.util.throttle(function(e) {
+  toAddStore: app.util.throttle(function (e) {
     if (!wx.getStorageSync('userInfo')) {
       wx.showToast({
         title: '请先登录',
@@ -362,17 +387,19 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     var that = this;
     wx.hideLoading()
-    this.setData({parentThis:this})
+    this.setData({
+      parentThis: this
+    })
     if (!wx.getStorageSync('token')) {
       app.util.login().then(() => {
         if (!wx.getStorageSync('userInfo')) {
@@ -398,7 +425,7 @@ Page({
         that.getMyStore().then(() => {
           that.getProfits()
         })
-      
+
       }
     }
     that.setData({
@@ -409,7 +436,7 @@ Page({
           modalShow: false
         })
       }
-     })
+    })
 
     // if (app.globalData.refreshFlag) {
     //   that.setData({
@@ -434,21 +461,21 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     var that = this
     this.onShow()
 
@@ -458,7 +485,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     console.log('到底');
     let that = this;
     if (that.data.page < that.data.pageSize) {
@@ -474,7 +501,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

@@ -63,7 +63,7 @@
 			</view>
 		</view>
 
-	<!-- 排行数据导航 -->
+		<!-- 排行数据导航 -->
 		<view class="toMyStoreIncome" bindtap="toRank">
 			<view class="left">
 				<text class="iconfont rank"></text>
@@ -77,12 +77,14 @@
 		<!-- 排行数据 -->
 		<view class="incomeNum">
 			<view class="left">
-				<text>昨日</text>
-				<text class="num">{{profit.yesterday||0}}</text>
+				<text class="label">昨日</text>
+				<text class="num" wx:if="{{hasDataFlag}}">{{profit.yesterday||0}}</text>
+				<text wx:else>请先加入门店</text>
 			</view>
 			<view class="right">
-				<text>上周</text>
-				<text class="num">{{profits.total||0}}</text>
+				<text class="label">上周</text>
+				<text class="num" wx:if="{{hasDataFlag}}">{{profits.total||0}}</text>
+				<text wx:else>请先加入门店</text>
 			</view>
 		</view>
 
@@ -118,12 +120,81 @@
 				<!-- 有门店了 -->
 				<view class="storeBox" wx:if="{{storeList}}">
 					<!-- 每一个店铺 -->
-					<view class="eachStore" bindtap="toStoreDetail" data-id="{{item.id}}" data-storeName="{{item.name}}" wx:key="{{item.id}}" wx:for="{{storeList}}">
+					<!-- <view class="eachStore" bindtap="toStoreDetail" data-id="{{item.id}}" data-storeName="{{item.name}}" wx:key="{{item.id}}" wx:for="{{storeList}}">
 						<image wx:if="{{item.originalUrl}}" src="{{item.originalUrl}}" class="bgimg" lazy-load mode="scaleToFill"></image>
 						<image wx:if="{{!item.originalUrl}}" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/storeBefaultBg.png" class="bgimg" lazy-load mode="scaleToFill"></image>
-						<!-- <text class="storeStatus"><text class="circle"></text> 审核中</text>state -->
-						<view class="storeName">{{item.brandName}}({{item.name}})</view>
+					     <view class="storeName">{{item.brandName}}({{item.name}})</view>
 						<view class="storeAddress">{{item.address}}</view>
+					</view> -->
+					<view class="workingShop flexStart" wx:if="{{hasDataFlag}}">
+						<image class="shopImg" src="{{workingShop.originalUrl}}"></image>
+						<view class="changeBox" bindtap="changeShop">
+							<view class="shopName">{{workingShop.brandName}}({{workingShop.name}})</view>
+							<image  class="changeBtn" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/changeShop.png"></image>
+						</view>
+					</view>
+					<!-- 正在工作的店铺 -->
+					<!-- 店铺详情的按钮 -->
+					<view wx:if="{{hasDataFlag}}">
+						<view class="topNav">
+							<view class="partTitle flexCenter">
+								<image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+								<text>在线零售</text>
+								<image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+							</view>
+							<view class="itemBox flexCenter">
+								<view class="item onlineOrder " bindtap="goto" data-path="/pages/onlineOrder/index">
+									<view class="iconfont ziying"></view>
+									<text class="text">自营配送/自提</text>
+								</view>
+								<view class="item item2  ">
+									<view class="iconfont online"></view>
+									<text class="text">在线预约</text>
+								</view>
+							</view>
+						</view>
+						<view class="contentBox">
+							<view class="partTitle flexCenter">
+								<image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+								<text>曝光引流</text>
+								<image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+							</view>
+							<view class="itemBox flexCenter">
+								<view class="item item1">
+									<view class="iconfont video"></view>
+									<text class="text">短视频推广</text>
+								</view>
+								<view class="item item3 " bindtap="todevMenber" bindtap="goto" data-path="/pages/devalopMenber/devalopMenber">
+									<view class="iconfont coupon"></view>
+									<text class="text">免费发券</text>
+								</view>
+								<view class="item item4 ">
+									<view class="iconfont group"></view>
+									<text class="text">在线团购</text>
+								</view>
+							</view>
+						</view>
+						<view class="contentBox">
+							<view class="partTitle flexCenter">
+								<image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+								<text>会员服务</text>
+								<image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
+							</view>
+							<view class="itemBox flexCenter">
+								<view class="item item3 " bindtap="todevMenber" bindtap="goto" data-path="/pages/devalopMenber/devalopMenber">
+									<view class="iconfont card"></view>
+									<text class="text">免费发卡</text>
+								</view>
+								<view class="item item5" bindtap="todevMenber">
+									<view class="iconfont sale"></view>
+									<text class="text">高级会员销售</text>
+								</view>
+								<view class="item item4 ">
+									<view class="iconfont promote"></view>
+									<text class="text">储值推广</text>
+								</view>
+							</view>
+						</view>
 					</view>
 				</view>
 			</view>

@@ -6,12 +6,16 @@ Page({
      * 页面的初始数据
      */
     data: {
+        type: 1,
         page: 1,
         count: 10,
         pageSize: 1,
         shopId: '',
-        hasDataFlag:false,
-        rankList: []
+        date: '',
+        workingShop: null,
+        hasDataFlag: false,
+        rankList: [],
+        time: ''
 
     },
 
@@ -19,11 +23,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        if (options.shopId) {
+        let workingShop = wx.getStorageSync('workingShop')
+        if (workingShop) {
             this.setData({
-                shopId: options.shopId
+                workingShop: workingShop
             })
         }
+
     },
 
     /**
@@ -40,17 +46,43 @@ Page({
         wx.hideLoading();
         this.getRank()
     },
+    // 日期选择
+    bindMultiPickerChange(e) {
+        let date = e.detail.value;
+        this.setData({
+            date,
+            rankList: []
+        }, () => {
+            this.getRank()
+        })
+
+    },
+    // 切换日榜
+    changeTab(e) {
+        let type = e.currentTarget.dataset.type;
+        this.setData({
+            type,
+            rankList: []
+        }, () => {
+            this.getRank()
+        })
+    },
+    // 获取排行榜
     getRank() {
         let that = this;
-        let url = '/profits/shop/' + this.data.shopId + '/rank';
+        let url = '/profits/shop/' + this.data.workingShop.id + '/rank';
         return new Promise((resolve, reject) => {
+            let json = {
+                type: that.data.type,
+                count: that.data.count,
+                page: that.data.page
+            }
+            if (that.data.date) {
+                json.date = this.data.date
+            }
             app.util.request(that, {
-                url: app.util.getUrl(url, {
-                    type: 2,
-                    date:'2020-06-06',
-                    count: that.data.count,
-                    page: that.data.page
-                }),
+                // type:1日榜；type:2月榜
+                url: app.util.getUrl(url, json),
                 method: 'GET',
                 header: app.globalData.token,
             }).then((res) => {

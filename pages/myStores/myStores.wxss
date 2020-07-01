@@ -1,165 +1,334 @@
 /* pages/myStores/myStores.wxss */
+page {
+   color: #000;
+}
+
+.usedShop {
+   color: #616161;
+   margin-bottom: 20rpx;
+}
+
+.icontuxing1x {
+   color: #f27676;
+   font-size: 30rpx;
+   margin-right: 5rpx;
+   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/xiaozhanBg.svg);
+   background-position: 0 0rpx;
+   height: 32rpx;
+   width: 32rpx;
+   display: inline-block;
+}
 
 .shopManage {
-    margin-top: 60rpx;
-    padding-left: 60rpx;
-    padding-right: 60rpx;
- }
- 
- .shopManage {
- }
- 
- .shopManage .title {
-    font-size: 32rpx;
-    font-weight: 500;
-    margin-bottom: 26rpx;
-    display: flex;
-    justify-content: space-between;
- }
- 
- .shopManage .title .left, .toMyStoreIncome .left {
-    display: flex;
-    align-items: center;
- }
- 
- .shopManage .title .left .iconfont {
-    margin-right: 17rpx;
- }
- .shopManage .title .right{
-    width: 50%;
-    width: 62%;
- display: flex;
- justify-content: space-between;
- 
- }
- .shopManage .title .addBtn {
-    width: 184rpx;
-    height: 60rpx;
-    border-radius: 40rpx;
-    background-image: linear-gradient(to top, #4f8aff, #168bff);
-    color: #fff;
-    line-height: 60rpx;
-    font-size: 28rpx;
-    font-weight: 500;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
- }
- 
- .shopManage .title .addBtn .addicon {
-    font-size: 40rpx;
-    margin-right: 5rpx;
- }
- 
- .addstoreBox {
-    border: dashed 1px #4f8fff;
-    background-color: #fbfdff;
-    padding: 50rpx 0;
-    text-align: center;
-    font-size: 32rpx;
-    font-weight: 500;
-    color: #bdbdbd;
- }
- 
- .addstoreBox1 {
-    height: 247rpx;
-    line-height: 247rpx;
- }
- 
- .addstoreBox .tips {
-    margin-bottom: 30rpx;
- }
- 
- .addstoreBox  .addBtn {
-    font-size: 32rpx;
-    font-weight: 500;
-    letter-spacing: normal;
-    text-align: center;
-    color: #fff;
-    width: 300rpx;
-    height: 80rpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    background-image: linear-gradient(to top, #4f8aff, #168bff);
-    margin: 0 auto;
- }
- 
- .addicon {
-    font-size: 48rpx;
-    margin-right: 10rpx;
- }
- 
- .storeBox {
- }
- 
- .storeBox .eachStore {
-    width: 100%;
-    height: 240rpx;
-    /* opacity: 0.3; */
-    border-radius: 10rpx;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    /* background-color: #000; *//* padding: 36rpx 40rpx; */
-    margin-bottom: 40rpx;
-    position: relative;
-    background-color: rgba(0,0,0,.5);
- }
- 
- .storeBox .eachStore .bgimg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 240rpx;
-    z-index: -1;
-    border-radius: 10rpx;
- }
- 
- .storeBox .eachStore .storeName {
-    font-size: 36rpx;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #fff;
-    left: 40rpx;
-    position: absolute;
-    top: 36rpx;
- }
- 
- .storeBox .eachStore .storeAddress {
-    font-size: 28rpx;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #b9b9b9;
-    bottom: 40rpx;
-    left: 40rpx;
-    position: absolute;
- }
- 
- .storeBox .eachStore .storeStatus {
-    font-size: 20rpx;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #fff;
-    margin-bottom: 8rpx;
-    margin-left: 8rpx;
- }
- 
- .storeBox .eachStore .storeStatus .circle {
-    display: inline-block;
-    width: 12rpx;
-    height: 12rpx;
-    background-color: #f28053;
-    border-radius: 50%;
- }
- 
+   margin-top: 20rpx;
+   padding-left: 60rpx;
+   padding-right: 60rpx;
+}
+
+.shopManage {}
+
+.shopManage .title {
+   font-size: 32rpx;
+   font-weight: 500;
+   margin-bottom: 26rpx;
+   display: flex;
+   justify-content: space-between;
+}
+
+.shopManage .title .left,
+.toMyStoreIncome .left {
+   display: flex;
+   align-items: center;
+}
+
+.shopManage .title .left .iconfont {
+   margin-right: 17rpx;
+}
+
+.shopManage .title .right {
+   width: 50%;
+   width: 62%;
+   display: flex;
+   justify-content: space-between;
+
+}
+
+.shopManage .title .addBtn {
+   width: 184rpx;
+   height: 60rpx;
+   border-radius: 40rpx;
+   background-image: linear-gradient(to top, #4f8aff, #168bff);
+   color: #fff;
+   line-height: 60rpx;
+   font-size: 28rpx;
+   font-weight: 500;
+   text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.shopManage .title .addBtn .addicon {
+   font-size: 40rpx;
+   margin-right: 5rpx;
+}
+
+.addstoreBox {
+   border: dashed 1px #4f8fff;
+   background-color: #fbfdff;
+   padding: 50rpx 0;
+   text-align: center;
+   font-size: 32rpx;
+   font-weight: 500;
+   color: #bdbdbd;
+}
+
+.addstoreBox1 {
+   height: 247rpx;
+   line-height: 247rpx;
+}
+
+.addstoreBox .tips {
+   margin-bottom: 30rpx;
+}
+
+.addstoreBox .addBtn {
+   font-size: 32rpx;
+   font-weight: 500;
+   letter-spacing: normal;
+   text-align: center;
+   color: #fff;
+   width: 300rpx;
+   height: 80rpx;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 20px;
+   background-image: linear-gradient(to top, #4f8aff, #168bff);
+   margin: 0 auto;
+}
+
+.addicon {
+   font-size: 48rpx;
+   margin-right: 10rpx;
+}
+
+.storeBox .dot {
+   text-align: right;
+   color: #fff;
+   margin-right: 20rpx;
+   font-size: 51rpx;
+   height: 3rpx;
+   line-height: 30rpx;
+   position: relative;
+}
+
+.storeBox .dot .btns {
+   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/shopBg.png);
+   width: 226rpx;
+   height: 164rpx;
+   position: absolute;
+   background-size: 100% 100%;
+   top: 40rpx;
+   right: -35rpx;
+   font-size: 24rpx;
+   color: #fff;
+   /* color: #8dc3ff; */
+   z-index: 999;
+   padding-top: 20rpx;
+   box-sizing: border-box;
+   flex-direction: column;
+   padding-left: 10rpx;
+
+   /* padding-right: 20rpx; */
+}
+
+.storeBox .dot .eachBtn {
+   padding: 20rpx 0;
+   width: 100%;
+}
+
+.storeBox .dot .eachBtn.active {
+   color: #8dc3ff;
+}
+
+.bb {
+   border-bottom: 2rpx solid #8dc3ff;
+
+}
+
+.storeBox .dot .eachBtn .start {
+   width: 27rpx;
+   height: 25rpx;
+   margin-right: 10rpx;
+}
+
+.storeBox .eachStore {
+   width: 100%;
+   height: 240rpx;
+   /* opacity: 0.3; */
+   border-radius: 10rpx;
+   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+   /* background-color: #000; */
+   /* padding: 36rpx 40rpx; */
+   margin-bottom: 40rpx;
+   position: relative;
+   background-color: rgba(0, 0, 0, .5);
+}
+
+.storeBox .eachStore .bgimg {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 240rpx;
+   z-index: -1;
+   border-radius: 10rpx;
+}
+
+.storeBox .eachStore .storeName {
+   font-size: 36rpx;
+   font-weight: bold;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: normal;
+   color: #fff;
+   left: 40rpx;
+   position: absolute;
+   top: 36rpx;
+}
+
+.storeBox .eachStore .storeAddress {
+   font-size: 28rpx;
+   font-weight: normal;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: normal;
+   color: #b9b9b9;
+   bottom: 40rpx;
+   left: 40rpx;
+   position: absolute;
+}
+
+.storeBox .eachStore .storeStatus {
+   font-size: 20rpx;
+   font-weight: normal;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: normal;
+   letter-spacing: normal;
+   color: #fff;
+   margin-bottom: 8rpx;
+   margin-left: 8rpx;
+}
+
+.storeBox .eachStore .storeStatus .circle {
+   display: inline-block;
+   width: 12rpx;
+   height: 12rpx;
+   background-color: #f28053;
+   border-radius: 50%;
+}
+
+
+
+
+
+.modal {
+   /* opacity: 0.6; */
+   position: fixed;
+   z-index: 999999;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0
+}
+
+.animateModal {
+   animation: opacityChange 0.5s;
+   animation-fill-mode: forwards;
+}
+
+@keyframes opacityChange {
+   0% {
+      background-color: rgba(0, 0, 0, 0);
+      opacity: 0;
+   }
+
+   30% {
+      background-color: rgba(0, 0, 0, 0.3);
+      opacity: 0.3;
+   }
+
+   50% {
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0.7;
+   }
+
+   100% {
+      background-color: rgba(0, 0, 0, 0.6);
+      opacity: 1;
+   }
+}
+
+.modal .content {
+   width: 500rpx;
+   height: 600rpx;
+   border-radius: 10px;
+   opacity: 1;
+}
+
+.modal .content .top {
+   height: 250rpx;
+   width: 100%;
+   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/modalBg.png);
+   background-position: 0 0rpx;
+   background-size: 100% 100%;
+}
+
+.modal .content .bottom {
+   background-color: #fff;
+   border-radius: 0 0 20rpx 20rpx;
+   text-align: center;
+   font-size: 32rpx;
+   padding-top: 20rpx;
+   height: 420rpx;
+
+}
+
+.modal .content .bottom .text {
+   margin-bottom: 10rpx;
+   font-size: 28rpx;
+   color: #919191;
+}
+
+.modal .content .bottom .shopName {
+   font-weight: bold;
+   font-size: 36rpx;
+   color: #000;
+}
+
+.modal .content .bottom button {
+   width: 300rpx;
+   height: 80rpx;
+   border-radius: 40rpx;
+   background-image: linear-gradient(to left, #4f8aff 100%, #168bff 0%);
+   color: #fff;
+   font-size: 32rpx;
+   font-weight: 500;
+   margin-top: 32rpx;
+}
+.modal .content .bottom button.cancel{
+   border: solid 1px #e0e0e0;
+   background-color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  color:#e0e0e0; 
+  background-image: none;
+
+}

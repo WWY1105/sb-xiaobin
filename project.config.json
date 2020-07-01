@@ -220,6 +220,13 @@
 					"pathName": "pages/onlineOrder/ranking/ranking",
 					"query": "shopId=ab970045467646118b92ee0694c0188c",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "门店列表",
+					"pathName": "pages/myStores/myStores",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

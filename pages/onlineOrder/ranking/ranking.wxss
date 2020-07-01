@@ -7,6 +7,7 @@ page {
 }
 
 .shopInfo .shopImg {
+    min-width: 64rpx;
     width: 64rpx;
     height: 64rpx;
     border-radius: 10rpx;
@@ -39,23 +40,88 @@ page {
     border-radius: 31rpx 0 0 31rpx;
 }
 
+.tabContainer .tab .active2 {
+    border-radius: 0 31rpx 31rpx 0;
+    background-color: #ffffff;
+    color: #000;
+}
+
 .eachTab {
     height: 100%;
     padding: 0 70rpx;
     text-align: center;
-    border-radius: 0 31rpx 31rpx 0;
+    min-width: 111rpx;
+
 }
 
 .topThree {
-    flex-direction: column;
     text-align: center;
     font-size: 32rpx;
 }
 
+.topThree .textBox {
+    min-height: 115rpx;
+    /* max-width:  */
+}
+
+.topThree .each {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 .topThree .topImg {
-    width: 114rpx;
-    height: 114rpx;
+    width: 110rpx;
+    height: 110rpx;
     border-radius: 50%;
+    position: absolute;
+    left: 14rpx;
+    bottom: 18rpx;
+    font-size: 110rpx;    
+    color: #666;
+}
+
+.topThree .imgBox.two .topImg,
+.topThree .imgBox.three .topImg {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    position: absolute;
+    left: 11rpx;
+    bottom: 17rpx;
+    font-size: 96.5rpx;
+    color: #666;
+
+}
+
+.topThree .imgBox.one {
+    position: relative;
+    width: 136rpx;
+    height: 180rpx;
+    margin-left: 100rpx;
+    margin-right: 100rpx;
+
+}
+
+.topThree .imgBox.two,
+.topThree .imgBox.three {
+    position: relative;
+    width: 120rpx;
+    height: 160rpx;
+    margin-top: 24rpx;
+
+}
+
+.topThree .imgBox .one,
+.topThree .imgBox .two,
+.topThree .imgBox .three {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .topThree .name {
@@ -64,4 +130,65 @@ page {
 
 .topThree .time {
     font-weight: 400;
+}
+
+
+
+.listContainer {
+    background: #fff;
+    border-radius: 31rpx;
+    padding: 20rpx 26rpx;
+    box-sizing: border-box;
+    color: #000;
+    margin-top: 40rpx;
+}
+
+.listContainer .index {
+    font-size: 32rpx;
+    margin-right: 40rpx;
+}
+
+.listContainer .eachList {
+    flex-direction: column;
+}
+
+.listContainer .personImg {
+    width: 68rpx;
+    height: 68rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+
+.listContainer .name {
+    font-size: 28rpx;
+    font-weight: bold;
+}
+
+.listContainer .time {
+    font-size: 28rpx;
+    color: #cacaca;
+}
+
+.listContainer .money {
+    font-size: 28rpx;
+    text-align: right;
+    color: #e03030;
+}
+.listContainer  .each{
+    width: 100%;
+}
+.listContainer  .line{
+    width: 500rpx;
+    height: 2px;
+    background-color: #f8f8f8;
+    margin: 20rpx 0;
+}
+.timePicker{
+    width: 222rpx;
+    background:#fff;
+    border-radius: 30rpx;
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #000;
 }

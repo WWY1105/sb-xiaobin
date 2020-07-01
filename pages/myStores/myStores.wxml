@@ -1,43 +1,66 @@
 <!--pages/myStores/myStores.wxml-->
-     <!-- 门店管理 -->
-      <view class="shopManage">
-         <view class="title">
-            <view class="left">
-               <text class="iconfont icontuxing1x"></text>
-               <text> 我的门店</text>
-            </view>
-           
-            <view class="addBtn" bindtap="toAddStore" wx:if="{{storeList.length>0}}">
-               <text class="addicon">+</text>
-               <text>加入门店</text>
-            </view>
-            
-         </view>
-         <view class="content">
-            <!-- 还没登录 -->
-            <view wx:if="{{!hasDataFlag&&!user}}" class="addstoreBox addstoreBox1" bindtap="toAddStore">
-               <view class="tips" wx:if="{{!user}}">登录后查看我的门店</view>
+<!-- 门店管理 -->
+<view class="shopManage">
+	<view class="title">
+		<view class="left">
+			<text class="iconfont icontuxing1x"></text>
+			<text>我工作的门店</text>
+		</view>
 
-            </view>
-            <!-- 还没有门店 -->
-            <view wx:if="{{!hasDataFlag&&user}}" class="addstoreBox" bindtap="toAddStore">
-               <view class="tips" wx:if="{{user}}">您还没有加入任何门店</view>
-               <view class="tips" wx:if="{{!user}}">登录后查看我的门店</view>
-               <view class="addBtn" wx:if="{{user}}">
-                  <text class="addicon">+</text>
-                  <text>加入门店</text>
-               </view>
-            </view>
-            <!-- 有门店了 -->
-            <view class="storeBox" wx:if="{{storeList}}">
-               <!-- 每一个店铺 -->
-               <view class="eachStore" bindtap="toStoreDetail" data-id="{{item.id}}" data-storeName="{{item.name}}" wx:key="{{item.id}}" wx:for="{{storeList}}">
-                  <image wx:if="{{item.originalUrl}}" src="{{item.originalUrl}}" class="bgimg" lazy-load mode="scaleToFill"></image>
-                  <image wx:if="{{!item.originalUrl}}" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/storeBefaultBg.png" class="bgimg" lazy-load mode="scaleToFill"></image>
-                  <!-- <text class="storeStatus"><text class="circle"></text> 审核中</text>state -->
-                  <view class="storeName">{{item.brandName}}({{item.name}})</view>
-                  <view class="storeAddress">{{item.address}}</view>
-               </view>
-            </view>
-         </view>
-      </view>
+		<view class="addBtn" bindtap="toAddStore" wx:if="{{storeList.length>0}}">
+			<text class="addicon">+</text>
+			<text>加入门店</text>
+		</view>
+
+	</view>
+	<view class="usedShop">常用门店</view>
+	<view class="content">
+		<!-- 有门店了 -->
+		<view class="storeBox" wx:if="{{storeList}}">
+			<!-- 每一个店铺 -->
+			<view class="eachStore" bindtap="toStoreDetail" data-id="{{item.id}}" data-storeName="{{item.name}}" wx:key="{{item.id}}" wx:for="{{storeList}}">
+				<image wx:if="{{item.originalUrl}}" src="{{item.originalUrl}}" class="bgimg" lazy-load mode="scaleToFill"></image>
+				<image wx:if="{{!item.originalUrl}}" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/storeBefaultBg.png" class="bgimg" lazy-load mode="scaleToFill"></image>
+				<!-- 省略号 -->
+				<view class="dot" >
+					<text bindtap="shopTap" data-index="{{index}}">...</text>
+					<view class="btns flexCenter" wx:if="{{item.tabShow}}">
+               <!-- 还不是工作店铺 -->
+						<view class="eachBtn flexStart bb "  wx:if="{{!item.active}}" bindtap="setUsed" data-item="{{item}}">
+							<image class="start"  src="https://saler.ishangbin.com/img/sb-xiaozhan-img/start.png" lazy-load mode="scaleToFill"></image>
+							<text>设为常用门店</text>
+						</view>
+               <!-- 已经是工作的店铺 -->
+               	<view class="eachBtn flexStart bb active"  wx:else>
+							<image class="start"  src="https://saler.ishangbin.com/img/sb-xiaozhan-img/startActive.png" lazy-load mode="scaleToFill"></image>
+							<text>已设为常用门店</text>
+						</view>
+						<view class="eachBtn flexStart" bindtap="logout" data-item="{{item}}">
+							<image class="start" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/logout.png" lazy-load mode="scaleToFill"></image>
+							<text>退出门店</text>
+						</view>
+					</view>
+				</view>
+				<!-- 店名 -->
+				<view class="storeName">{{item.brandName}}({{item.name}})</view>
+				<view class="storeAddress">{{item.address}}</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+	<!-- 弹窗 -->
+	<view class="modal animateModal"  wx:if="{{modalShow}}"  catchtouchmove="preventTouchMove">
+		<view class="content">
+			<view class="top">
+			</view>
+			<view class="bottom">
+				<view class="text">当前常用门店已设置为</view>
+				<view class="shopName">{{workingShop.name}}</view>
+            <view class="text">是否替换</view>
+				<button bindtap="changeWorkingShop">替换</button>
+            <button class="cancel" bindtap="cancelChange">取消</button>
+			</view>
+		</view>
+	</view>

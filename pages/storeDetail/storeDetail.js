@@ -28,7 +28,6 @@ Page({
     wx.navigateTo({
       url: '/pages/menberUpgrade/menberUpgrade?id=' + this.data.storeId
     })
-
   },
   // 查询我的门店
   getMyStore(id) {
