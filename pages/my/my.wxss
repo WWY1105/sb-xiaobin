@@ -1,8 +1,11 @@
 page {
    color: #333;
    background: #fff;
+   z-index: 1;
 }
-
+#authpop{
+   z-index: 99999999999;
+}
 
 .icon-shezhi {
    font-size: 20rpx;
@@ -79,6 +82,8 @@ image.userimg {
    color: #fff;
    margin-left: 60rpx;
    margin-top: 16rpx;
+   z-index: 9999;
+   box-shadow: #fff  0px 0px 100rpx;
 }
 
 /* 我的收益 */

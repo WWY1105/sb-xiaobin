@@ -49,16 +49,14 @@ Component({
          this.setData({
             showImg: true
          })
-         //console.log(this.data.parentThis.hiddenVideo)
-         if (this.data.parentThis.hiddenVideo) {
-            //console.log("隐藏")
-            this.data.parentThis.hiddenVideo()
-         }
+         // if (this.data.parentThis.hiddenVideo) {
+         //    this.data.parentThis.hiddenVideo()
+         // }
       },
       hiddenpop: function () {
          //console.log("隐藏成功")
          this.setData({
-            showImg: false
+            // showImg: false
          })
       },
       authinit: function () {

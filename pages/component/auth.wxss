@@ -9,32 +9,33 @@
   bottom: 0;
   margin: auto;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 999999999999999999999999;
+  z-index: 999;
 }
 .modal.authInfoModal{
-   z-index: 99999999999999999999999999999999999999999999999999999999;
+   z-index: 999;
    position: relative;
 }
 .modal .content{
 position: relative;
 }
 .modal .icon-close{
-   position: fixed;
-top: 20%;
-right: 20%;
+  position: fixed;
+top: 9%;
+right: 15%;
 border-radius: 50%;
-border: 2rpx solid #fff;
 padding: 9rpx;
+color: #fff;
+font-size: 55rpx;
+
 
 }
 
 .modal image{
   width: 560rpx;
-  /* height: 100%; */
   position: absolute;
-  left: 0;
+  left: -103rpx;
   right: 0;
-  top: 0;
+  top: -35%;  
   bottom: 0;
   margin: auto;
 }

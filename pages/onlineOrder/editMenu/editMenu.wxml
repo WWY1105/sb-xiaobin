@@ -1,5 +1,5 @@
 <!--pages/onlineOrder/menu/menu.wxml-->
-<auth id="authpop" parentThis="{{popThis}}"></auth>
+<auth id="authpop" parentThis="{{parentThis}}"></auth>
 <!-- 没有数据 -->
 <view class="noData" wx:if="{{!menu||menu.length<=0}}">
 	<image class="noDataImg" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/noMenu.png"></image>

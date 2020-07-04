@@ -22,6 +22,7 @@ Page({
     hasDataFlag: false,
     workingShop: null
   },
+
   againRequest() {
     this.onShow();
   },
