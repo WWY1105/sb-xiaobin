@@ -11,7 +11,6 @@ page {
     width: 64rpx;
     height: 64rpx;
     border-radius: 10rpx;
-    background-color: #d8d8d8;
     margin-right: 20rpx;
 }
 

@@ -35,7 +35,6 @@
 				<view class="userimg userimgRadius " wx:if="{{user&&user.avatarUrl}}">
 					<open-data type="userAvatarUrl"></open-data>
 				</view>
-				<!-- <image class="userimg" src="{{user.avatarUrl?user.avatarUrl:''}}" mode="widthFix" wx:if="{{user&&user.avatarUrl}}"></image> -->
 				<view class="userimg" wx:if="{{!user.avatarUrl}}"></view>
 			</view>
 		</view>
