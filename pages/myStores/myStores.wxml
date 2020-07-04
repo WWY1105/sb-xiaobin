@@ -1,4 +1,5 @@
 <!--pages/myStores/myStores.wxml-->
+<auth id="authpop" parentThis="{{parentThis}}"></auth>
 <!-- 门店管理 -->
 <view class="shopManage">
 	<view class="title">

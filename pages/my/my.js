@@ -18,7 +18,6 @@ Page({
     page: 1,
     count: 10,
     pageSize: 1,
-    modalShow: false,
     hasDataFlag: false,
     workingShop: null
   },
@@ -52,6 +51,13 @@ Page({
                 wx.setStorageSync('token', data.result.token);
                 app.globalData.token.token = data.result.token;
               }
+               if (that.selectComponent("#authpop")) {
+                 let pop = that.selectComponent("#authpop");
+                  pop.hiddenpop();
+               }
+
+
+
               _self.getMyStore().then(() => {
                 _self.getProfits()
               })
@@ -68,8 +74,7 @@ Page({
                   app.globalData.userInfo = res.result
                   wx.setStorageSync('userInfo', res.result)
                   _self.setData({
-                    user: res.result,
-                    modalShow: true
+                    user: res.result
                   })
                   wx.hideLoading();
 
@@ -360,12 +365,29 @@ Page({
   },
   // 去我的收益
   toMyProfit: function () {
+     if (this.data.storeList <= 0) {
+        wx.showToast({
+           icon:'none',
+           title: '请先加入门店',
+           duration: 2000
+        })
+        return false;
+     }
     wx.navigateTo({
       url: '/pages/myProfit/myProfit?total=' + this.data.profits.total + '&yesterday=' + this.data.profits.yesterday,
     })
   },
   // 查看榜单
   toRank: function () {
+     if (this.data.storeList<=0){
+        wx.showToast({
+           icon: 'none',
+           title: '请先加入门店',
+           duration:2000
+        })
+        return false;
+     }
+   // 判断是否加入店铺
     wx.navigateTo({
       url: '/pages/onlineOrder/ranking/ranking?shopId=' + this.data.shopId
     })
@@ -431,25 +453,9 @@ Page({
     }
     that.setData({
       user: wx.getStorageSync('userInfo')
-    }, () => {
-      if (this.data.user) {
-        that.setData({
-          modalShow: false
-        })
-      }
     })
 
-    // if (app.globalData.refreshFlag) {
-    //   that.setData({
-    //     storeList: []
-    //   }, () => {
-    //     app.globalData.refreshFlag = false;
-    //     that.getMyStore();
-    //   })
-    // }
-    // that.getMyStore().then(() => {
-    //   that.getProfits()
-    // })
+   
     wx.hideShareMenu();
     wx.stopPullDownRefresh()
 

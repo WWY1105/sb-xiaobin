@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+   "usingComponents": {
+      "auth": "../component/auth"
+   },
   "navigationBarTitleText": "门店列表"
 }

@@ -73,6 +73,8 @@ page {
    font-size: 50rpx;
    color: #4f8aff;
    max-height: 40rpx;
+   padding-right: 32rpx;
+
 }
 
 .menuBox .eachDish .numBox .jian {

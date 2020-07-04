@@ -1,7 +1,7 @@
 <auth id="authpop" parentThis="{{parentThis}}"></auth>
 <view style="padding-bottom:30rpx;">
 	<!--  wx:if="{{modalShow}}" -->
-	<view class="modal animateModal" wx:if="{{modalShow&&storeList.length<=0}}" catchtouchmove="preventTouchMove" bindtap="toAddStore">
+	<!-- <view class="modal animateModal" wx:if="{{modalShow&&storeList.length<=0}}" catchtouchmove="preventTouchMove" bindtap="toAddStore">
 		<view class="content">
 			<view class="top">
 			</view>
@@ -11,7 +11,7 @@
 				<button>去设置</button>
 			</view>
 		</view>
-	</view>
+	</view> -->
 
 	<!-- 顶部基本信息 -->
 	<view class='userCard'>
@@ -173,7 +173,7 @@
 							</view>
 						</view>
 					</view>
-					<view class="contentBox">
+					<view class="contentBox noBorder">
 						<view class="partTitle flexCenter">
 							<image class="titleLine" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/titleLine.png"></image>
 							<text>会员服务</text>

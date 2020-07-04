@@ -7,7 +7,8 @@
 
 	<!-- 日期选择器 -->
 	<picker mode="date" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-		<input class="timePicker" value='{{date}}' placeholder='选择时间' />
+      <view class="timePicker" wx:if="{{!date}}">选择时间</view>
+      <view class="timePicker" wx:else>{{date}}</view>
 	</picker>
 </view>
 <!-- 切换 -->

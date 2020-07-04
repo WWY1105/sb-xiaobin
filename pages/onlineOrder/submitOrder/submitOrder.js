@@ -131,7 +131,8 @@ this.setData({editFlag:false})
 
    bindcomplete(){
       wx.redirectTo({
-        url: '/pages/onlineOrder/editOrder/editOrder?orderId='+this.data.order.id,
+      //   url: '/pages/onlineOrder/editOrder/editOrder?orderId='+this.data.order.id,
+         url:'/pages/onlineOrder/index'
       })
    },
    /**

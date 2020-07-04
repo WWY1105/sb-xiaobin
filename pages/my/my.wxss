@@ -465,7 +465,9 @@ margin-right: 60rpx;
    padding-bottom: 30rpx;
    border-bottom: 40rpx solid #f7f7f7;
 }
-
+.contentBox.noBorder{
+   border-bottom:none
+}
 .content .item,
 .topNav .item {
    width: 50%;
@@ -521,6 +523,9 @@ margin-right: 60rpx;
 
 .topNav .item .iconfont.online {
    background-position-y: 33%;
+}
+.topNav{
+   padding-top: 0;
 }
 
 .content .item .iconfont.video {

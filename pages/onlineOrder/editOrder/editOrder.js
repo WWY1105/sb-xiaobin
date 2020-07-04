@@ -70,6 +70,12 @@ getOrderDetail() {
          url: '/pages/onlineOrder/editMenu/editMenu?id=' + this.data.order.id,
       })
    },
+   bindcomplete() {
+      wx.redirectTo({
+         //   url: '/pages/onlineOrder/editOrder/editOrder?orderId='+this.data.order.id,
+         url: '/pages/onlineOrder/index'
+      })
+   },
    // 修改配送方式
    bindPickerChange(e) {
       let index = e.detail.value;
