@@ -98,7 +98,7 @@ Page({
    onShow: function () {
       this.getOrderDetail();
      
-
+      wx.hideShareMenu();
    },
 
    /**

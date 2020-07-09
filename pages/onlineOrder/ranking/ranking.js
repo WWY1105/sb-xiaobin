@@ -24,7 +24,7 @@ Page({
      */
     onLoad: function (options) {
         // shopId;date;type;
-
+       wx.hideShareMenu();
         let workingShop = wx.getStorageSync('workingShop')
         if (workingShop) {
             this.setData({
