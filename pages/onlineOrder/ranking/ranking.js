@@ -45,7 +45,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        wx.hideLoading();
+        ;
         this.getRank()
     },
     // 日期选择
@@ -90,7 +90,7 @@ Page({
             }).then((res) => {
                 resolve();
                 if (res.code == 200) {
-                    wx.hideLoading()
+                    
                     let rankList = that.data.rankList;
                     let hasDataFlag = that.data.hasDataFlag;
                     rankList = rankList.concat(res.result.items);

@@ -19,15 +19,15 @@
 		<!-- 有门店了 -->
 		<view class="storeBox" wx:if="{{storeList}}">
 			<!-- 每一个店铺 -->
-			<view class="eachStore" bindtap="toStoreDetail" data-id="{{item.id}}" data-storeName="{{item.name}}" wx:key="{{item.id}}" wx:for="{{storeList}}">
+			<view class="eachStore" bindtap="setUsed" data-item="{{item}}"  wx:key="{{item.id}}" wx:for="{{storeList}}">
 				<image wx:if="{{item.originalUrl}}" src="{{item.originalUrl}}" class="bgimg" lazy-load mode="scaleToFill"></image>
 				<image wx:if="{{!item.originalUrl}}" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/storeBefaultBg.png" class="bgimg" lazy-load mode="scaleToFill"></image>
 				<!-- 省略号 -->
 				<view class="dot" >
-					<text bindtap="shopTap" data-index="{{index}}">...</text>
+					<text catchtap="shopTap" data-index="{{index}}">...</text>
 					<view class="btns flexCenter" wx:if="{{item.tabShow}}">
                <!-- 还不是工作店铺 -->
-						<view class="eachBtn flexStart bb "  wx:if="{{!item.active}}" bindtap="setUsed" data-item="{{item}}">
+						<view class="eachBtn flexStart bb "  wx:if="{{!item.active}}" catchtap="setUsed" data-item="{{item}}">
 							<image class="start"  src="https://saler.ishangbin.com/img/sb-xiaozhan-img/start.png" lazy-load mode="scaleToFill"></image>
 							<text>设为常用门店</text>
 						</view>
@@ -36,7 +36,7 @@
 							<image class="start"  src="https://saler.ishangbin.com/img/sb-xiaozhan-img/startActive.png" lazy-load mode="scaleToFill"></image>
 							<text>已设为常用门店</text>
 						</view>
-						<view class="eachBtn flexStart" bindtap="logout" data-item="{{item}}">
+						<view class="eachBtn flexStart" catchtap="logout" data-item="{{item}}">
 							<image class="start" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/logout.png" lazy-load mode="scaleToFill"></image>
 							<text>退出门店</text>
 						</view>

@@ -56,7 +56,7 @@ Component({
       hiddenpop: function () {
          //console.log("隐藏成功")
          this.setData({
-            // showImg: false
+            showImg: false
          })
       },
       authinit: function () {

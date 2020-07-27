@@ -1,10 +1,10 @@
 <!--pages/onlineOrder/menu/menu.wxml-->
 <auth id="authpop" parentThis="{{parentThis}}"></auth>
+
 <!-- 没有数据 -->
-<view class="noData" wx:if="{{!menu||menu.length<=0}}">
+<view class="noData" wx:if="{{menu!=null&&menu.length<=0}}">
 	<image class="noDataImg" src="https://saler.ishangbin.com/img/sb-xiaozhan-img/onlineOrder/noMenu.png"></image>
 </view>
-
 
 <view class="containerBox" wx:else>
 	<view class="content">
@@ -39,9 +39,9 @@
 											<text>{{item.price}}</text>
 										</view>
 										<view class="numBox flexCenter">
-											<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}"></view>
-											<view class="num">{{item.num}}</view>
-											<view class="iconfont icon-jia jia" bindtap="jia" data-id="{{item.id}}" data-num="{{item.num}}"></view>
+											<view wx:if="{{item.num&&item.num>0}}" class="jian" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}">-</view>
+											<text wx:if="{{item.num&&item.num>0}}" class="num">{{item.num}}</text>
+											<view class="jia" bindtap="jia" data-id="{{item.id}}" data-num="{{item.num}}">+</view>
 										</view>
 									</view>
 								</view>
@@ -109,9 +109,9 @@
 									<text>{{item.price}}</text>
 								</view>
 								<view class="numBox flexCenter">
-									<view class="iconfont jian icon-jikediancanicon08" bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}"></view>
+									<view class=" jian " bindtap="jian" data-num="{{item.num}}" data-id="{{item.id}}">-</view>
 									<view class="num">{{item.num}}</view>
-									<view class="iconfont icon-jia jia" bindtap="jia" data-id="{{item.id}}" data-num="{{item.num}}"></view>
+									<view class=" jia" bindtap="jia" data-id="{{item.id}}" data-num="{{item.num}}">+</view>
 								</view>
 							</view>
 						</view>

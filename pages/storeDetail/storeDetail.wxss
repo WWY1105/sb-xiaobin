@@ -90,7 +90,7 @@ page {
    color: #fff;
    margin-bottom: 10rpx;
    font-size: 44rpx;
-   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/xiaozhanBgNew.svg);
+   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/xiaozhanBgNew1.svg);
    background-position: 0 0rpx;
    display: inline-block;
    background-repeat: no-repeat;

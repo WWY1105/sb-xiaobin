@@ -5,9 +5,11 @@ page {
    color: #000;
    height: 100%;
 }
-.menuBox.last{
+
+.menuBox.last {
    /* margin-bottom: 300rpx; */
 }
+
 .noData {
    display: flex;
    align-items: center;
@@ -15,6 +17,7 @@ page {
    width: 100%;
    height: 100%;
 }
+
 .noDataImg {
    width: 327rpx;
    height: 360rpx;
@@ -71,17 +74,25 @@ page {
 
 .menuBox .eachDish .numBox .jia {
    font-size: 50rpx;
-   color: #4f8aff;
-   max-height: 40rpx;
-   padding-right: 32rpx;
-
+   color: #fff;
+   margin-right: 32rpx;
+   width: 40rpx;
+   height: 40rpx;
+   line-height: 35rpx;
+   text-align: center;
+   background-color: #4f8aff;
+   border-radius: 50%;
 }
 
 .menuBox .eachDish .numBox .jian {
    color: #979797;
    font-size: 50rpx;
-   max-height: 40rpx;
-   line-height: 40rpx;
+   width: 40rpx;
+   height: 40rpx;
+   line-height:35rpx;
+   text-align: center;
+   border-radius: 50%;
+   border: solid 2rpx #979797;
 }
 
 .menuBox .eachDish .disImg {
@@ -117,11 +128,13 @@ page {
    align-items: flex-end;
 
 }
-.menuBox .eachDish .textBox .price .origin{
-   font-size:24rpx;
+
+.menuBox .eachDish .textBox .price .origin {
+   font-size: 24rpx;
    color: #919191;
    text-decoration: line-through;
 }
+
 .menuBox .eachDish .textBox .choose {
    width: 124rpx;
    height: 40rpx;
@@ -145,7 +158,7 @@ page {
    margin: 0 auto;
    left: 0;
    right: 0;
-   bottom: 10%;
+   bottom: 6%;
    z-index: 1001;
 }
 
@@ -268,9 +281,11 @@ page {
    font-weight: bold;
    color: #919191;
 }
-.scrollBox{
+
+.scrollBox {
    max-height: 826rpx;
 }
+
 .modals .dishs {
    max-height: 605rpx;
 }

@@ -62,8 +62,10 @@ Page({
       let clickObj = e.currentTarget.dataset.item
       this.setData({
          tabShow: false,
-         modalShow: true,
+         // modalShow: true,
          clickObj
+      },()=>{
+         this.changeWorkingShop()
       })
    },
    changeWorkingShop() {
@@ -73,7 +75,7 @@ Page({
          storeList: []
       }, () => {
          this.cancelChange();
-         this.getMyStore();
+         // this.getMyStore();
        
          wx.navigateBack({
             delta: 2
@@ -157,12 +159,15 @@ Page({
                storeList = storeList.concat(res.result.items);
                let workingShop = null;
                if (storeList.length > 0) {
-                  workingShop = wx.getStorageSync('workingShop')
-                  storeList.map((i) => {
-                     if (i.id == workingShop.id) {
-                        i.active = true;
-                     }
-                  })
+                  workingShop = wx.getStorageSync('workingShop');
+                  if(workingShop){
+                     storeList.map((i) => {
+                        if (i.id == workingShop.id) {
+                           i.active = true;
+                        }
+                     })
+                  }
+                 
                   hasDataFlag = true;
                } else {
                   wx.setStorageSync('workingShop', null)

@@ -13,8 +13,8 @@ Page({
     phonePop: false,
     showPhonePop: false,
     codepop: false,
-    storeList: [],
     profits: {},
+    rank:{},
     page: 1,
     count: 10,
     pageSize: 1,
@@ -29,7 +29,7 @@ Page({
   // 点击去登陆
   toLogin(e) {
     console.log(e)
-    let _self = this;
+    let that = this;
     wx.login({
       success: res => {
         wx.request({
@@ -51,19 +51,16 @@ Page({
                 wx.setStorageSync('token', data.result.token);
                 app.globalData.token.token = data.result.token;
               }
-               if (that.selectComponent("#authpop")) {
-                 let pop = that.selectComponent("#authpop");
-                  pop.hiddenpop();
-               }
-
-
-
-              _self.getMyStore().then(() => {
-                _self.getProfits()
+              if (that.selectComponent("#authpop")) {
+                let pop = that.selectComponent("#authpop");
+                pop.hiddenpop();
+              }
+              that.getMyStore().then(() => {
+                that.getProfits()
               })
 
               // ----------------
-              app.util.request(_self, {
+              app.util.request(that, {
                 url: app.util.getUrl('/user'),
                 method: 'GET',
                 header: app.globalData.token
@@ -73,7 +70,7 @@ Page({
                   wx.hideLoading()
                   app.globalData.userInfo = res.result
                   wx.setStorageSync('userInfo', res.result)
-                  _self.setData({
+                  that.setData({
                     user: res.result
                   })
                   wx.hideLoading();
@@ -83,7 +80,7 @@ Page({
               // ----------------
               if (getCurrentPages().length != 0) {
                 //刷新当前页面的数据
-                _self.data.parentThis.againRequest()
+                that.data.parentThis.againRequest()
               }
             } else {
 
@@ -111,7 +108,7 @@ Page({
       title: '加载中',
     })
     //console.log(e)
-    var _self = this
+    var that = this
     if (e.detail.errMsg == 'getPhoneNumber:fail user deny' || e.detail.errMsg == 'getPhoneNumber:user deny' || e.detail.errMsg == 'getPhoneNumber:fail:user deny') {
       wx.showModal({
         title: '提示',
@@ -140,7 +137,7 @@ Page({
               wx.setStorageSync('token', data.result.token);
               app.globalData.token.token = data.result.token
             }
-            _self.setData({
+            that.setData({
               showPhonePop: false,
               codepop: true,
               phonePop: true
@@ -200,9 +197,6 @@ Page({
 
   reflesh: function () {
     let that = this;
-    that.setData({
-      storeList: []
-    })
     that.getMyStore()
   },
   /**
@@ -210,15 +204,10 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    this.setData({
-      parentThis: this
-    })
-
-    wx.hideLoading()
-
-
+  
 
   },
+
   // 查询我的收益
   getProfits() {
     let that = this;
@@ -227,7 +216,6 @@ Page({
       url: app.util.getUrl(url),
       method: 'GET',
       header: app.globalData.token,
-
     }).then((res) => {
       console.log(res)
       if (res.code == 200) {
@@ -235,6 +223,7 @@ Page({
         that.setData({
           profits: res.result
         })
+       
       } else {
 
       }
@@ -250,41 +239,34 @@ Page({
   // 查询我的门店
   getMyStore() {
     let that = this;
-    let url = '/shops'
+    let url = '/shops/summary'
+    let json={};
+    if (wx.getStorageSync('workingShop')){
+       json.id=wx.getStorageSync('workingShop').id
+    }
+   
     return new Promise((resolve, reject) => {
       app.util.request(that, {
-        url: app.util.getUrl(url, {
-          count: that.data.count,
-          page: that.data.page
-        }),
+        url: app.util.getUrl(url, json),
         method: 'GET',
         header: app.globalData.token,
       }).then((res) => {
         resolve();
         if (res.code == 200) {
           wx.hideLoading()
-          let storeList = that.data.storeList;
-          let hasDataFlag = that.data.hasDataFlag;
-          storeList = storeList.concat(res.result.items);
+          let data=res.result;
           // 如果没有设置过工作中的店铺
-          if (storeList.length > 0) {
-            if (!wx.getStorageSync('workingShop')) {
-              wx.setStorageSync('workingShop', storeList[0]);
-            }
-            hasDataFlag = true;
+          if (data) {
+            wx.setStorageSync('workingShop', data)
           } else {
-            hasDataFlag = false;
             wx.setStorageSync('workingShop', null)
           }
           that.setData({
-            storeList,
-            pageSize: res.result.pageSize,
-            hasDataFlag,
+            hasDataFlag:true,
             workingShop: wx.getStorageSync('workingShop')
           })
         } else {
           that.setData({
-            storeList: [],
             hasDataFlag: false
           })
         }
@@ -313,7 +295,11 @@ Page({
         }).then((res) => {
           console.log(res)
           if (res.code == 200) {
-            wx.hideLoading()
+            wx.hideLoading();
+            // if (that.selectComponent("#authpop")) {
+            //   let pop = that.selectComponent("#authpop");
+            //   pop.hiddenpop();
+            // }
             that.setData({
               user: res.result
             })
@@ -365,29 +351,29 @@ Page({
   },
   // 去我的收益
   toMyProfit: function () {
-     if (this.data.storeList <= 0) {
-        wx.showToast({
-           icon:'none',
-           title: '请先加入门店',
-           duration: 2000
-        })
-        return false;
-     }
+    if (!this.data.hasDataFlag) {
+      wx.showToast({
+        icon: 'none',
+        title: '请先加入门店',
+        duration: 2000
+      })
+      return false;
+    }
     wx.navigateTo({
       url: '/pages/myProfit/myProfit?total=' + this.data.profits.total + '&yesterday=' + this.data.profits.yesterday,
     })
   },
   // 查看榜单
   toRank: function () {
-     if (this.data.storeList<=0){
-        wx.showToast({
-           icon: 'none',
-           title: '请先加入门店',
-           duration:2000
-        })
-        return false;
-     }
-   // 判断是否加入店铺
+    if (!this.data.hasDataFlag) {
+      wx.showToast({
+        icon: 'none',
+        title: '请先加入门店',
+        duration: 2000
+      })
+      return false;
+    }
+    // 判断是否加入店铺
     wx.navigateTo({
       url: '/pages/onlineOrder/ranking/ranking?shopId=' + this.data.shopId
     })
@@ -419,7 +405,6 @@ Page({
    */
   onShow: function () {
     var that = this;
-    wx.hideLoading()
     this.setData({
       parentThis: this
     })
@@ -432,7 +417,6 @@ Page({
             that.getProfits()
           })
           that.setData({
-            storeList: [],
             user: wx.getStorageSync('userInfo')
           })
         }
@@ -442,7 +426,6 @@ Page({
         that.getUserInfo()
       } else {
         that.setData({
-          storeList: [],
           user: wx.getStorageSync('userInfo')
         })
         that.getMyStore().then(() => {
@@ -455,7 +438,7 @@ Page({
       user: wx.getStorageSync('userInfo')
     })
 
-   
+
     wx.hideShareMenu();
     wx.stopPullDownRefresh()
 

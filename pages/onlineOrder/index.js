@@ -169,7 +169,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
    onLoad: function (options) {
-      wx.hideLoading();
+      ;
       //设置默认的年份
       this.setData({
          choose_year
@@ -194,7 +194,7 @@ Page({
     * 生命周期函数--监听页面显示
     */
    onShow: function () {
-      wx.hideLoading();
+      ;
       this.getDliveryTime(1)
       // let hour = new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours();
       // // // 选择器时

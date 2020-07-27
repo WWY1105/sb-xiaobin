@@ -509,7 +509,7 @@ margin-right: 60rpx;
    color: #fff;
    margin-bottom: 10rpx;
    font-size: 44rpx;
-   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/xiaozhanBgNew.svg);
+   background: url(https://saler.ishangbin.com/img/sb-xiaozhan-img/xiaozhanBgNew1.svg);
    background-position: 0 0rpx;
    display: inline-block;
    background-repeat: no-repeat;
@@ -518,38 +518,44 @@ margin-right: 60rpx;
 
 /* 各个图标 */
 .topNav .item .iconfont.ziying {
-   background-position-y: 89.3%;
+   background-position-y: 74.9%;
+}
+.topNav.rank .iconfont.zr{
+   background-position-y: 92%;
+}
+.topNav.rank .iconfont.sz{
+   background-position-y: 100%;
 }
 
 .topNav .item .iconfont.online {
-   background-position-y: 33%;
+   background-position-y: 27.8%;
 }
-.topNav{
+.topNav.rank{
    padding-top: 0;
 }
 
 .content .item .iconfont.video {
-   background-position-y: 81.5%;
+   background-position-y:68.5%;
 }
 
 .content .item .iconfont.coupon {
-   background-position-y: 65%;
+   background-position-y:55%;
 }
 
 .content .item .iconfont.group {
-   background-position-y: 49%;
+   background-position-y: 41.4%;
 }
 
 .content .itemBox .iconfont.card {
-   background-position-y: 41%;
+   background-position-y: 34.5%;
 }
 
 .content .itemBox .iconfont.sale {
-   background-position-y: 73.4%;
+   background-position-y: 61.4%;
 }
 
 .content .itemBox .iconfont.promote {
-   background-position-y: 57.2%;
+   background-position-y: 48.2%;
 }
 
 /* ---------------- */

@@ -25,7 +25,7 @@ Page({
         }).then((res) => {
             console.log(res)
             if (res.code == 200) {
-                wx.hideLoading();
+                ;
                 that.getOrderList()
             }
         })
@@ -41,14 +41,22 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        wx.hideLoading()
-        console.log(options)
+        let that = this;
         let shopId = wx.getStorageSync('shopId')
         if (shopId) {
             this.setData({
                 shopId: shopId
             })
         }
+     
+        this.setData({
+            count: 5,
+            page: 1,
+            hasDataFlag: false,
+            orderList:[]
+        }, () => {
+            that.getOrderList()
+        })
     },
     // 切换类型
     changeType(e) {
@@ -115,15 +123,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        let that = this;
-        this.setData({
-            count: 5,
-            page: 1,
-            hasDataFlag: false,
-            orderList:[]
-        }, () => {
-            that.getOrderList()
-        })
+       
     },
 
     /**

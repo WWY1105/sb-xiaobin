@@ -121,6 +121,9 @@ function isHttpSuccess(status) {
 }
 
 function requestP(options = {}) {
+   wx.showLoading({
+      title: '加载中'
+    })
    const {
       success,
       fail,
@@ -129,7 +132,7 @@ function requestP(options = {}) {
       wx.request(Object.assign({},
          options, {
             success(r) {
-               //console.log(r)
+               wx.hideLoading();
                const isSuccess = isHttpSuccess(r.statusCode);
                if (isSuccess) { // 成功的请求状态
                   res(r.data);
@@ -216,12 +219,11 @@ function request(that, options = {}, keepLogin = true) {
       return new Promise((res, rej) => {
          getSessionId()
             .then((r1) => {
+               wx.hideLoading();
                //console.log(r1)
                // 获取sessionId成功之后，发起请求
                if (r1 && r1.code == 403000) {
                   //授权弹窗
-                  console.log("授权弹窗")
-                  console.log(that.selectComponent("#authpop"))
                   wx.hideLoading();
                   var pop;
                   if (that.selectComponent("#authpop")) {
@@ -313,7 +315,7 @@ function getLocation(that) {
    wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success: function(res) {
-         wx.hideLoading()
+         // wx.hideLoading()
          if (res.errMsg == "getLocation:ok") {
             console.log(res)
             that.data.location.latitude = res.latitude;

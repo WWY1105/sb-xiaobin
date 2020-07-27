@@ -5,15 +5,15 @@ App({
       var _this = this;
       wx.hideShareMenu();
       this.globalData.scene = options.scene;
+      // 如果从发现小程序入口进入，都会进入首页
+      console.log(options.scene)
+      if(options.scene==1089){
+        wx.redirectTo({
+          url: '/pages/my/my',
+        })
+      }
    },
   onLaunch: function(options) {
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
-    
- 
-    
     var that = this
    
     this.globalData.scene = options.scene;
@@ -140,13 +140,13 @@ App({
     scene: '',
     location: {},
    //  //  测试
-    ajaxOrigin: "https://inn.sharejoy.cn",
-    urlOrigin: "https://inn.sharejoy.cn"
+    // ajaxOrigin: "https://inn.sharejoy.cn",
+    // urlOrigin: "https://inn.sharejoy.cn"
 
 
     //  正式
-   //  ajaxOrigin: "https://inn.ishangbin.com",
-   //  urlOrigin: "https://inn.ishangbin.com"
+    ajaxOrigin: "https://inn.ishangbin.com",
+    urlOrigin: "https://inn.ishangbin.com"
   },
   util: util
 }) 

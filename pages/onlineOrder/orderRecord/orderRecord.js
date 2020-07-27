@@ -32,7 +32,7 @@ Page({
           }).then((res) => {
             console.log(res)
             if (res.code == 200) {
-              wx.hideLoading();
+              ;
               that.setData({
                 orderList: []
               }, () => {
@@ -59,7 +59,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.hideLoading()
+    
     console.log(options)
     let shopId = wx.getStorageSync('shopId')
     if (shopId) {
@@ -68,6 +68,15 @@ Page({
         shopId: shopId
       })
     }
+    this.setData({
+      count: 5,
+      page: 1,
+      hasDataFlag: false,
+      popThis: this,
+      orderList: []
+    }, () => {
+      this.getOrderList()
+    })
   },
   getOrderList() {
     let that = this;
@@ -114,15 +123,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      count: 5,
-      page: 1,
-      hasDataFlag: false,
-      popThis: this,
-      orderList: []
-    }, () => {
-      this.getOrderList()
-    })
+ 
   },
 
   /**

@@ -10,7 +10,7 @@ Page({
       type: '',
       time: '',
       // orderTime: '',
-      menu: {},
+      menu: null,
       activeKind: 0,
       totalPrice: 0,
       totalNum: 0,
@@ -43,7 +43,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
    onLoad: function (options) {
-      wx.hideLoading()
+      
       if (options.shopId || wx.getStorageSync('shopId')) {
          this.setData({
             shopId: options.shopId||wx.getStorageSync('shopId')
@@ -126,7 +126,6 @@ Page({
       }).then((res) => {
          console.log(res)
          if (res.code == 200) {
-            wx.hideLoading();
             // 循环菜品,设置默认数量0
             res.result.map((item) => {
                item.title=item.kindName;
@@ -275,7 +274,7 @@ Page({
             }
          }).then((res) => {
             if (res.code == 200) {
-               wx.hideLoading();
+               ;
                that.setData({
                   orderId: res.result.orderId
                },()=>{

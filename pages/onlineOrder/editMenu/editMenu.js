@@ -25,7 +25,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
    onLoad: function (options) {
-      wx.hideLoading()
+      
       // let this.data.order = wx.getStorageSync('this.data.order');
       let shopId = wx.getStorageSync('shopId');
     
@@ -66,7 +66,7 @@ Page({
       }).then((res) => {
          console.log(res)
          if (res.code == 200) {
-            wx.hideLoading();
+            ;
             // 循环菜品,设置默认数量0
             
             let totalNum = 0
