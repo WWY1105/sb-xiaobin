@@ -162,7 +162,7 @@
 								<view class="iconfont video"></view>
 								<text class="text">短视频推广</text>
 							</view>
-							<view class="item item3 ">
+							<view class="item item3 " bindtap="goto" data-path="/pages/couponActivity/couponActivity?shopId={{workingShop.id}}">
 								<view class="iconfont coupon"></view>
 								<text class="text">免费发券</text>
 							</view>

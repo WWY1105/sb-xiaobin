@@ -1,0 +1,26 @@
+<!--pages/couponActivity/couponActivity.wxml-->
+
+<view class="page page-current">
+	<view class="content">
+		<view wx:for="coupon.benefits" wx:for-item="i" wx:key="index">
+			<view class="eachCoupon">
+				<view class="i-flex i-uncoupon flexSpace">
+					<view class="item">
+						<view class="i-flex flexStart">
+							<view class="text-lg">{{i.name}}</view>
+						</view>
+					</view>
+					<view class="item shrink">
+						<span class="i-btn grey">使用方法</span>
+					</view>
+				</view>
+				<view class="follow-box">
+					<view class="left">
+						<view>{{i.useStrategy}}</view>
+						<view>{{i.times}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

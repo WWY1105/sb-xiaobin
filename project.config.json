@@ -27,7 +27,7 @@
 		},
 		"bundle": true,
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -227,6 +227,13 @@
 					"name": "门店列表",
 					"pathName": "pages/myStores/myStores",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 24,
+					"name": "免费发圈",
+					"pathName": "pages/couponActivity/couponActivity",
+					"query": "shopId=ab970045467646118b92ee0694c0188c",
 					"scene": null
 				}
 			]

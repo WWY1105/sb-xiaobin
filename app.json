@@ -18,7 +18,8 @@
         "pages/onlineOrder/orderRecord/orderRecord",
         "pages/onlineOrder/orderRecord/finishOrder/finishOrder",
         "pages/onlineOrder/ranking/ranking",
-        "pages/myStores/myStores"
+        "pages/myStores/myStores",
+        "pages/couponActivity/couponActivity"
     ],
     "preloadRule": {},
     "window": {
