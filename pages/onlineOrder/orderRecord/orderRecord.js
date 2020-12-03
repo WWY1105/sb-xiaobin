@@ -123,9 +123,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-<<<<<<< HEAD
- 
-=======
      wx.hideShareMenu();
     this.setData({
       count: 5,
@@ -136,7 +133,6 @@ Page({
     }, () => {
       this.getOrderList()
     })
->>>>>>> 566f84b5267226950b6ad011b8b722977854ebd2
   },
 
   /**

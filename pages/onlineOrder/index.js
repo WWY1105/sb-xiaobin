@@ -194,12 +194,8 @@ Page({
     * 生命周期函数--监听页面显示
     */
    onShow: function () {
-<<<<<<< HEAD
-      ;
-=======
       wx.hideShareMenu();
       wx.hideLoading();
->>>>>>> 566f84b5267226950b6ad011b8b722977854ebd2
       this.getDliveryTime(1)
       // let hour = new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours();
       // // // 选择器时
