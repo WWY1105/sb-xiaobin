@@ -43,11 +43,11 @@
 	<view class="incomeNum">
 		<view class="left">
 			<text>昨日</text>
-			<text class="num">{{profit.yesterday||0}}</text>
+			<text class="num">{{data.yesterday||0}}</text>
 		</view>
 		<view class="right">
 			<text>累计</text>
-			<text class="num">{{profits.total||0}}</text>
+			<text class="num">{{datas.total||0}}</text>
 		</view>
 	</view>
 

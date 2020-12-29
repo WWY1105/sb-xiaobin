@@ -5,7 +5,13 @@ page {
     padding: 20rpx 40rpx;
     box-sizing: border-box;
 }
-
+.shopInfo{
+    margin-bottom: 30px;
+}
+.rank{
+    text-align: center;
+    font-weight: bolder;
+}
 .shopInfo .shopImg {
     min-width: 64rpx;
     width: 64rpx;
@@ -30,6 +36,7 @@ page {
     height: 60rpx;
     opacity: 0.4;
     border-radius: 31rpx;
+    width: 100%;
     border: solid 2rpx #ffffff;
 }
 
@@ -49,7 +56,7 @@ page {
     height: 100%;
     padding: 0 70rpx;
     text-align: center;
-    min-width: 111rpx;
+    width: 50%;
 
 }
 
@@ -95,17 +102,8 @@ page {
 
 }
 
-.topThree .imgBox.one {
-    position: relative;
-    width: 136rpx;
-    height: 180rpx;
-    margin-left: 100rpx;
-    margin-right: 100rpx;
 
-}
-
-.topThree .imgBox.two,
-.topThree .imgBox.three {
+.rankBg {
     position: relative;
     width: 120rpx;
     height: 160rpx;
@@ -134,12 +132,11 @@ page {
 
 
 .listContainer {
-    background: #fff;
     border-radius: 31rpx;
     padding: 20rpx 26rpx;
     box-sizing: border-box;
     color: #000;
-    margin-top: 40rpx;
+    margin-top: 10rpx;
 }
 
 .listContainer .index {
@@ -149,6 +146,7 @@ page {
 
 .listContainer .eachList {
     flex-direction: column;
+    margin-bottom: 20rpx;
 }
 
 .listContainer .personImg {
@@ -165,7 +163,7 @@ page {
 
 .listContainer .time {
     font-size: 28rpx;
-    color: #cacaca;
+    color: #666;
 }
 
 .listContainer .money {

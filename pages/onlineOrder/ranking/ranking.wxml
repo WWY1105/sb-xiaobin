@@ -1,8 +1,19 @@
 <!--pages/onlineOrder/ranking/ranking.wxml-->
+<!-- 切换 -->
+<view class="tabContainer flexCenter">
+	<view class="tab flexCenter">
+		<view bindtap="changeTab" class="eachTab {{type==1?'active':''}}" data-type="1">本店排行</view>
+		<view bindtap="changeTab" class="eachTab {{type==2?'active2':''}}" data-type="2">全门店排行</view>
+	</view>
+</view>
+
 <view class="shopInfo flexSpace">
 	<view class="flexStart">
-		<image class="shopImg" src="{{workingShop.originalUrl}}"></image>
-		<text class="shopName">{{workingShop.name}}</text>
+		<!-- <image class="shopImg" wx:if="{{workingShop.originalUrl}}" src="{{workingShop.originalUrl}}"></image>
+		<image class="shopImg defaultShop" wx:else src="https://saler.ishangbin.com/img/sb-xiaozhan-img/defaultShop.png"></image>
+		<text class="shopName">{{workingShop.name}}</text> -->
+		<view class="shopName" wx:if="{{currentRank.place}}">我的奖励{{currentRank.place}}元  排名 {{currentRank.rank}} 。</view>
+		<view class="shopName" wx:else>暂无收益</view>
 	</view>
 
 	<!-- 日期选择器 -->
@@ -11,64 +22,17 @@
       <view class="timePicker" wx:else>{{date}}</view>
 	</picker>
 </view>
-<!-- 切换 -->
-<view class="tabContainer flexCenter">
-	<view class="tab flexCenter">
-		<view bindtap="changeTab" class="eachTab {{type==1?'active':''}}" data-type="1">昨日榜</view>
-		<view bindtap="changeTab" class="eachTab {{type==2?'active2':''}}" data-type="2">周榜</view>
-	</view>
-</view>
-<!-- 前三名 -->
-<view class="topThree flexCenter">
-	<!-- 第二名 -->
-	<view class="each">
-		<view class="imgBox two">
-			<image class="rankBg two" src='https://saler.ishangbin.com/img/sb-xiaozhan-img/rank_2.png'></image>
-			<image wx:if="{{rankList.length>1}}" class="topImg " src="{{rankList[1].avatarUrl}}"></image>
-			<view wx:else class="topImg iconfont icon-user"></view>
-		</view>
-		<view class="textBox">
-			<view wx:if="{{rankList.length>1}}" class="name">{{rankList[1].nickname}}</view>
-			<view wx:if="{{rankList.length>1}}" class="time">{{rankList[1].times}}人次</view>
-			<view wx:if="{{rankList.length>1}}" class="num">{{rankList[1].profits}}元</view>
-		</view>
-	</view>
-	<!-- 第一名 -->
-	<view class="each">
-		<view class="imgBox one">
-			<image class="rankBg one" src='https://saler.ishangbin.com/img/sb-xiaozhan-img/rank_1.png'></image>
-			<image wx:if="{{rankList.length>0}}" class="topImg " src="{{rankList[0].avatarUrl}}"></image>
-			<view wx:else class="topImg iconfont icon-user"></view>
-		</view>
-		<view class="textBox">
-			<view wx:if="{{rankList.length>0}}" class="name">{{rankList[0].nickname}}</view>
-			<view wx:if="{{rankList.length>0}}" class="time">{{rankList[0].times}}人次</view>
-			<view wx:if="{{rankList.length>0}}" class="num">{{rankList[0].profits}}元</view>
-		</view>
-	</view>
-	<!-- 第三名 -->
-	<view class="each">
-		<view class="imgBox three">
-			<image class="rankBg three" src='https://saler.ishangbin.com/img/sb-xiaozhan-img/rank_3.png'></image>
-			<image wx:if="{{rankList.length>2}}" class="topImg " src="{{rankList[2].avatarUrl}}"></image>
-			<view wx:else class="topImg iconfont icon-user"></view>
-		</view>
-		<view class="textBox">
-			<view wx:if="{{rankList.length>2}}" class="name">{{rankList[2].nickname}}</view>
-			<view wx:if="{{rankList.length>2}}" class="time">{{rankList[2].times}}人次</view>
-			<view wx:if="{{rankList.length>2}}" class="num">{{rankList[2].profits}}元</view>
-		</view>
-	</view>
-</view>
 
+<view class="rank">统计时间：{{range}}</view>
 <!-- 4-10名排行 -->
-<view class="listContainer" wx:if="{{rankList.length>=4}}">
+<view class="listContainer">
 	<view class="bg">
-		<view class="eachList flexCenter" wx:for="{{rankList}}">
-			<view wx:if="{{index>=3}}" class="flexSpace each">
+		<view class="eachList flexCenter" wx:for="{{rankList}}" wx:key="index">
+			<view class="flexSpace each">
 				<view class="leftText flexStart">
-					<text class="index">{{index+1}}</text>
-					<image class="personImg" src="{{item.avatarUrl}}"></image>
+					<text class="index" >{{index+1}}</text>
+					<image class="personImg" wx:if="{{item.avatarUrl}}" src="{{item.avatarUrl}}"></image>
+					<image class="personImg defaultUser" wx:else src="https://saler.ishangbin.com/img/sb-xiaozhan-img/user.png"></image>
 					<view class="name_time">
 						<view class="name">{{item.nickname}}</view>
 						<view class="time">{{item.times}}人次</view>
@@ -76,7 +40,7 @@
 				</view>
 				<view class="money">{{item.profits}}元</view>
 			</view>
-			<view wx:if="{{index>=3}}" class="line"></view>
+			<!-- <view wx:if="{{index>=3}}" class="line"></view> -->
 		</view>
 	</view>
 </view>

@@ -19,7 +19,8 @@ Page({
     count: 10,
     pageSize: 1,
     hasDataFlag: false,
-    workingShop: null
+    workingShop: null,
+    shopId:''
   },
 
   againRequest() {
@@ -55,9 +56,7 @@ Page({
                 let pop = that.selectComponent("#authpop");
                 pop.hiddenpop();
               }
-              that.getMyStore().then(() => {
-                that.getProfits()
-              })
+              that.getMyStore();
 
               // ----------------
               app.util.request(that, {
@@ -204,31 +203,16 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    let shopId=''
+    if(options.shopId){
+      shopId=options.shopId
+    }else{
+      shopId=wx.getStorageSync('workingShop')?wx.getStorageSync('workingShop').id:''
+    }
+    this.setData({shopId})
+  },
+
   
-
-  },
-
-  // 查询我的收益
-  getProfits() {
-    let that = this;
-    let url = '/profits'
-    app.util.request(that, {
-      url: app.util.getUrl(url),
-      method: 'GET',
-      header: app.globalData.token,
-    }).then((res) => {
-      console.log(res)
-      if (res.code == 200) {
-        wx.hideLoading()
-        that.setData({
-          profits: res.result
-        })
-       
-      } else {
-
-      }
-    })
-  },
   // 切换店铺
   changeShop() {
     wx.navigateTo({
@@ -239,11 +223,9 @@ Page({
   // 查询我的门店
   getMyStore() {
     let that = this;
-    let url = '/shops/summary'
+    let id=this.data.shopId||this.data.user.lastShopId;
+     let url = '/shops/shop/'+ id;
     let json={};
-    if (wx.getStorageSync('workingShop')){
-       json.id=wx.getStorageSync('workingShop').id
-    }
    
     return new Promise((resolve, reject) => {
       app.util.request(that, {
@@ -255,13 +237,16 @@ Page({
         if (res.code == 200) {
           wx.hideLoading()
           let data=res.result;
+          let shopId="";
           // 如果没有设置过工作中的店铺
           if (data) {
-            wx.setStorageSync('workingShop', data)
+            wx.setStorageSync('workingShop', data);
+            shopId=data.id
           } else {
             wx.setStorageSync('workingShop', null)
           }
           that.setData({
+            shopId,
             hasDataFlag:true,
             workingShop: wx.getStorageSync('workingShop')
           })
@@ -287,7 +272,6 @@ Page({
         })
         resolve(wx.getStorageSync('userInfo'))
       } else {
-        console.log('执行')
         app.util.request(that, {
           url: app.util.getUrl('/user'),
           method: 'GET',
@@ -296,10 +280,7 @@ Page({
           console.log(res)
           if (res.code == 200) {
             wx.hideLoading();
-            // if (that.selectComponent("#authpop")) {
-            //   let pop = that.selectComponent("#authpop");
-            //   pop.hiddenpop();
-            // }
+           
             that.setData({
               user: res.result
             })
@@ -320,7 +301,6 @@ Page({
             }
           }
           that.getMyStore()
-          that.getProfits()
         })
       }
     })
@@ -337,8 +317,8 @@ Page({
     }
   },
   goto(e) {
-    let path = e.currentTarget.dataset.path + "?id=" + this.data.workingShop.id;
-    wx.setStorageSync('shopId', this.data.workingShop.id);
+    let path = e.currentTarget.dataset.path + "?id=" + this.data.shopId;
+    wx.setStorageSync('shopId', this.data.shopId);
     wx.navigateTo({
       url: path
     })
@@ -346,7 +326,7 @@ Page({
   },
   todevMenber(e) {
     wx.navigateTo({
-      url: '/pages/menberUpgrade/menberUpgrade?id=' + this.data.workingShop.id
+      url: '/pages/menberUpgrade/menberUpgrade?id=' + this.data.shopId
     })
   },
   // 去我的收益
@@ -373,6 +353,7 @@ Page({
       })
       return false;
     }
+    console.log(this.data.workingShop)
     // 判断是否加入店铺
     wx.navigateTo({
       url: '/pages/onlineOrder/ranking/ranking?shopId=' + this.data.shopId
@@ -405,17 +386,12 @@ Page({
    */
   onShow: function () {
     var that = this;
-    this.setData({
-      parentThis: this
-    })
     if (!wx.getStorageSync('token')) {
       app.util.login().then(() => {
         if (!wx.getStorageSync('userInfo')) {
           that.getUserInfo()
         } else {
-          that.getMyStore().then(() => {
-            that.getProfits()
-          })
+          that.getMyStore()
           that.setData({
             user: wx.getStorageSync('userInfo')
           })
@@ -428,13 +404,12 @@ Page({
         that.setData({
           user: wx.getStorageSync('userInfo')
         })
-        that.getMyStore().then(() => {
-          that.getProfits()
-        })
+        that.getMyStore()
 
       }
     }
     that.setData({
+      parentThis: this,
       user: wx.getStorageSync('userInfo')
     })
 

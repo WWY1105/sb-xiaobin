@@ -5,34 +5,29 @@
     },
     "setting": {
         "urlCheck": true,
+        "scopeDataCheck": false,
+        "coverView": true,
         "es6": true,
-        "enhance": true,
         "postcss": true,
+        "compileHotReLoad": false,
         "preloadBackgroundData": false,
         "minified": true,
-        "newFeature": true,
-        "coverView": true,
-        "autoAudits": true,
-        "showShadowRootInWxmlPanel": true,
-        "scopeDataCheck": false,
-        "uglifyFileName": true,
-        "checkInvalidKey": true,
-        "checkSiteMap": true,
+        "autoAudits": false,
+        "newFeature": false,
+        "uglifyFileName": false,
         "uploadWithSourceMap": true,
-        "compileHotReLoad": false,
-        "useMultiFrameRuntime": false,
-        "useApiHook": true,
-        "babelSetting": {
-            "ignore": [],
-            "disablePlugins": [],
-            "outputPath": ""
-        },
-        "bundle": true,
         "useIsolateContext": true,
+        "nodeModules": false,
+        "enhance": false,
         "useCompilerModule": true,
         "userConfirmedUseCompilerModuleSwitch": false,
+        "useMultiFrameRuntime": false,
+        "useApiHook": true,
+        "showShadowRootInWxmlPanel": true,
         "packNpmManually": false,
-        "packNpmRelationList": []
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "bundle": false
     },
     "compileType": "miniprogram",
     "libVersion": "2.7.7",
@@ -42,28 +37,16 @@
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},
     "condition": {
-        "search": {
-            "current": -1,
-            "list": []
-        },
-        "conversation": {
-            "current": -1,
-            "list": []
-        },
         "plugin": {
-            "current": -1,
             "list": []
         },
         "game": {
-            "currentL": -1,
             "list": []
         },
         "gamePlugin": {
-            "current": -1,
             "list": []
         },
         "miniprogram": {
-            "current": -1,
             "list": [
                 {
                     "id": 0,
@@ -238,6 +221,12 @@
                     "name": "免费发圈",
                     "pathName": "pages/couponActivity/couponActivity",
                     "query": "shopId=ab970045467646118b92ee0694c0188c",
+                    "scene": null
+                },
+                {
+                    "name": "排行",
+                    "pathName": "pages/onlineOrder/ranking/ranking",
+                    "query": "shopId=2f7250ff4c72429f9719eec71bffc55c&date=2020-12-27",
                     "scene": null
                 }
             ]

@@ -140,13 +140,13 @@ App({
     scene: '',
     location: {},
    //  //  测试
-    ajaxOrigin: "https://inn.sharejoy.cn",
-    urlOrigin: "https://inn.sharejoy.cn"
+    // ajaxOrigin: "https://inn.sharejoy.cn",
+    // urlOrigin: "https://inn.sharejoy.cn"
 
 
     //  正式
-    // ajaxOrigin: "https://inn.ishangbin.com",
-    // urlOrigin: "https://inn.ishangbin.com"
+    ajaxOrigin: "https://inn.ishangbin.com",
+    urlOrigin: "https://inn.ishangbin.com"
   },
   util: util
 }) 

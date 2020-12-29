@@ -12,7 +12,6 @@ Page({
       count: 10,
       pageSize: 1,
       modalShow: false,
-      workingShop: null,
       clickObj: null,
       tabShow: false
    },
@@ -69,17 +68,13 @@ Page({
       })
    },
    changeWorkingShop() {
-      wx.setStorageSync('workingShop', this.data.clickObj);
-
       this.setData({
          storeList: []
       }, () => {
          this.cancelChange();
-         // this.getMyStore();
-       
-         wx.navigateBack({
-            delta: 2
-         })
+        wx.reLaunch({
+          url: '/pages/my/my?shopId='+this.data.clickObj.id,
+        })
          
       })
 
@@ -110,14 +105,9 @@ Page({
                }).then((res) => {
                   if (res.code == 200) {
                      wx.hideLoading();
-                     let workingShop = that.data.workingShop;
-                     if (clickObj.id == that.data.workingShop.id) {
-                        wx.setStorageSync('workingShop', null);
-                        workingShop = null;
-                     }
+                   
                      that.setData({
-                        storeList: [],
-                        workingShop
+                        storeList: []
                      }, () => {
                         that.getMyStore()
                      })
@@ -157,20 +147,10 @@ Page({
                let storeList = that.data.storeList;
                let hasDataFlag = that.data.hasDataFlag;
                storeList = storeList.concat(res.result.items);
-               let workingShop = null;
+             
                if (storeList.length > 0) {
-                  workingShop = wx.getStorageSync('workingShop');
-                  if(workingShop){
-                     storeList.map((i) => {
-                        if (i.id == workingShop.id) {
-                           i.active = true;
-                        }
-                     })
-                  }
-                 
                   hasDataFlag = true;
                } else {
-                  wx.setStorageSync('workingShop', null)
                   hasDataFlag = false;
                   console.log('哈哈哈哈')
                   
@@ -179,8 +159,7 @@ Page({
                that.setData({
                   storeList,
                   pageSize: res.result.pageSize,
-                  hasDataFlag,
-                  workingShop
+                  hasDataFlag
                })
             } else {
                // code!=200
